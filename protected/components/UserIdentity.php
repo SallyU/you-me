@@ -1,18 +1,18 @@
 <?php
 
 /**
- * UserIdentity represents the data needed to identity a user.
+ * UserIdentity represents the data needed to identity a index.
  * It contains the authentication method that checks if the provided
- * data can identity the user.
+ * data can identity the index.
  */
 class UserIdentity extends CUserIdentity
 {
 	/**
-	 * Authenticates a user.
+	 * Authenticates a index.
 	 * The example implementation makes sure if the username and password
 	 * are both 'demo'.
 	 * In practical applications, this should be changed to authenticate
-	 * against some persistent user identity storage (e.g. database).
+	 * against some persistent index identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate()

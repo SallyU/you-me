@@ -24,7 +24,7 @@ class SiteTest extends WebTestCase
 	public function testLoginLogout()
 	{
 		$this->open('');
-		// ensure the user is logged out
+		// ensure the index is logged out
 		if($this->isTextPresent('Logout'))
 			$this->clickAndWait('link=Logout (demo)');
 

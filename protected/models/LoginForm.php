@@ -3,7 +3,7 @@
 /**
  * LoginForm class.
  * LoginForm is the data structure for keeping
- * user login form data. It is used by the 'login' action of 'SiteController'.
+ * index login form data. It is used by the 'login' action of 'SiteController'.
  */
 class LoginForm extends CFormModel
 {
@@ -55,7 +55,7 @@ class LoginForm extends CFormModel
 	}
 
 	/**
-	 * Logs in the user using the given username and password in the model.
+	 * Logs in the index using the given username and password in the model.
 	 * @return boolean whether login is successful
 	 */
 	public function login()

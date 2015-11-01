@@ -86,11 +86,11 @@ class SiteController extends Controller
 			Yii::app()->end();
 		}
 
-		// collect user input data
+		// collect index input data
 		if(isset($_POST['LoginForm']))
 		{
 			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
+			// validate index input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
@@ -99,7 +99,7 @@ class SiteController extends Controller
 	}
 
 	/**
-	 * Logs out the current user and redirect to homepage.
+	 * Logs out the current index and redirect to homepage.
 	 */
 	public function actionLogout()
 	{

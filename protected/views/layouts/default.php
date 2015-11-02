@@ -4,6 +4,7 @@
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <meta charset="utf-8">
     <meta name = "format-detection" content = "telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo IMG_URL;?>favicon.ico">
     <link rel="shortcut icon" href="<?php echo IMG_URL;?>favicon.ico" />
     <link rel="stylesheet" href="<?php echo CSS_URL;?>style.css">

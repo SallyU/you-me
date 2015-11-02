@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'丶以晴',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -83,4 +83,6 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+    //修改默认首页设置
+    'defaultController'=>'index',
 );

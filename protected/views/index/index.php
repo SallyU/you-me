@@ -6,6 +6,7 @@
         <div class="row">
             <div class="grid_12">
                 <div class="shuffle-group">
+                    <br />
                     <div class="row">
                         <div class="grid_8">
                             <div data-si-mousemove-trigger="100"  class="shuffle-me offset__1">

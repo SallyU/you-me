@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home</title>
+    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <meta charset="utf-8">
     <meta name = "format-detection" content = "telephone=no" />
     <link rel="icon" href="<?php echo IMG_URL;?>favicon.ico">
@@ -29,11 +29,16 @@
             });
         });
 
+        $(function(){
+            $('.sf-menu li').click(function(){
+                $(this).addClass('current').siblings().removeClass('current');
+            })
+        })
     </script>
     <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            <img src="<?php echo IMG_URL;?>ie6.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
         </a>
     </div>
     <![endif]-->
@@ -57,18 +62,19 @@
             <div class="row">
                 <div class="grid_12 ">
                     <h1 class="logo">
-                        <a href="index.html">
-                            Photo.Folio
+                        <a href="<?php echo $this->createUrl('index'); ?>">
+                            <?php echo CHtml::encode(Yii::app()->name); ?>
                         </a>
                     </h1>
                     <div class="navigation ">
                         <nav>
                             <ul class="sf-menu">
-                                <li class="current"><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
+<!--                                <li class="current"><a href="--><?php //echo $this->createUrl('index/index'); ?><!--">首页</a></li>-->
+                                <li><a href="<?php echo $this->createUrl('index/index'); ?>">首页</a></li>
+<!--                                <li><a href="">关于我</a></li>-->
+                                <li><a href="<?php echo $this->createUrl('album/index'); ?>">画廊</a></li>
+                                <li><a href="<?php echo $this->createUrl('blog/index'); ?>">心语</a></li>
+<!--                                <li><a href="">联系我</a></li>-->
                             </ul>
                         </nav>
                         <div class="clear"></div>
@@ -91,9 +97,9 @@
     <div class="container">
         <div class="row">
             <div class="grid_12">
-                <h2>Contacts</h2>
-                <div class="footer_phone">+1 800 559 6580</div>
-                <a href="#" class="footer_mail">info@demolink.org</a>
+                <h2>联系方式</h2>
+                <div class="footer_phone">+86 1875832****</div>
+                <a href="mailto:demo@demo.com" class="footer_mail">demo@demo.com</a>
             </div>
         </div>
 

@@ -13,8 +13,13 @@ class AdminController extends Controller{
         $this->render('login');
     }
 
+    public function actionRegister(){
+        $this->render('register');
+    }
+
     public function actionIndex(){
         $this->render('index');
     }
+
 
 }

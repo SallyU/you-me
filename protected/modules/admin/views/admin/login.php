@@ -16,5 +16,5 @@
             </form>
         </div>
     </div>
-<!--    <p><a href="reset-password.html">Forgot your password?</a></p>-->
+    <p><a href="<?php echo Yii::app()->createUrl('admin/admin/register'); ?>">添加用户？</a></p>
 </div>

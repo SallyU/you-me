@@ -56,9 +56,9 @@ var currentYear = (new Date).getFullYear();
 // DEVICE.JS AND SMOOTH SCROLLIG
 
 function include(url){document.write('<script type="text/javascript" src="'+url+'"></script>')}
-include('assets/default/js/device.js');
-include('assets/default/js/jquery.mousewheel.js');
-include('assets/default/js/jquery.simplr.smoothscroll.js');
+include('src/default/js/device.js');
+include('src/default/js/jquery.mousewheel.js');
+include('src/default/js/jquery.simplr.smoothscroll.js');
 
   $(function () { 
     if ($('html').hasClass('desktop')) {

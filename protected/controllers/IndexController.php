@@ -6,7 +6,6 @@
  * Time: 15:59
  */
 class IndexController extends Controller{
-    //Ê×Ò³action
     public  function actionIndex(){
         //echo "test";
         $this->render('index');

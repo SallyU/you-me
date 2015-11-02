@@ -40,7 +40,7 @@
 }
 
 #gallerySlider .placeholder{
-	background: url("../images/preloader.gif") no-repeat center center;
+	background: url("../img/preloader.gif") no-repeat center center;
 	height: 100%;
 	line-height: 1px;
 	text-align: center;
@@ -110,7 +110,7 @@
 #prevArrow,#nextArrow{
 	border:none;
 	text-decoration:none;
-	background:url('../images/arrowws.png') no-repeat;
+	background:url('../img/arrowws.png') no-repeat;
 	opacity:0.5;
 	cursor:pointer;
 	position:absolute;

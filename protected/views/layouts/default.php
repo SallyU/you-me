@@ -18,6 +18,8 @@
     <script src="<?php echo JS_URL;?>tmStickUp.js"></script>
     <script src="<?php echo JS_URL;?>jquery.ui.totop.js"></script>
     <script src="<?php echo JS_URL;?>jquery.shuffle-images.js"></script>
+    <link rel="stylesheet" href="<?php echo CSS_URL;?>touchTouch.css">
+    <script src="<?php echo JS_URL;?>touchTouch.jquery.js"></script>
     <script>
         $(window).load(function(){
             $().UItoTop({ easingType: 'easeOutQuart' });
@@ -35,6 +37,14 @@
                 $(this).addClass('current').siblings().removeClass('current');
             })
         })
+    </script>
+    <script>
+        $(window).load(function(){
+            $().UItoTop({ easingType: 'easeOutQuart' });
+            $('#stuck_container').tmStickUp({});
+            $('.gallery .gall_item').touchTouch();
+        });
+
     </script>
     <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>

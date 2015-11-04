@@ -8,7 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'丶以晴',
-
+    'sourceLanguage'=>'en_us',
+    'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log'),
 

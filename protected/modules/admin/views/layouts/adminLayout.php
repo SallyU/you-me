@@ -86,7 +86,7 @@
         </button>
         <a class="" href=""><span class="navbar-brand"><span class="fa fa-paper-plane"></span><?php echo CHtml::encode(Yii::app()->name); ?></span></a>
     </div>
-
+    <?php if(!(Yii::app()->user->getIsGuest())){ ?>
     <div class="navbar-collapse collapse" style="height: 1px;">
         <ul id="main-menu" class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs">
@@ -109,6 +109,7 @@
         </ul>
 
     </div>
+    <?php } ?>
 </div>
 
 

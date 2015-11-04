@@ -1,19 +1,23 @@
 <div class="dialog">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form>
+            <?php $form = $this->beginWidget('CActiveForm'); ?>
                 <div class="form-group">
-                    <label>用户名</label>
-                    <input type="text" class="form-control span12">
+                    <label><?php echo $form->label($model,'name'); ?></label>
+                    <?php echo $form->textField($model,'name',array('class'=>'form-control span12')); ?>
                 </div>
                 <div class="form-group">
-                    <label>密码</label>
-                    <input type="password" class="form-controlspan12 form-control">
-                </div>
-                <a href="" class="btn btn-primary pull-right">登录</a>
-                <label class="remember-me"><input type="checkbox">记住密码？</label>
+                    <label><?php echo $form->label($model,'password'); ?></label>
+                    <?php echo $form->passwordField($model,'password',array('class'=>'form-control span12')); ?>
+                </div> <span style="color: #ff0000"><?php echo $form->errorSummary($model); ?></span>
+<!--                <a href="" class="btn btn-primary pull-right">登录</a>-->
+                <button type="submit" class="btn btn-primary pull-right">登 录</button>
+                <label class="remember-me">
+                    <?php echo $form->checkBox($model,'rememberMe'); ?>
+                    <?php echo $form->label($model,'rememberMe'); ?>
+                </label>
                 <div class="clearfix"></div>
-            </form>
+            <?php $this->endWidget(); ?>
         </div>
     </div>
     <p><a href="<?php echo Yii::app()->createUrl('admin/admin/register'); ?>">添加用户？</a></p>

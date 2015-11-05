@@ -34,10 +34,11 @@ return array(
 
 	// application components
 	'components'=>array(
-
-		'index'=>array(
+        //勾选登录记住我的时候，此处要设置，如果要区分前后台，则还需要设置stateKeyPrefix
+        //若要前后台分离，则需要在后台的入口文件内部设置此选项
+		'user'=>array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+			'allowAutoLogin'=>true,//这里设置允许cookie保存登录信息，一边下次自动登录
 		),
 
 		// uncomment the following to enable URLs in path-format

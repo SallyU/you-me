@@ -47,5 +47,5 @@
             <?php $this->endWidget(); ?>
         </div>
     </div>
-    <p><a href="<?php echo Yii::app()->createUrl('admin/admin/login') ?>" style="font-size: .75em; margin-top: .25em;">返回登录？</a></p>
+    <p><a href="<?php echo Yii::app()->createUrl('admin/default/login') ?>" style="font-size: .75em; margin-top: .25em;">返回登录？</a></p>
 </div>

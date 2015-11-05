@@ -20,5 +20,5 @@
             <?php $this->endWidget(); ?>
         </div>
     </div>
-    <p><a href="<?php echo Yii::app()->createUrl('admin/admin/register'); ?>">添加用户？</a></p>
+    <p><a href="<?php echo Yii::app()->createUrl('admin/default/register'); ?>">添加用户？</a></p>
 </div>

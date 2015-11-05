@@ -91,19 +91,20 @@
         <ul id="main-menu" class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> Jack Smith
+                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span>
+                    <?php echo Yii::app()->user->name; ?>
                     <i class="fa fa-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a href="./">My Account</a></li>
+                    <li><a href="./">我的信息</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Admin Panel</li>
-                    <li><a href="./">Users</a></li>
-                    <li><a href="./">Security</a></li>
-                    <li><a tabindex="-1" href="./">Payments</a></li>
+                    <li class="dropdown-header">选项</li>
+                    <li><a href="./">1</a></li>
+                    <li><a href="./">2</a></li>
+                    <li><a tabindex="-1" href="./">3</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                    <li><a tabindex="-1" href="<?php echo Yii::app()->createUrl('admin/default/logout'); ?>">退出</a></li>
                 </ul>
             </li>
         </ul>

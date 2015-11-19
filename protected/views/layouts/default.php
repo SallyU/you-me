@@ -7,13 +7,13 @@
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>jplayer.flat.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>animate.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>simple-line-icons.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>font.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo CSS_URL;?>app.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/jplayer.flat.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/app.css" type="text/css" />
     <style>.errorMessage, .errorSummary{ color: #ff0000;}</style>
 </head>
 <body class="">
@@ -25,7 +25,7 @@
             </a>
             <a href="<?php echo Yii::app()->homeUrl; ?>" class="navbar-brand text-lt">
                 <i class="icon-earphones"></i>
-                <img src="<?php echo IMG_URL;?>logo.png" alt="." class="hide">
+                <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/logo.png" alt="." class="hide">
                 <span class="hidden-nav-xs m-l-sm">丶以晴</span>
             </a>
             <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
@@ -65,7 +65,7 @@
                             <div class="list-group list-group-alt">
                                 <a href="#" class="media list-group-item">
                     <span class="pull-left thumb-sm">
-                      <img src="<?php echo IMG_URL;?>a0.png" alt="..." class="img-circle">
+                      <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/a0.png" alt="..." class="img-circle">
                     </span>
                     <span class="media-body block m-b-none">
                       Use awesome animate.css<br>
@@ -454,7 +454,7 @@
                             <div class="dropdown dropup wrapper-sm clearfix">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="thumb-sm avatar pull-left m-l-xs">
-                        <img src="<?php echo IMG_URL;?>a3.png" class="dker" alt="...">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/a3.png" class="dker" alt="...">
                         <i class="on b-black"></i>
                       </span>
                       <span class="hidden-nav-xs clear">
@@ -498,18 +498,18 @@
         </section>
     </section>
 </section>
-<script src="<?php echo JS_URL;?>jquery.min.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.min.js"></script>
 
-<script src="<?php echo JS_URL;?>bootstrap.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/bootstrap.js"></script>
 
-<script src="<?php echo JS_URL;?>app.js"></script>
-<script src="<?php echo JS_URL;?>jquery.slimscroll.min.js"></script>
-<script src="<?php echo JS_URL;?>tiles.min.js"></script>
-<script src="<?php echo JS_URL;?>demo-2.js"></script>
-<script src="<?php echo JS_URL;?>app.plugin.js"></script>
-<script type="text/javascript" src="<?php echo JS_URL;?>jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="<?php echo JS_URL;?>jplayer.playlist.min.js"></script>
-<script type="text/javascript" src="<?php echo JS_URL;?>demo.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/tiles.min.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/demo-2.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jplayer.playlist.min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/demo.js"></script>
 </body>
 
 

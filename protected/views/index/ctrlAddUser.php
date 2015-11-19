@@ -1,3 +1,6 @@
+<?php
+$this->pageTitle=Yii::app()->name . ' - 添加用户 ';
+?>
 <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
     <div class="container aside-xl">
         <a class="navbar-brand block" href="<?php echo Yii::app()->homeUrl;?>"><span class="h1 font-bold">丶以晴</span></a>

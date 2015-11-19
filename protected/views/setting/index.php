@@ -1,3 +1,6 @@
+<?php
+$this->pageTitle=Yii::app()->name . ' - 设置 ';
+?>
 <section id="content">
     <section class="vbox">
         <section class="scrollable padder">

@@ -1,3 +1,6 @@
+<?php
+$this->pageTitle=Yii::app()->name . ' - 登录 ';
+?>
 <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
     <div class="container aside-xl">
         <a class="navbar-brand block" href="<?php echo Yii::app()->homeUrl;?>"><span class="h1 font-bold">丶以晴</span></a>

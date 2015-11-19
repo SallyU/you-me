@@ -1,3 +1,6 @@
+<?php
+$this->pageTitle=Yii::app()->name . ' - 首页 ';
+?>
             <section id="content">
                 <section class="vbox">
                     <section class="scrollable">
@@ -7,9 +10,8 @@
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
-                                                <p class="text-white">N.01</p>
                                                 <div class="center text-center m-t-n">
-                                                    <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                                    <a href="#"></a>
                                                 </div>
                                             </div>
                                             <div class="bottom wrapper bg-info gd">
@@ -20,9 +22,8 @@
                                         </div>
                                         <div class="item">
                                             <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
-                                                <p class="text-white">N.02</p>
                                                 <div class="center text-center m-t-n">
-                                                    <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                                    <a href="#"></a>
                                                 </div>
                                             </div>
                                             <div class="bottom wrapper bg-info gd">
@@ -36,9 +37,8 @@
                             </div>
                             <div class="item">
                                 <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                                    <p class="text-white">Watch later</p>
                                     <div class="center text-center m-t-n">
-                                        <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                        <a href="#"></i></a>
                                     </div>
                                 </div>
                                 <div class="bottom gd bg-info wrapper">

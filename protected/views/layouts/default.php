@@ -24,8 +24,7 @@
                 <i class="icon-list"></i>
             </a>
             <a href="<?php echo Yii::app()->homeUrl; ?>" class="navbar-brand text-lt">
-                <i class="icon-earphones"></i>
-                <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/logo.png" alt="." class="hide">
+                <i class="icon-camera"></i>
                 <span class="hidden-nav-xs m-l-sm">丶以晴</span>
             </a>
             <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
@@ -126,7 +125,6 @@
     </header>
     <section>
         <section class="hbox stretch">
-            <?php if(!(Yii::app()->user->getIsGuest())){ ?>
             <aside class="bg-black dk nav-xs aside hidden-print" id="nav">
                 <section class="vbox">
                     <section class="w-f-md scrollable">
@@ -141,38 +139,39 @@
                                         Discover
                                     </li>
                                     <li>
-                                        <a href="index.html">
-                                            <i class="icon-disc icon text-success"></i>
-                                            <span class="font-bold">What's new</span>
+                                        <a href="<?php echo Yii::app()->homeUrl; ?>">
+                                            <i class="icon-home icon text-success"></i>
+                                            <span class="font-bold">首页</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="genres.html">
-                                            <i class="icon-music-tone-alt icon text-info"></i>
-                                            <span class="font-bold">Genres</span>
+                                            <i class="fa fa-picture-o icon text-info"></i>
+                                            <span class="font-bold">相册</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="events.html">
-                                            <i class="icon-drawer icon text-primary-lter"></i>
+                                            <i class="icon-notebook icon text-primary-lter"></i>
                                             <b class="badge bg-primary pull-right">6</b>
-                                            <span class="font-bold">Events</span>
+                                            <span class="font-bold">游记</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="listen.html">
-                                            <i class="icon-list icon  text-info-dker"></i>
-                                            <span class="font-bold">Listen</span>
+                                            <i class="icon-heart icon  text-info-dker"></i>
+                                            <span class="font-bold">心情</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="video.html" data-target="#content" data-el="#bjax-el" data-replace="true">
-                                            <i class="icon-social-youtube icon  text-primary"></i>
-                                            <span class="font-bold">Video</span>
+                                            <i class="fa fa-smile-o icon  text-primary"></i>
+                                            <span class="font-bold">时光轴</span>
                                         </a>
                                     </li>
                                     <li class="m-b hidden-nav-xs"></li>
                                 </ul>
+                                <?php if(!(Yii::app()->user->getIsGuest())){ ?>
                                 <ul class="nav" data-ride="collapse">
                                     <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
                                         Interface
@@ -441,54 +440,14 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <?php } ?>
                             </nav>
 
                         </div>
                     </section>
 
-                    <footer class="footer hidden-xs no-padder text-center-nav-xs">
-                        <div class="bg hidden-xs ">
-                            <div class="dropdown dropup wrapper-sm clearfix">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="thumb-sm avatar pull-left m-l-xs">
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/a3.png" class="dker" alt="...">
-                        <i class="on b-black"></i>
-                      </span>
-                      <span class="hidden-nav-xs clear">
-                        <span class="block m-l">
-                          <strong class="font-bold text-lt">John.Smith</strong>
-                          <b class="caret"></b>
-                        </span>
-                        <span class="text-muted text-xs block m-l">Art Director</span>
-                      </span>
-                                </a>
-                                <ul class="dropdown-menu animated fadeInRight aside text-left">
-                                    <li>
-                                        <span class="arrow bottom hidden-nav-xs"></span>
-                                        <a href="#">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="profile.html">Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge bg-danger pull-right">3</span>
-                                            Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="docs.html">Help</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>            </footer>
                 </section>
             </aside>
-            <?php } ?>
 
             <?php echo $content; ?>
 

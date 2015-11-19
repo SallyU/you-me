@@ -93,10 +93,7 @@
                     <ul class="dropdown-menu animated fadeInRight">
                         <li>
                             <span class="arrow top"></span>
-                            <a href="#">Settings</a>
-                        </li>
-                        <li>
-                            <a href="profile.html">Profile</a>
+                            <a href="<?php echo $this->createUrl('setting/index'); ?>">设 置</a>
                         </li>
                         <li>
                             <a href="#">

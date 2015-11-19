@@ -6,10 +6,12 @@
  * Time: 15:59
  */
 class IndexController extends Controller{
+    //首页
     public  function actionIndex(){
         $this->render('index');
     }
 
+    //登录
     public function actionLogin(){
         if(!Yii::app()->user->isGuest){
             $this -> redirect($this -> createUrl('index'));
@@ -23,12 +25,12 @@ class IndexController extends Controller{
         }
         $this->render('login',array('model'=>$model));
     }
-
+    //退出
     public function actionLogout(){
         Yii::app()->user->logout();
         $this -> redirect($this -> createUrl('login'));
     }
-
+    //注册、添加用户
     public function actionCtrlAddUser(){
         if(!Yii::app()->user->isGuest){
             $this->redirect($this -> createUrl('index'));

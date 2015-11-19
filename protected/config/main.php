@@ -28,8 +28,6 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		//import admin modules
-		'admin',
 	),
 
 	// application components
@@ -39,6 +37,7 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,//这里设置允许cookie保存登录信息，一边下次自动登录
+            'loginUrl'=>'./index.php?r=index/login',//设置默认登录,这里只有一个后台登录功能
 		),
 
 		// uncomment the following to enable URLs in path-format

@@ -1,0 +1,9 @@
+127.0.0.1	localhost
+127.0.1.1	Tech-rd6
+127.0.1.1       bossgoo2012.com www.bossgoo2012.com demo.bossgoo2012.com lighting.bossgoo2012.com shaoxing.bossgoo2012.com jp.bossgoo2012.com about.bossgoo2012.com wenzhou.bossgoo2012.com jinan.bossgoo2012.com kr.bossgoo2012.com gr.bossgoo2012.com se.bossgoo2012.com hi.bossgoo2012.com ms.bossgoo2012.com rovanbaja.jp.bossgoo2012.com ar.bossgoo2012.com de.bossgoo2012.com es.bossgoo2012.com fr.bossgoo2012.com id.bossgoo2012.com vi.bossgoo2012.com member.bossgoo2012.com *.bossgoo2012.com shuju.bossgoo2015.com m.bossgoo2012.com dlz.com jp.dlz.com *.dlz.com yiqing.me *.yiqing.me
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

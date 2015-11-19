@@ -1,135 +1,224 @@
-<!--=====================
-          Content
-======================-->
-<section id="content">
-    <div class="container">
-        <div class="row">
-            <div class="grid_12">
-                <div class="shuffle-group">
-                    <br />
-                    <div class="row">
-                        <div class="grid_8">
-                            <div data-si-mousemove-trigger="100"  class="shuffle-me offset__1">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_1-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_1-2.jpg" alt="">
+            <section id="content">
+                <section class="vbox">
+                    <section class="scrollable">
+                        <div id="masonry" class="pos-rlt animated fadeInUpBig">
+                            <div class="item">
+                                <div class="carousel slide auto" data-interval="3000">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
+                                                <p class="text-white">N.01</p>
+                                                <div class="center text-center m-t-n">
+                                                    <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="bottom wrapper bg-info gd">
+                                                <div class="m-t m-b"><a href="#" class="b-b b-danger h2 text-u-c text-lt font-bold">Teideal</a></div>
+                                                <p class="hidden-xs">Morbi nec nunc condimentum, egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula</p>
+                                            </div>
+                                            <a href="#"><img src="<?php echo TESTIMG_URL;?>m20.jpg" alt="" class="img-full"></a>
+                                        </div>
+                                        <div class="item">
+                                            <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
+                                                <p class="text-white">N.02</p>
+                                                <div class="center text-center m-t-n">
+                                                    <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="bottom wrapper bg-info gd">
+                                                <div class="m-t m-b"><a href="#" class="b-b b-warning h2 text-u-c text-lt font-bold">Tincidunt</a></div>
+                                                <p class="hidden-xs">Gestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae ligula elementum</p>
+                                            </div>
+                                            <a href="#"><img src="<?php echo TESTIMG_URL;?>m22.jpg" alt="" class="img-full"></a>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="item">
+                                <div class="item-overlay gd animated fadeInUp wrapper bg-info">
+                                    <p class="text-white">Watch later</p>
+                                    <div class="center text-center m-t-n">
+                                        <a href="#"><i class="icon-control-play i-2x"></i></a>
+                                    </div>
+                                </div>
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Tincidunt</a></div>
+                                    <p class="hidden-xs">Vivamus vel tincidunt libero, lementum ligula vitae</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m31.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-warning h4 text-u-c text-lt font-bold">Duis</a></div>
+                                    <p class="hidden-xs">Tincidunt libero vitae elementum</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m10.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="item-overlay active bg-primary dker wrapper text-center">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-white h4 text-u-c text-lt font-bold">lementum</a></div>
+                                    <p class="hidden-xs">lementum ligula vitae est quis congue ero</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Diam</a></div>
+                                    <p class="hidden-xs">Con malesuada est, quis congue nibhs</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m4.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="carousel carousel-fade bg-info slide auto" data-interval="6000">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <div class="item-overlay active dker wrapper text-center">
+                                                <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Cosies</a></div>
+                                                <p class="hidden-xs">Duis non malesuada est, quis congue nibh</p>
+                                            </div>
+                                            <a href="#"><img src="<?php echo TESTIMG_URL;?>m4.jpg" alt="" class="img-full"></a>
+                                        </div>
+                                        <div class="item">
+                                            <div class="item-overlay active dk wrapper text-center">
+                                                <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Malesuada</a></div>
+                                                <p class="hidden-xs">Aliquam sollicitudin venenatis congue nibh</p>
+                                            </div>
+                                            <a href="#"><img src="<?php echo TESTIMG_URL;?>m4.jpg" alt="" class="img-full"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Vivamus</a></div>
+                                    <p class="hidden-xs">Morbi id neque quam. Aliquam sollicitudin venenatis ipsum</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m13.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-warning h4 text-u-c text-lt font-bold">Libero</a></div>
+                                    <p class="hidden-xs">Aliquam sollicitudin venenatis ipsum</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m30.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">habitant</a></div>
+                                    <p class="hidden-xs">Vel tincidunt libero, vitae ligula tristique</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m19.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="item-overlay active bg-success dker wrapper text-center">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Ligula</a></div>
+                                    <p class="hidden-xs">Sesuada est, quis congue tincidunt libero nibh ligula</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Malesuada</a></div>
+                                    <p class="hidden-xs">Pellentesque habitant morbi tristique sodales</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m7.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Donec</a></div>
+                                    <p class="hidden-xs">Vestibulum ullamcorper</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m18.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-primary h4 text-u-c text-lt font-bold">Eleifend</a></div>
+                                    <p class="hidden-xs">Malesuada augue. Donec eleifend condimentum</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m32.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Sollicitudin </a></div>
+                                    <p class="hidden-xs">Mauris convallis mauris at pellentesque volutpat</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m40.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-warning h2 text-u-c text-lt font-bold">Senectus </a></div>
+                                    <p class="hidden-xs">Fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m21.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Phasellus</a></div>
+                                    <p class="hidden-xs">Senectus et netus et malesuada fames</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m5.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-white h4 text-u-c text-lt font-bold">Neque</a></div>
+                                    <p class="hidden-xs">Consectetur adipiscing elit. Morbi id neque quam</p>
+                                </div>
+                                <a href="#"><img src="<?php echo IMG_URL;?>a10.png" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Nisi ne</a></div>
+                                    <p class="hidden-xs">Orbi tristique senectus et netus et malesuada</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m4.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="item-overlay active bg-warning dker wrapper text-center">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-white h4 text-u-c text-lt font-bold">Morbi</a></div>
+                                    <p class="hidden-xs">Dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Congue</a></div>
+                                    <p class="hidden-xs">Malesuada est, quis congue nibh</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m6.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="item-overlay active bg-info lt wrapper text-center">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-white h4 text-u-c text-lt font-bold">Csesoi</a></div>
+                                    <p class="hidden-xs">Dolor sit ectetur elit senectus et malesuada</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Consectetur</a></div>
+                                    <p class="hidden-xs">Adipiscing elit senectus et netus mal.</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m42.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Morbi</a></div>
+                                    <p class="hidden-xs">Dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m9.jpg" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Soesle</a></div>
+                                    <p class="hidden-xs">Adipiscing elituis congue</p>
+                                </div>
+                                <a href="#"><img src="<?php echo IMG_URL;?>a7.png" alt="" class="img-full"></a>
+                            </div>
+                            <div class="item">
+                                <div class="bottom gd bg-info wrapper">
+                                    <div class="m-t m-b"><a href="#" class="b-b b-info h4 text-u-c text-lt font-bold">Congue</a></div>
+                                    <p class="hidden-xs">Malesuada est, congue nibh quis elituis</p>
+                                </div>
+                                <a href="#"><img src="<?php echo TESTIMG_URL;?>m12.jpg" alt="" class="img-full"></a>
                             </div>
                         </div>
-                        <div class="grid_4">
-                            <div data-si-mousemove-trigger="100" class="shuffle-me">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_2.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_2-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_2-2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div data-si-mousemove-trigger="100" class="shuffle-me offset__1">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_3.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_3-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_3-2.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="grid_4">
-                            <div data-si-mousemove-trigger="100" class="shuffle-me">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_4.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_4-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_4-2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div data-si-mousemove-trigger="100" class="shuffle-me">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_5.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_5-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_5-2.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid_8">
-                            <div data-si-mousemove-trigger="100"  class="shuffle-me">
-                                <a href="gallery.html" class="info" target="_blank"></a>
-                                <div class="images">
-                                    <img src="<?php echo IMG_URL;?>gall_6.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_6-1.jpg" alt="">
-                                    <img src="<?php echo IMG_URL;?>gall_6-2.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sep-1"></div>
-    <div class="container">
-        <div class="row">
-            <div class="grid_8">
-                <h3>Bio</h3>
-                <img src="<?php echo IMG_URL;?>page1_img1.jpg" alt="" class="img_inner fleft noresize">
-                <div class="extra_wrapper"><p class="offset__1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor, leo magna sodales felis, quis malesuada nibh odio ut velit. Proin pharetra luctus diam, a scelerisque eros convallis accumsan. Maecenas vehicula egestas  derto venenatis. Duis massa elit, auctor non pellentesque vel, aliquet sit amet erat.</p></div>
-                <div class="clear"></div>
-                <p>Find detailed information about the <a href=" http://blog.templatemonster.com/free-website-templates/" rel="nofollow" class="color1"><strong>freebie</strong></a> here. </p>
-                <p>Visit TemplateMonster.com to find more <a href="http://www.templatemonster.com/properties/topic/design-photography/" rel="nofollow" class="color1"><strong>goodies</strong></a> of this kind.</p>
-                Proin pharetra luctus diam, a scelerisque eros convallis accumsan. Maecenas vehicula egestas venenatis. <br>
-                <a href="#" class="btn">more</a>
-            </div>
-            <div class="grid_4">
-                <h3>Follow me</h3>
-                <ul class="socials">
-                    <li>
-                        <div class="fa fa-facebook"></div>
-                        <a href="#">Be a fan on Facebook</a>
-                    </li>
-                    <li>
-                        <div class="fa fa-twitter"></div>
-                        <a href="#">Follow me on Twitter</a>
-                    </li>
-                    <li>
-                        <div class="fa fa-google-plus"></div>
-                        <a href="#">Follow me on Google+</a>
-                    </li>
-                    <li>
-                        <div class="fa fa-youtube"></div>
-                        <a href="#">Follow me on YouTube</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="sep-1"></div>
-    <div class="container">
-        <div class="row">
-            <div class="grid_7">
-                <h3 class="head__1">From the Blog</h3>
-                <time class="time-1" datetime="2014-01-01">24.07 <br> 2014</time><p class="offset__2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor, leo magna sodales felis, quis malesuada nibh odio ut velit. Proin pharetra luctus diam, a scelerisque eros convallis accumsan. Maecenas vehicula egestas  derto venenatis. Duis </p>
-                Dorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor, leo magna sodales felis. <br>
-                <a href="#" class="btn">more</a>
-            </div>
-            <div class="grid_4 preffix_1">
-                <h3 class="head__1">Testimonials</h3>
-                <blockquote class="bq_1">
-                    <img src="<?php echo IMG_URL;?>page1_img2.jpg" alt="" class="img_inner fleft noresize">
-                    <div class="extra_wrapper">
-                        <div class="bq_title">Lize Jons</div>
-                    </div>
-                    <div class="clear"></div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor...
-                    <br>
-                    <a href="#" class="btn">more</a>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-</section>
-
-
+                    </section>
+                </section>
+                <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+            </section>

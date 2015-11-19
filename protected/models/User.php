@@ -42,13 +42,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('name', 'length', 'min'=>2,'max'=>12,'tooShort'=>'哎哟喂，太短了','tooLong'=>'妈呀，你想撑死数据库么'),
+            array('name', 'length', 'min'=>2,'max'=>16,'tooShort'=>'哎哟喂，太短了','tooLong'=>'妈呀，你想撑死数据库么'),
             array('name','required','message'=>'什么都不填，你当我傻么'),
             array('name','unique','message'=>'这个名字太受欢迎了,PLZ 换个'),
-            array('password', 'length', 'min'=>4, 'max'=>12, 'tooShort'=>'我去，太短了，NO','tooLong'=>'已经够安全了，不要多输'),
-            array('password','required','message'=>'为了安全,你懂的'),
-            array('passwordConfirm','required','message'=>'以防你忘记，再输入一次吧'),
-            array('passwordConfirm','compare','compareAttribute'=>'password','message'=>'请保持同一个姿势'),//passwordComfirm的值必须和password相同
+            array('password,passwordConfirm', 'length', 'min'=>4, 'max'=>22, 'tooShort'=>'我去，太短了，NO','tooLong'=>'已经够安全了，不要多输'),
+            array('password','required','message'=>'为了安全,请穿上安全裤'),
+            array('passwordConfirm','required','message'=>'以防你忘记，再次提醒穿上一样的安全裤   '),
+            array('passwordConfirm','compare','compareAttribute'=>'password','message'=>'第二个安全裤和第一个姿势不一样'),//passwordComfirm的值必须和password相同
             //array('verifyCode','required','message'=>'难道你是机器人?'),
             //array('verifyCode','captcha','message'=>'擦亮眼睛.再输一次'),
             array('createtime', 'safe'),

@@ -5,35 +5,39 @@ $this->pageTitle=Yii::app()->name . ' - 设置 ';
     <section class="vbox">
         <section class="scrollable padder">
             <div class="m-b-md">
-                <h3 class="m-b-none">form wizard</h3>
+                <h3 class="m-b-none">设置选项</h3>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <form id="wizardform" method="get" action="http://demo1.cssmoban.com/cssthemes3/yzts_15_musik/index.html">
+                    <?php $form = $this->beginWidget('CActiveForm'); ?>
                         <div class="panel panel-default">
+                            <header class="panel-heading">
+                                <span class="font-bold">修改密码</span>
+                            </header>
                             <div class="panel-body">
-                                <h4>修改密码</h4>
-                                <div class="progress progress-xs m-t-md">
-                                    <div style="width: 33.3333%;" class="progress-bar bg-success"></div>
-                                </div>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="step1">
                                         <p>旧密码:</p>
-                                        <input class="form-control" data-trigger="change" data-required="true" data-type="url"  type="text">
+                                        <?php echo $form->passwordField($model,'oldpass',array('class'=>'form-control')); ?>
+                                        <p><?php echo $form->error($model,'oldpass'); ?></p>
                                         <p class="m-t">新密码:</p>
-                                        <input class="form-control" data-trigger="change" data-required="true" data-type="email"  type="text">
+                                        <?php echo $form->passwordField($model,'newpass',array('class'=>'form-control')); ?>
                                         <p class="m-t">新密码确认:</p>
-                                        <input class="form-control" data-trigger="change" data-required="true" data-type="email"  type="text">
+                                        <?php echo $form->passwordField($model,'newpass2',array('class'=>'form-control')); ?>
+                                        <p><?php echo $form->error($model,'newpass2'); ?></p>
                                     </div>
                                     <ul class="pager wizard m-b-sm">
-                                        <li class="previous first disabled" style="display:none;"><a href="#">first</a></li>
-                                        <li class="next last" style="display:none;"><a href="#">last</a></li>
-                                        <li class="next"><a href="#">确定修改</a></li>
+                                        <li class="next">
+                                            <button type="submit" class="btn btn-s-md btn-rounded" style="color: #FFF !important;background-color: #1AB667;border-color: #1AB667;float: right">
+                                                <i class="icon-arrow-right pull-right"></i>
+                                                确定修改
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <?php $this->endWidget(); ?>
                 </div>
                 <div class="col-sm-6">
                     <form id="guessform">

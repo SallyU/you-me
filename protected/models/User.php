@@ -19,6 +19,10 @@ class User extends CActiveRecord
     public $passwordConfirm;//确认密码定义
     public $verifyCode;//定义验证码
 
+    public $oldpass;
+    public $newpass;
+    public $newpass2;
+
 
 
 	public static function model($className=__CLASS__)

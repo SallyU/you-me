@@ -10,6 +10,7 @@ class LoginForm extends CFormModel
     public $name;
     public $password;
     public $rememberMe;
+    public $verifyCode;
 
     private $_identity;
 
@@ -30,6 +31,7 @@ class LoginForm extends CFormModel
 
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
+            array('verifyCode', 'captcha', 'allowEmpty'=>$this->checkVerifyCode(), 'on'=>'login'),//注意on是场景，用于登录
 
             // password needs to be authenticated,调用下面的attributes方法，
             array('password', 'authenticate'),
@@ -85,5 +87,31 @@ class LoginForm extends CFormModel
         }
         else
             return false;
+    }
+
+    //验证码,用于用户输错3次显示验证码验证
+    public function checkVerifyCode()
+    {
+        if (isset($_POST['user'])){
+            $error_msg = '验证码输入不正确.';
+            $loginErrorTimes = (int)Yii::app()->session['login_error_times'];
+            if ($loginErrorTimes > 0) {
+                $loginErrorTimes++;
+            }else{
+                $loginErrorTimes = 1;
+            }
+            Yii::app()->session['login_error_times'] = $loginErrorTimes;
+            if ($loginErrorTimes > 3) {
+                $verifyCode = trim($this->verifyCode);
+                $captcha = Yii::app()->controller->createAction('captcha')->getVerifyCode();
+                if (strtolower($captcha) == strtolower($verifyCode)) {
+                    return true;
+                }else{
+                    $this->addError('verifyCode', $error_msg);
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

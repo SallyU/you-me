@@ -5,7 +5,7 @@
  * Date: 15-11-4
  * Time: 上午11:36
  */
-class DCCaptchaAction extends CCaptchaAction{
+class Captcha extends CCaptchaAction{
     /**
      * Runs the action.
      */
@@ -26,7 +26,6 @@ class DCCaptchaAction extends CCaptchaAction{
             $this->renderImage($this->getVerifyCode(true));//重写run,实现刷新页面时刷新验证码
         Yii::app()->end();
     }
-
 
 
 

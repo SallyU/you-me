@@ -59,7 +59,7 @@
                     <section class="dropdown-menu aside-xl animated fadeInUp">
                         <section class="panel bg-white">
                             <div class="panel-heading b-light bg-light">
-                                <strong>You have <span class="count">2</span> notifications</strong>
+                                <strong>你有 <span class="count">2</span> 条消息</strong>
                             </div>
                             <div class="list-group list-group-alt">
                                 <a href="#" class="media list-group-item">
@@ -87,7 +87,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-                        Hola：<?php echo Yii::app()->user->name; ?> <b class="caret"></b>
+                        <i class="icon-user"></i> : <?php echo Yii::app()->user->name; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight">
                         <li>
@@ -97,15 +97,15 @@
                         <li>
                             <a href="#">
                                 <span class="badge bg-danger pull-right">3</span>
-                                Notifications
+                                通知
                             </a>
                         </li>
                         <li>
-                            <a href="docs.html">Help</a>
+                            <a href="docs.html">其他</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?php echo Yii::app()->createUrl('index/logout'); ?>" data-toggle="ajaxModal">Logout</a>
+                            <a href="<?php echo Yii::app()->createUrl('index/logout'); ?>">退出&nbsp;<i class="icon-logout"></i></a>
                         </li>
                     </ul>
                 </li>
@@ -116,7 +116,7 @@
             <ul class="nav navbar-nav m-n hidden-xs nav-user user">
                 <li class="dropdown">
                     <a href="<?php echo Yii::app()->createUrl('index/login'); ?>" class="dropdown-toggle bg clear" title="网站主人登录">
-                        <strong class="font-bold text-lt">登 录</strong>&nbsp;<i class="icon-login"></i>
+                        登 录&nbsp;<i class="icon-login"></i>
                     </a>
                 </li>
             </ul>
@@ -135,37 +135,40 @@
 
                             <nav class="nav-primary hidden-xs">
                                 <ul class="nav bg clearfix">
-                                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                                        Discover
-                                    </li>
                                     <li>
                                         <a href="<?php echo Yii::app()->homeUrl; ?>">
                                             <i class="icon-home icon text-success"></i>
-                                            <span class="font-bold">首页</span>
+                                            <span class="font-bold">首 页</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="genres.html">
-                                            <i class="fa fa-picture-o icon text-info"></i>
-                                            <span class="font-bold">相册</span>
+                                        <a href="">
+                                            <i class="fa fa-picture-o icon text-warning-dker"></i>
+                                            <span class="font-bold">相 册</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="events.html">
+                                        <a href="">
                                             <i class="icon-notebook icon text-primary-lter"></i>
                                             <b class="badge bg-primary pull-right">6</b>
-                                            <span class="font-bold">游记</span>
+                                            <span class="font-bold">游 记</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="listen.html">
-                                            <i class="icon-heart icon  text-info-dker"></i>
-                                            <span class="font-bold">心情</span>
+                                        <a href="">
+                                            <i class="icon-note icon text-info-dker"></i>
+                                            <span class="font-bold">日 志</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="video.html" data-target="#content" data-el="#bjax-el" data-replace="true">
-                                            <i class="fa fa-smile-o icon  text-primary"></i>
+                                        <a href="">
+                                            <i class="icon-heart icon  text-danger-dk"></i>
+                                            <span class="font-bold">心 情</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" data-target="#content" data-el="#bjax-el" data-replace="true">
+                                            <i class="fa fa-smile-o icon  text-info-lt"></i>
                                             <span class="font-bold">时光轴</span>
                                         </a>
                                     </li>
@@ -182,30 +185,43 @@
                           <i class="fa fa-angle-left text"></i>
                           <i class="fa fa-angle-down text-active"></i>
                         </span>
-                                            <i class="icon-screen-desktop icon">
-                                            </i>
-                                            <span>Layouts</span>
+                                            <i class="icon-globe icon text-success-lter"></i>
+                                            <span>管 理</span>
                                         </a>
                                         <ul class="nav dk text-sm">
                                             <li >
-                                                <a href="layout-color.html" class="auto">
+                                                <a href="<?php echo $this->createUrl('albumcate/add'); ?>">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Color option</span>
+                                                    <span>相册类别</span>
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="layout-boxed.html" class="auto">
+                                                <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Boxed layout</span>
+                                                    <span>照片</span>
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="layout-fluid.html" class="auto">
+                                                <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Fluid layout</span>
+                                                    <span>心情</span>
+                                                </a>
+                                            </li>
+                                            <li >
+                                                <a href="" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>游记</span>
+                                                </a>
+                                            </li>
+                                            <li >
+                                                <a href="" class="auto">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>日志</span>
                                                 </a>
                                             </li>
                                         </ul>

@@ -9,4 +9,8 @@ class AlbumController extends Controller{
     public function actionIndex(){
         $this->render('index');
     }
+
+    public function actionUpload(){
+        $this->render('upload');
+    }
 }

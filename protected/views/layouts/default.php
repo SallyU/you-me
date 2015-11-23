@@ -215,10 +215,10 @@
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="" class="auto">
+                                                <a href="<?php echo $this->createUrl('album/upload'); ?>" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>照片</span>
+                                                    <span>上传照片</span>
                                                 </a>
                                             </li>
                                             <li >

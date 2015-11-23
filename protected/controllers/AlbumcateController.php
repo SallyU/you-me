@@ -52,17 +52,4 @@ class AlbumcateController extends Controller{
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

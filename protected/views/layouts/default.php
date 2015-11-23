@@ -17,6 +17,24 @@
     <style>.errorMessage, .errorSummary{ color: #ff0000;}</style>
 </head>
 <body class="">
+<!--删除提示框-->
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                请确认
+            </div>
+            <div class="modal-body">
+                确认不要它了么o(╯□╰)o？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">还没想好</button>
+                <a class="btn btn-danger btn-ok">嗯，再贱</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--删除提示框结束-->
 <section class="vbox">
     <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
         <div class="navbar-header aside bg-primary nav-xs">
@@ -92,7 +110,7 @@
                     <ul class="dropdown-menu animated fadeInRight">
                         <li>
                             <span class="arrow top"></span>
-                            <a href="<?php echo $this->createUrl('setting/index'); ?>">设 置</a>
+                            <a href="<?php echo $this->createUrl('setting/index'); ?>">修改密码</a>
                         </li>
                         <li>
                             <a href="#">
@@ -185,7 +203,7 @@
                           <i class="fa fa-angle-left text"></i>
                           <i class="fa fa-angle-down text-active"></i>
                         </span>
-                                            <i class="icon-globe icon text-success-lter"></i>
+                                            <i class="icon-globe icon"></i>
                                             <span>管 理</span>
                                         </a>
                                         <ul class="nav dk text-sm">
@@ -232,9 +250,8 @@
                           <i class="fa fa-angle-left text"></i>
                           <i class="fa fa-angle-down text-active"></i>
                         </span>
-                                            <i class="icon-chemistry icon">
-                                            </i>
-                                            <span>UI Kit</span>
+                                            <i class="icon-cloud-upload icon"></i>
+                                            <span>发 布</span>
                                         </a>
                                         <ul class="nav dk text-sm">
                                             <li >
@@ -471,9 +488,7 @@
     </section>
 </section>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.min.js"></script>
-
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/bootstrap.js"></script>
-
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.slimscroll.min.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/tiles.min.js"></script>
@@ -482,6 +497,12 @@
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jplayer.playlist.min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/demo.js"></script>
+<script>
+    //全局删除JS
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+</script>
 </body>
 
 

@@ -8,7 +8,12 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
         </div>
         <section class="panel panel-default">
             <header class="panel-heading font-bold">
-                新建相册类别
+                <ul class="nav nav-pills pull-right">
+                    <li>
+                        <a href="#" class="panel-toggle text-muted"><i class="fa fa-caret-down text-active"></i><i class="fa fa-caret-up text"></i></a>
+                    </li>
+                </ul>
+               新建相册类别
             </header>
             <div class="panel-body">
                 <?php $form = $this->beginWidget('CActiveForm',array(
@@ -33,25 +38,41 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
         </section>
         <div class="row">
             <div class="col-sm-6">
-                <section class="panel panel-default">
-                    <header class="panel-heading font-bold">Basic form</header>
-                    <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label>Email address</label>
-                                <input class="form-control" placeholder="Enter email" type="email">
+                <section class="panel panel-default pos-rlt clearfix">
+                    <header class="panel-heading">
+                        <ul class="nav nav-pills pull-right">
+                            <li>
+                                <a href="#" class="panel-toggle text-muted"><i class="fa fa-caret-down text-active"></i><i class="fa fa-caret-up text"></i></a>
+                            </li>
+                        </ul>
+                        已有相册类别
+                    </header>
+                    <div class="panel-body clearfix">
+                        <?php if(isset($albumcate) && !empty($albumcate) && $count >0 ){?>
+                            <div class="doc-buttons">
+                            <?php foreach($albumcate as $_a => $a){?>
+                                    <a href="#" class="btn btn-s-md btn-default btn-rounded">
+                                        <?php echo $a->catename;    ?>
+                                        <button title="删除该类别" type="button" class="close" data-href="<?php echo $this->createUrl('albumcate/delalbumcate',array('cateid'=>$a->cateid));?>" data-toggle="modal" data-target="#confirm-delete" style="float: none;font-size: 16px;">&times;</button>
+                                    </a>
+                            <?php }} else{
+                                echo "咦，一个相册类别都没有，赶紧添加一个吧！";
+                            } ?>
                             </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input class="form-control" placeholder="Password" type="password">
-                            </div>
-                            <div class="checkbox i-checks">
-                                <label>
-                                    <input checked="" disabled="" type="checkbox"><i></i> Check me out
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-default">Submit</button>
-                        </form>
+                            <?php
+                            if($pages->pageCount >= 2){
+                                echo '<div class="text-center">';
+                                $this->widget('CLinkPager',array(
+                                    'header' => '',
+                                    'firstPageLabel' => '首页',
+                                    'lastPageLabel' => '最后一页',
+                                    'prevPageLabel' => '上一页',
+                                    'nextPageLabel' => '下一页',
+                                    'pages' => $pages,
+                                    'maxButtonCount'=>7,
+                                ));
+                                echo ' </div>';
+                            }?>
                     </div>
                 </section>
             </div>

@@ -6,7 +6,7 @@
  * Time: 下午2:06
  */
 class AlbumcateController extends Controller{
-    //添加相册
+    //添加相册类别
     public function actionAdd(){
         if(Yii::app()->user->isGuest){
             $this->redirect(Yii::app()->homeUrl);
@@ -24,7 +24,31 @@ class AlbumcateController extends Controller{
                 $cate->save();
             }
         }
-        $this->render('add',array('model' => $cate));
+        //显示类别并且分页
+        $criteria = new CDbCriteria();//$criteria->addCondition('status=1');//根据条件查询
+        $criteria->order = "cateid DESC";//
+        $count = Albumcate::model()->count($criteria);
+        $pager = new CPagination($count);
+        $pager->pageSize=16;//每页显示的数量
+        $pager->applyLimit($criteria);
+
+        $albumcate = Albumcate::model()->findAll($criteria); //根据条件查询
+
+        $data = array(
+            'model' => $cate,
+            'pages' => $pager,
+            'albumcate' => $albumcate,
+            'count' => $count,
+            );
+
+        $this->render('add',$data);
+    }
+
+    //删除相册类别
+    public function actionDelAlbumcate($cateid){
+        $delcate = Albumcate::model()->findByPk($cateid);
+        if($delcate ->delete())
+            $this->redirect(array('albumcate/add'));
     }
 
 

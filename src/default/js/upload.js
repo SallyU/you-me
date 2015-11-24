@@ -126,7 +126,7 @@
         uploader = WebUploader.create({
             pick: {
                 id: '#filePicker',
-                label: '点击选择图片'
+                label: '<i class="fa fa-folder-open-o"></i>  点击选择图片'
             },
             formData: {
                 uid: 123
@@ -196,7 +196,7 @@
             var $li = $('<li id="' + file.id + '">' +
                     '<p class="title">' + file.name + '</p>' +
                     '<p class="imgWrap"></p>' +
-                    '<p class="progress"><span></span></p>' +
+                    '<p class="progress" style="background-color: transparent"><span></span></p>' +
                     '</li>'),
                     $btns = $('<div class="file-panel">' +
                             '<span class="cancel">删除</span>' +
@@ -383,8 +383,8 @@
             } else if (state === 'confirm') {
                 stats = uploader.getStats();
                 if (stats.uploadFailNum) {
-                    text = '已成功上传' + stats.successNum + '张照片至XX相册，' +
-                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                    text = '已成功上传' + stats.successNum + '张照片至指定相册，' +
+                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">【重新上传】</a>失败照片或<a class="ignore" href="#">【忽略】</a>'
                 }
 
             } else {
@@ -542,7 +542,7 @@
         });
 
         $info.on('click', '.ignore', function () {
-            alert('todo');
+            alert('已经忽略');
         });
 
         $upload.addClass('state-' + state);

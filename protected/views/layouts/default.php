@@ -215,14 +215,14 @@
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="<?php echo $this->createUrl('album/newAlbum'); ?>">
+                                                <a href="<?php echo $this->createUrl('album/index'); ?>">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
                                                     <span>相册管理</span>
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="<?php echo $this->createUrl('album/upload'); ?>" class="auto">
+                                                <a href="<?php echo $this->createUrl('picture/upload'); ?>" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
                                                     <span>上传照片</span>

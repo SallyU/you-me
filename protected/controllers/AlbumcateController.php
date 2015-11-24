@@ -14,7 +14,7 @@ class AlbumcateController extends Controller{
 
         $words = '';
         $cate = new Albumcate();
-        if(isset($_POST['Albumcate']) && !empty($_POST['Albumcate']['catename'])){
+        if(isset($_POST['Albumcate'])){
             $cate->attributes = $_POST['Albumcate'];
             $words = explode(" ",$_POST['Albumcate']['catename']);
             foreach($words as $_w => $w){

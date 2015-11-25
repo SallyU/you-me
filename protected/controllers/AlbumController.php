@@ -10,4 +10,8 @@ class AlbumController extends Controller{
         $this->render('index');
     }
 
+    public function actionAdd(){
+        $this->render('add');
+    }
+
 }

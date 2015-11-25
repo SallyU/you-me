@@ -1,9 +1,10 @@
+<?php $this->pageTitle = Yii::app()->name . ' - 相册列表'; ?>
 <section id="content">
     <section class="hbox stretch">
         <section>
             <section class="vbox">
                 <section class="scrollable padder-lg w-f-md" id="bjax-target">
-                    <a href="#" class="pull-right text-muted m-t-lg"><i class="fa fa-plus"></i>&nbsp;添加相册</a>
+                    <a href="<?php echo $this->createUrl('album/add'); ?>" class="pull-right text-muted m-t-lg"><i class="fa fa-plus"></i>&nbsp;添加相册</a>
                     <h2 class="font-thin m-b">相册列表
                     <span class="bar1 a1 bg-primary lter"></span>
                     <span class="bar2 a2 bg-info lt"></span>

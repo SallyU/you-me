@@ -384,7 +384,7 @@
                 stats = uploader.getStats();
                 if (stats.uploadFailNum) {
                     text = '已成功上传' + stats.successNum + '张照片至指定相册，' +
-                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">【重新上传】</a>失败照片或<a class="ignore" href="#">【忽略】</a>'
+                            stats.uploadFailNum + '张照片上传失败'
                 }
 
             } else {

@@ -15,6 +15,21 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/font.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/app.css" type="text/css" />
     <style>.errorMessage, .errorSummary{ color: #ff0000;}</style>
+
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/bootstrap.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/tiles.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/index.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
+    <script>
+        //全局删除JS
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+    </script>
+
 </head>
 <body class="">
 <!--删除提示框-->
@@ -494,22 +509,6 @@
         </section>
     </section>
 </section>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.min.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/bootstrap.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.slimscroll.min.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/tiles.min.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/demo-2.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jplayer.playlist.min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/demo.js"></script>
-<script>
-    //全局删除JS
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-</script>
 </body>
 
 

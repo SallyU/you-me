@@ -9,9 +9,21 @@ class AlbumController extends Controller{
     public function actionIndex(){
         $this->render('index');
     }
-
+    //添加
     public function actionAdd(){
-        $this->render('add');
+        if(Yii::app()->user->isGuest){
+            $this->redirect($this->createUrl('index/index'));
+        }
+        $data = array();
+        $model = new Album();
+
+
+
+
+        $data = array(
+            'model' => $model,
+            );
+        $this->render('add',$data);
     }
 
 }

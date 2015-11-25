@@ -22,8 +22,14 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                 新建相册
             </header>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
+                <?php $form=$this->beginWidget('CActiveForm', array(
+                    'enableAjaxValidation'=>false,
+                    'htmlOptions'=>array(
+                        'enctype'=>'multipart/form-data',
+                        'class' =>'form-horizontal',
+                        ),
+                    )); ?>
+                <div class="form-group">
                         <label class="col-sm-2 control-label">相册名称</label>
                         <div class="col-sm-10">
                             <input class="form-control rounded" type="text">
@@ -54,17 +60,14 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                     <div class="form-group">
                         <label class="col-sm-2 control-label">请选择</label>
                         <div class="col-sm-10">
-                            <div class="btn-group m-r">
-                                <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                                    <input type="hidden"><span class="dropdown-label" id="chuanzhi1">公开</span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-select">
-                                    <li class="active"><input name="d-s-r" checked="" type="radio"><a href="#">公开</a></li>
-                                    <li><input name="d-s-r" type="radio"><a href="#">自己可见</a></li>
-                                </ul>
-                            </div>
-
+                            <select class="js-example-placeholder-single">
+                                <option>公开</option>
+                                <option>自己可见</option>
+                            </select>
+                            <select class="js-example-placeholder-single">
+                                <option>公开</option>
+                                <option>自己可见</option>
+                            </select>
                         </div>
                     </div>
                     <div class="line line-dashed b-b line-lg pull-in"></div>
@@ -73,8 +76,13 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                             <button type="submit" class="btn btn-primary rounded">确定添加</button>
                         </div>
                     </div>
-                </form>
+                <?php $this->endWidget(); ?>
             </div>
         </section>
     </section>
 </section>
+<script>
+    $(".js-example-placeholder-single").select2({
+        minimumResultsForSearch: Infinity
+    });
+</script>

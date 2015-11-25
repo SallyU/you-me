@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/simple-line-icons.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/font.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/app.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/src/default/css/select2.min.css" type="text/css" />
     <style>.errorMessage, .errorSummary{ color: #ff0000;}</style>
 
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.min.js"></script>
@@ -23,6 +24,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/tiles.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/index.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/select2.min.js"></script>
     <script>
         //全局删除JS
         $('#confirm-delete').on('show.bs.modal', function(e) {
@@ -210,7 +212,7 @@
                                 <?php if(!(Yii::app()->user->getIsGuest())){ ?>
                                 <ul class="nav" data-ride="collapse">
                                     <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                                        Interface
+                                        后台功能
                                     </li>
                                     <li >
                                         <a href="#" class="auto">

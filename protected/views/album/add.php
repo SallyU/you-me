@@ -32,20 +32,18 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                 <div class="form-group">
                         <label class="col-sm-2 control-label">相册名称</label>
                         <div class="col-sm-10">
-                            <input class="form-control rounded" type="text">
+                            <?php echo $form->textField($model,'albumname',array('class' => 'form-control rounded')); ?>
+                            <span class="help-block m-b-none"><?php echo $form->error($model,'albumname'); ?></span>
                         </div>
                     </div>
                     <div class="line line-dashed b-b line-lg pull-in"></div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">相册封面</label>
                         <div class="col-sm-10">
-                            <input style="position: fixed; left: -500px;" id="filestyle-0" class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s" type="file">
                             <div class="bootstrap-filestyle" style="display: inline;">
-                                <input class="form-control inline v-middle input-s rounded" disabled="" type="text">
-                                <label for="filestyle-0" class="btn btn-default rounded">
-                                    <span>选择文件</span>
-                                </label>
-                                <span class="help-block m-b-none">若不想上传封面，可以在<a href="<?php echo $this->createUrl('album/index');?>" target="_blank">相册管理</a>设置封面。(注：图片会被切割成300&times;450)</span>
+                                <?php echo $form->fileField($model,'albumcover',array('id' => 'file0'));?>
+                                <img src="" id="img0" width="35%" alt="选择的图片将在这预览">
+                                <span class="help-block m-b-none">若不想上传封面，可以在<a href="<?php echo $this->createUrl('album/index');?>" target="_blank">相册管理</a>设置封面</span>
                             </div>
                         </div>
                     </div>
@@ -85,4 +83,23 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
     $(".js-example-placeholder-single").select2({
         minimumResultsForSearch: Infinity
     });
+    $("#file0").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) {
+            $("#img0").attr("src", objUrl) ;
+        }
+    }) ;
+    //建立一個可存取到该file的url
+    function getObjectURL(file) {
+        var url = null ;
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
 </script>

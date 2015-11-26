@@ -42,7 +42,7 @@ class Album extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('albumopen', 'numerical', 'integerOnly'=>true),
-			array('albumname, albumcover', 'length', 'max'=>128),
+			array('albumname', 'length', 'max'=>128),
 			array('albumdesc', 'length', 'max'=>1000),
 			array('userid, cateid', 'length', 'max'=>11),
 			array('createtime', 'length', 'max'=>32),

@@ -20,6 +20,11 @@ class Album extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Album the static model class
 	 */
+    public $albumopen = array(
+        '0'=>'-是否公开-',
+        '1'=>'公开',
+        '2'=>'自己可见',
+    );
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -41,12 +46,15 @@ class Album extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('albumopen', 'numerical', 'integerOnly'=>true),
-			array('albumname', 'length', 'max'=>128),
-			array('albumdesc', 'length', 'max'=>1000),
-			array('userid, cateid', 'length', 'max'=>11),
-			array('createtime', 'length', 'max'=>32),
-			// The following rule is used by search().
+            array('albumname', 'length', 'min'=>2,'max'=>24,'tooShort'=>'哎哟喂，太短了(至少要2个字)','tooLong'=>'妈呀，你想撑死数据库么'),
+            array('albumname,albumdesc','required','message'=>'什么都不填，你当我傻么'),
+            array('albumname','unique','message'=>'已经有这个相册了，换个试试'),
+            array('albumdesc', 'length', 'min'=>4,'max'=>60,'tooShort'=>'哎哟喂，太短了(至少要4个字)','tooLong'=>'妈呀，你想撑死数据库么'),
+            array('albumcover', 'file', 'types'=>'jpg, gif, png, jpeg','allowEmpty' =>true,'maxSize'=>1024*1024*4,'tooLarge'=>'文件大于4M，上传失败！请上传小于4M的文件'),
+            //验证是否公开(信息在0到2之间则表示有选择，否则没有)，1正则；2范围限制
+            array('albumopen','in','range'=>array(1,2),'message'=>'请确定是否公开相册'),
+            array('userid, cateid,createtime', 'safe'),
+            // The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('albumid, albumname, albumopen, albumcover, albumdesc, userid, cateid, createtime', 'safe', 'on'=>'search'),
 		);

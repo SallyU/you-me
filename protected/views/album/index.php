@@ -5,21 +5,17 @@
             <section class="vbox">
                 <section class="scrollable padder-lg w-f-md" id="bjax-target">
                     <a href="<?php echo $this->createUrl('album/add'); ?>" class="pull-right text-muted m-t-lg"><i class="fa fa-plus"></i>&nbsp;添加相册</a>
-                    <h2 class="font-thin m-b">相册列表
-                    <span class="bar1 a1 bg-primary lter"></span>
-                    <span class="bar2 a2 bg-info lt"></span>
-                    <span class="bar3 a3 bg-success"></span>
-                    <span class="bar4 a4 bg-warning dk"></span>
-                    <span class="bar5 a5 bg-danger dker"></span>
-                  </span></h2>
+                    <h2 class="font-thin m-b">
+                        相册列表
+                    </h2>
                     <div class="row row-sm">
                         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                             <div class="item">
                                 <div class="pos-rlt">
                                     <div class="item-overlay opacity r r-2x bg-black">
                                         <div class="bottom padder m-b-sm">
-                                            <a href="#" class="pull-right">
-                                                <i class="fa fa-heart-o"></i>
+                                            <a href="#" class="pull-right" title="编辑">
+                                                <i class="fa fa-pencil-square-o text-success-lter"></i>
                                             </a>
                                             <a href="#" title="删除">
                                                 <i class="fa fa-trash-o text-danger"></i>

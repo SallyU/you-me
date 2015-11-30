@@ -51,23 +51,28 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                     <div class="form-group">
                         <label class="col-sm-2 control-label">相册描述</label>
                         <div class="col-sm-10">
-                            <input class="form-control rounded" placeholder="不超过20个字的描述～" type="text">
+                            <?php echo $form->textField($model,'albumdesc',array('class'=>'form-control rounded','placeholder'=>'不超过20个字的描述～')) ?>
+                            <span class="help-block m-b-none"><?php echo $form->error($model,'albumdesc'); ?></span>
                         </div>
                     </div>
                     <div class="line line-dashed b-b line-lg pull-in"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">请选择</label>
+                        <label class="col-sm-2 control-label">添加到相册</label>
                         <div class="col-sm-10">
-                            <select class="js-example-placeholder-single">
-                                <option>公开</option>
-                                <option>自己可见</option>
-                            </select>
-                            <select class="js-example-placeholder-single">
-                                <option>公开</option>
-                                <option>自己可见</option>
-                            </select>
+                            <?php
+                            $list = CHtml::listData($albumcate,'cateid','catename');
+                            echo $form -> dropDownList($model,'cateid',$list,array('class'=>'search-select-qky')); ?>
+                            <span class="help-block m-b-none"><?php echo $form->error($model,'cateid'); ?></span>
                         </div>
                     </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">请选择</label>
+                    <div class="col-sm-10">
+                        <?php echo $form -> dropDownList($model,'albumopen',$open,array('class'=>'js-example-placeholder-single')); ?>
+                        <span class="help-block m-b-none"><?php echo $form->error($model,'albumopen'); ?></span>
+                    </div>
+                </div>
                     <div class="line line-dashed b-b line-lg pull-in"></div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
@@ -83,6 +88,7 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
     $(".js-example-placeholder-single").select2({
         minimumResultsForSearch: Infinity
     });
+    $(".search-select-qky").select2();
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
         console.log("objUrl = "+objUrl) ;

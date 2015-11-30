@@ -7,9 +7,37 @@
  */
 class AlbumController extends Controller{
     public function actionIndex(){
-        $this->render('index');
+        //如果未登录则查询公开的，如果登录，则全部查询
+        if(Yii::app()->user->isGuest){
+            $criteria = new CDbCriteria();
+            $criteria->order = "createtime DESC";
+            $criteria->addCondition('albumopen = 1');//根据条件查询
+            $count = Album::model()->count($criteria);
+            $pager = new CPagination($count);
+            $pager->pageSize=12;//每页显示的数量
+            $pager->applyLimit($criteria);
+
+            $model = Album::model()->findAll($criteria);
+        } else {
+            $criteria = new CDbCriteria();
+            $criteria->order = "createtime DESC";
+            $count = Album::model()->count($criteria);
+            $pager = new CPagination($count);
+            $pager->pageSize=12;//每页显示的数量
+            $pager->applyLimit($criteria);
+
+            $model = Album::model()->findAll($criteria);
+        }
+
+        $data = array(
+            'model' => $model,
+            'pages' => $pager,
+            'count' => $count,
+        );
+
+        $this->render('index',$data);
     }
-    //添加
+    //新建相册
     public function actionAdd(){
         if(Yii::app()->user->isGuest){
             $this->redirect($this->createUrl('index/index'));
@@ -25,7 +53,7 @@ class AlbumController extends Controller{
         if(isset($_POST['Album'])){
             $model -> attributes = $_POST['Album'];
             $upcover = CUploadedFile::getInstance($model,'albumcover');//获得一个CUploadedFile的实例
-            $uploaddir = Yii::app()->basePath.'/../uploads/albumcovers/';
+            $uploaddir = './uploads/albumcovers/';
             if(is_object($upcover) && get_class($upcover) === 'CUploadedFile')// 判断实例化是否成功
             {
                 $model->albumcover = $uploaddir.time().'_'.rand(0,9999).'.'.$upcover->extensionName;//定义文件保存的名称

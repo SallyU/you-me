@@ -177,7 +177,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo $this->createUrl('album/index'); ?>">
                                             <i class="fa fa-picture-o icon text-warning-dker"></i>
                                             <span class="font-bold">相 册</span>
                                         </a>

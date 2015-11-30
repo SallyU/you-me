@@ -50,6 +50,7 @@
                                 echo ' <div class="clearfix visible-xs"></div>';} ?>
                         <?php } ?>
                     </div>
+                    <!--分页-->
                     <ul class="pagination pagination">
                         <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
                         <li class="active"><a href="#">1</a></li>

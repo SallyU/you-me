@@ -25,12 +25,6 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/index.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/select2.min.js"></script>
-    <script>
-        //全局删除JS
-        $('#confirm-delete').on('show.bs.modal', function(e) {
-            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-        });
-    </script>
 
 </head>
 <body class="">
@@ -51,6 +45,12 @@
         </div>
     </div>
 </div>
+<script>
+    //全局删除JS
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+</script>
 <!--删除提示框结束-->
 <section class="vbox">
     <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
@@ -177,16 +177,22 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo $this->createUrl('album/index'); ?>">
+                                        <a href="">
                                             <i class="fa fa-picture-o icon text-warning-dker"></i>
-                                            <span class="font-bold">相 册</span>
+                                            <span class="font-bold">照 片</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo $this->createUrl('album/index'); ?>">
                                             <i class="icon-notebook icon text-primary-lter"></i>
-                                            <b class="badge bg-primary pull-right">6</b>
-                                            <span class="font-bold">游 记</span>
+                                            <b class="badge bg-primary pull-right">
+                                                <?php if(Yii::app()->user->isGuest){
+                                                    echo count(Album::model()->findAll("albumopen = :albumopen",array(':albumopen'=>1)));
+                                                }else{
+                                                    echo count(Album::model()->findAll());
+                                                } ?>
+                                            </b>
+                                            <span class="font-bold">相 册</span>
                                         </a>
                                     </li>
                                     <li>

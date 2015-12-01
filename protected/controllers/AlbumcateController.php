@@ -52,4 +52,10 @@ class AlbumcateController extends Controller{
     }
 
 
+    //分页ajax测试
+    public function actionTest(){
+        $this->renderPartial('test');
+    }
+
+
 }

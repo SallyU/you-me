@@ -50,7 +50,7 @@ class Album extends CActiveRecord
             array('albumname,albumdesc','required','message'=>'什么都不填，你当我傻么'),
             array('albumname','unique','message'=>'已经有这个相册了，换个试试'),
             array('albumdesc', 'length', 'min'=>4,'max'=>60,'tooShort'=>'哎哟喂，太短了(至少要4个字)','tooLong'=>'妈呀，你想撑死数据库么'),
-            array('albumcover', 'file', 'types'=>'jpg, gif, png, jpeg','allowEmpty' =>true,'maxSize'=>1024*1024*4,'tooLarge'=>'文件大于4M，上传失败！请上传小于4M的文件'),
+            array('albumcover', 'file', 'types'=>'jpg, gif, png, jpeg','allowEmpty' =>true,'maxSize'=>1024*1024*8,'tooLarge'=>'文件大于8M，上传失败！请上传小于8M的文件'),
             //验证是否公开(信息在0到2之间则表示有选择，否则没有)，1正则；2范围限制
             array('albumopen','in','range'=>array(1,2),'message'=>'请确定是否公开相册'),
             array('userid, cateid,createtime', 'safe'),

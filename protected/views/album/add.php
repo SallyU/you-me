@@ -44,6 +44,7 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                                 <?php echo $form->fileField($model,'albumcover',array('id' => 'file0'));?>
                                 <img src="" id="img0" width="35%" alt="选择的图片将在这预览">
                                 <span class="help-block m-b-none">若不想上传封面，可以在<a href="<?php echo $this->createUrl('album/index');?>" target="_blank">相册管理</a>设置封面</span>
+                                <span class="help-block m-b-none"><?php echo $form->error($model,'albumcover'); ?></span>
                             </div>
                         </div>
                     </div>
@@ -62,6 +63,7 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                             <?php
                             $list = CHtml::listData($albumcate,'cateid','catename');
                             echo $form -> dropDownList($model,'cateid',$list,array('class'=>'search-select-qky')); ?>
+                            没有想要的分类？去<a href="<?php echo $this->createUrl('albumcate/add'); ?>" target="_blank">添加</a>一个吧！
                             <span class="help-block m-b-none"><?php echo $form->error($model,'cateid'); ?></span>
                         </div>
                     </div>

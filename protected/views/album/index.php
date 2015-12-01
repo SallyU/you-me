@@ -36,8 +36,7 @@
                                         </span>
                                     </div>
                                     <a href="#">
-
-                                        <img src="<?php echo $_v->albumcover;?>" alt="" class="r r-2x img-full"></a>
+                                        <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.$_v->albumcover, 'w' => '300', 'h' => '450')) ?>" alt="" class="r r-2x img-full"></a>
                                 </div>
                                 <div class="padder-v">
                                     <a href="#" class="text-ellipsis"><?php echo $_v->albumname; ?></a>
@@ -50,16 +49,18 @@
                                 echo ' <div class="clearfix visible-xs"></div>';} ?>
                         <?php } ?>
                     </div>
-                    <!--分页-->
-                    <ul class="pagination pagination">
-                        <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
+                    <?php
+                    if($pages->pageCount >= 2){
+                        $this->widget('CLinkPager',array(
+                            'header' => '',
+                            'firstPageLabel' => '首页',
+                            'lastPageLabel' => '最后一页',
+                            'prevPageLabel' => '上一页',
+                            'nextPageLabel' => '下一页',
+                            'pages' => $pages,
+                            'maxButtonCount'=>7,
+                        ));
+                    }?>
                 </section>
             </section>
         </section>

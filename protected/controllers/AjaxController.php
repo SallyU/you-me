@@ -7,7 +7,7 @@
  */
 class AjaxController extends Controller
 {
-//相册分类增加页面Ajax分页
+    //相册分类增加页面Ajax分页
     public function actionPage()
     {
         if (Yii::app()->request->isAjaxRequest) {
@@ -37,4 +37,30 @@ class AjaxController extends Controller
             echo json_encode($arr);
         }
     }
+
+    /**
+     * 缩略图片生成
+     * @ path 图片路径
+     * @ width 图片宽度
+     * @ height 图片高度
+     */
+    public function actionGetThumb($path, $w, $h) {
+        $file_name = md5($path . $w . $h);
+        $uploads_dir = './temp/';
+        if (!is_dir($uploads_dir) || !is_writeable($uploads_dir)) {
+            mkdir($uploads_dir, 0777, TRUE);//755较安全
+        }
+        if (file_exists('./temp/' . $file_name . '.jpg')) {
+            header('location:/temp/' . $file_name . '.jpg');
+            Yii::app()->end();
+        }
+        Yii::import("ext.EPhpThumb.EPhpThumb");
+        $thumb = new EPhpThumb();
+        $thumb->init();
+        $thumb->create($path)
+            ->adaptiveResize($w, $h)
+            ->save('./temp/' . $file_name . '.jpg')
+            ->show();
+    }
+
 }

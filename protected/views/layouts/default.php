@@ -25,6 +25,8 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/index.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/app.plugin.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/select2.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/masonry.pkgd.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/imagesloaded.pkgd.min.js"></script>
 
 </head>
 <body class="">
@@ -179,7 +181,7 @@
                                     <li>
                                         <a href="">
                                             <i class="fa fa-picture-o icon text-warning-dker"></i>
-                                            <span class="font-bold">照 片</span>
+                                            <span class="font-bold">图片瀑布</span>
                                         </a>
                                     </li>
                                     <li>
@@ -192,7 +194,7 @@
                                                     echo count(Album::model()->findAll());
                                                 } ?>
                                             </b>
-                                            <span class="font-bold">相 册</span>
+                                            <span class="font-bold">图 库</span>
                                         </a>
                                     </li>
                                     <li>

@@ -179,9 +179,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo $this->createUrl('photo/index'); ?>">
                                             <i class="fa fa-picture-o icon text-warning-dker"></i>
-                                            <span class="font-bold">图片瀑布</span>
+                                            <span class="font-bold">照 片</span>
                                         </a>
                                     </li>
                                     <li>
@@ -194,7 +194,7 @@
                                                     echo count(Album::model()->findAll());
                                                 } ?>
                                             </b>
-                                            <span class="font-bold">图 库</span>
+                                            <span class="font-bold">相 册</span>
                                         </a>
                                     </li>
                                     <li>
@@ -247,13 +247,6 @@
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="<?php echo $this->createUrl('picture/upload'); ?>" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>上传照片</span>
-                                                </a>
-                                            </li>
-                                            <li >
                                                 <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
@@ -287,10 +280,10 @@
                                         </a>
                                         <ul class="nav dk text-sm">
                                             <li >
-                                                <a href="buttons.html" class="auto">
+                                                <a href="<?php echo $this->createUrl('photo/upload'); ?>" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Buttons</span>
+                                                    <span>照 片</span>
                                                 </a>
                                             </li>
                                             <li >

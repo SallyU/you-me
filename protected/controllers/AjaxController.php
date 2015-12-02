@@ -46,12 +46,12 @@ class AjaxController extends Controller
      */
     public function actionGetThumb($path, $w, $h) {
         $file_name = md5($path . $w . $h);
-        $thumb_dir = './temp/';
-        if (!is_dir($thumb_dir) || !is_writeable($thumb_dir)) {
+        $thumb_dir = Common::mkdirs('./showpictemp/');//和下面方法一样
+        /*if (!is_dir($thumb_dir) || !is_writeable($thumb_dir)) {
             mkdir($thumb_dir, 0755, TRUE);//不建议使用777
-        }
-        if (file_exists('./temp/' . $file_name . '.jpg')) {
-            header('location:./temp/' . $file_name . '.jpg');//存在结果的时候重定向输出
+        }*/
+        if (file_exists('./showpictemp/' . $file_name . '.jpg')) {
+            header('location:./showpictemp/' . $file_name . '.jpg');//存在结果的时候重定向输出
             Yii::app()->end();
         }
         Yii::import("ext.EPhpThumb.EPhpThumb");
@@ -59,7 +59,7 @@ class AjaxController extends Controller
         $thumb->init();
         $thumb->create($path)
             ->adaptiveResize($w, $h)
-            ->save('./temp/' . $file_name . '.jpg')
+            ->save('./showpictemp/' . $file_name . '.jpg')
             ->show();
     }
 

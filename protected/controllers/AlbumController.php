@@ -53,18 +53,21 @@ class AlbumController extends Controller{
         if(isset($_POST['Album'])){
             $model -> attributes = $_POST['Album'];
             $upcover = CUploadedFile::getInstance($model,'albumcover');//获得一个CUploadedFile的实例
-            $uploaddir = './uploads/albumcovers/';
+            Common::mkdirs('./uploads/albumcovers/');//利用封装的方面，和下面方法一样
+            /*if (!is_dir($uploaddir) || !is_writeable($uploaddir)) {
+                mkdir($uploaddir, 0755, TRUE);//不建议使用777
+            }*/
             if(is_object($upcover) && get_class($upcover) === 'CUploadedFile')// 判断实例化是否成功
             {
-                $model->albumcover = $uploaddir.time().'_'.rand(0,9999).'.'.$upcover->extensionName;//定义文件保存的名称
+                $model->albumcover = time().'_'.rand(0,9999).'.'.$upcover->extensionName;//定义文件保存的名称
             }else{
-                $model->albumcover = $uploaddir.'nophoto.jpg';// 若果失败则应该是什么图片
+                $model->albumcover = 'nophoto.jpg';// 若果失败则应该是什么图片
             }
             $model->createtime = time();
             if($model->save())
             {
                 if(is_object($upcover) && get_class($upcover) === 'CUploadedFile'){
-                    $upcover->saveAs($model->albumcover);// 上传图片  
+                    $upcover->saveAs(Yii::app()->basePath.'/../uploads/albumcovers/'.$model->albumcover);// 上传图片
                 }
                 $this -> redirect(array('album/index'));
             }

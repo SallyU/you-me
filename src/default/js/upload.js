@@ -136,14 +136,14 @@
             swf: 'js/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'server/fileupload.php',
+            server: 'index.php?r=upload/upload',
             // runtimeOrder: 'flash',
 
-            // accept: {
-            //     title: 'Images',
-            //     extensions: 'gif,jpg,jpeg,bmp,png',
-            //     mimeTypes: 'image/*'
-            // },
+            accept: {
+                 title: 'Images',
+                 extensions: 'gif,jpg,jpeg,bmp,png',
+                 mimeTypes: 'image/*'
+            },
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
@@ -240,7 +240,7 @@
                         img = $('<img src="' + src + '">');
                         $wrap.empty().append(img);
                     } else {
-                        $.ajax('../../server/preview.php', {
+                        $.ajax('./server/preview.php', {
                             method: 'POST',
                             data: src,
                             dataType: 'json'
@@ -384,7 +384,7 @@
                 stats = uploader.getStats();
                 if (stats.uploadFailNum) {
                     text = '已成功上传' + stats.successNum + '张照片至指定相册，' +
-                            stats.uploadFailNum + '张照片上传失败'
+                            stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片'
                 }
 
             } else {

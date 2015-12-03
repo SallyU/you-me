@@ -18,6 +18,9 @@ class Common {
         if (!mkdirs(dirname($dir), $mode))
             return FALSE;
         return @mkdir($dir, $mode);
+        /*if (!is_dir($uploaddir) || !is_writeable($uploaddir)) {
+                mkdir($uploaddir, 0755, TRUE);//不建议使用777
+            }*/
     }
 
     /**
@@ -59,6 +62,75 @@ class Common {
         }else{
             if(file_exists($dir)) unlink($dir);
         }
+    }
+    /*
+     * 时间轴函数实现原理：当前时间戳与目标时间戳进行比较，根据时间轴差值范围输出不同的结果（如：10分钟前）
+     */
+    public static function tranTime($time) {
+        $rtime = date("Y-m-d H:i",$time);
+        $htime = date("H:i",$time);
+        $time = time() - $time;
+        if ($time < 60) {
+            $str = '刚刚';
+        }
+        elseif ($time < 60 * 60) {
+            $min = floor($time/60);
+            $str = $min.'分钟前';
+        }
+        elseif ($time < 60 * 60 * 24) {
+            $h = floor($time/(60*60));
+            $str = $h.'小时前 '.$htime;
+        }
+        elseif ($time < 60 * 60 * 24 * 3) {
+            $d = floor($time/(60*60*24));
+            if($d==1)
+                $str = '昨天 '.$rtime;
+            else
+                $str = '前天 '.$rtime;
+        }
+        else {
+            $str = $rtime;
+        }
+        return $str;
+    }
+
+    /*
+     * 截取标题6个字符串，多余字符串以“...”结束
+     * $str = "很长的文字标题balabala";
+     * 使用：msubstr($str, 0, 6, 'utf-8', true);
+     */
+    public static function msubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = false) {
+
+        if (function_exists("mb_substr")) {
+
+            if ($suffix)
+                return mb_substr($str, $start, $length, $charset) . "...";
+            else
+                return mb_substr($str, $start, $length, $charset);
+        }elseif (function_exists('iconv_substr')) {
+
+            if ($suffix)
+                return iconv_substr($str, $start, $length, $charset) . "...";
+            else
+                return iconv_substr($str, $start, $length, $charset);
+        }
+
+        $re['utf-8'] = "/[x01-x7f]|[xc2-xdf][x80-xbf]|[xe0-xef][x80-xbf]{2}|[xf0-xff][x80-xbf]{3}/";
+
+        $re['gb2312'] = "/[x01-x7f]|[xb0-xf7][xa0-xfe]/";
+
+        $re['gbk'] = "/[x01-x7f]|[x81-xfe][x40-xfe]/";
+
+        $re['big5'] = "/[x01-x7f]|[x81-xfe]([x40-x7e]|xa1-xfe])/";
+
+        preg_match_all($re[$charset], $str, $match);
+
+        $slice = join("", array_slice($match[0], $start, $length));
+
+        if ($suffix)
+            return $slice . "…";
+
+        return $slice;
     }
 
 }

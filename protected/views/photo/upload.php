@@ -8,6 +8,9 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . "/src/default/cs
 ?>
 <section class="panel panel-default">
     <header class="panel-heading font-bold">
+        <a href="<?php echo $this->createUrl('photo/index'); ?>" class="pull-right ">
+            返回照片廊
+        </a>
        上传照片
     </header>
     <div class="panel-body">

@@ -23,16 +23,18 @@ class AlbumController extends Controller{
             $criteria->order = "createtime DESC";
             $count = Album::model()->count($criteria);
             $pager = new CPagination($count);
-            $pager->pageSize=12;//每页显示的数量
+            $pager->pageSize=18;//每页显示的数量
             $pager->applyLimit($criteria);
 
             $model = Album::model()->findAll($criteria);
         }
+        $albumcate = Albumcate::model()->findAll(array('order'=>'cateid ASC'));
 
         $data = array(
             'model' => $model,
             'pages' => $pager,
             'count' => $count,
+            'albumcate' => $albumcate,
         );
 
         $this->render('index',$data);

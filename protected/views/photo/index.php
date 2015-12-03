@@ -1,147 +1,65 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: qky
- * Date: 15-12-2
- * Time: 上午9:35
- */
-$this->pageTitle=Yii::app()->name . ' - 照片廊 ';?>
+<?php $this->pageTitle = Yii::app()->name . ' - 照片廊'; ?>
 <section id="content">
-    <section class="vbox" id="bjax-el">
-        <section class="scrollable padder-lg">
-            <?php if(!Yii::app()->user->isGuest){?>
-                <a href="<?php echo $this->createUrl('photo/upload'); ?>" class="pull-right text-muted m-t-lg">
-                    <i class="fa fa-plus"></i>&nbsp;
-                    上传照片
-                </a>
-            <?php } ?>
-            <h2 class="font-thin m-b">照片廊</h2>
-            <div class="row row-sm">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
+    <section class="hbox stretch">
+        <section>
+            <section class="vbox">
+                <section class="scrollable padder-lg" id="bjax-target">
+                    <?php if(!Yii::app()->user->isGuest){?>
+                        <a href="<?php echo $this->createUrl('photo/upload'); ?>" class="pull-right text-muted m-t-lg">
+                            <i class="fa fa-plus"></i>&nbsp;
+                            上传照片
+                        </a>
+                    <?php } ?>
+                    <h2 class="font-thin m-b">
+                        照片廊
+                    </h2>
+                    <div class="row row-sm">
+                        <?php if(isset($model) && !empty($model)){
+                        $i = 0;
+                        foreach($model as $v => $_v){?>
+                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                <div class="item">
+                                    <div class="pos-rlt">
+                                        <div class="item-overlay opacity r r-2x bg-black">
+                                            <div class="bottom padder m-b-sm">
+                                                <a href="#" class="pull-right" title="编辑">
+                                                    <i class="fa fa-pencil-square-o text-success-lter"></i>
+                                                </a>
+                                                <a href="#" title="删除">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '300', 'h' => '450')) ?>" alt="" class="r r-2x img-full"></a>
+                                    </div>
+                                    <div class="padder-v">
+                                        <a href="#" class="text-ellipsis"></a>
+                                        <a href="#" class="text-ellipsis text-xs text-muted"></a>
+                                    </div>
                                 </div>
                             </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
+                            <?php $i++;?>
+                            <?php if($i % 2 ==0){
+                                echo ' <div class="clearfix visible-xs"></div>';} ?>
+                        <?php }} else{?>
+                        <span>暂时没有照片，<a href="#">留言</a>以晴让她上传吧！</span>
+                        <?php } ?>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
-                                </div>
-                            </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
-                                </div>
-                            </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
-                                </div>
-                            </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
-                                </div>
-                            </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="item">
-                        <div class="pos-rlt">
-                            <div class="item-overlay opacity r r-2x bg-black">
-                                <div class="center text-center m-t-n">
-                                    <a href=""></a>
-                                </div>
-                            </div>
-                            <!--<div class="top">
-                                <span class="badge bg-dark m-l-sm m-t-sm">2015-12-01</span>
-                            </div>-->
-                            <a href=""><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m42.jpg" alt="" class="r r-2x img-full"></a>
-                        </div>
-                        <div class="padder-v">
-                            <a href="" class="text-ellipsis"></a>
-                                                       <a href="" class="text-ellipsis text-xs text-muted">《相册名》</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ul class="pagination pagination">
-                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-            </ul>
+                    <?php
+                    if($pages->pageCount >= 2){
+                        $this->widget('CLinkPager',array(
+                            'header' => '',
+                            'firstPageLabel' => '首页',
+                            'lastPageLabel' => '最后一页',
+                            'prevPageLabel' => '上一页',
+                            'nextPageLabel' => '下一页',
+                            'pages' => $pages,
+                            'maxButtonCount'=>7,
+                        ));
+                    }?>
+                </section>
+            </section>
         </section>
     </section>
-    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
 </section>

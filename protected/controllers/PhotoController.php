@@ -14,7 +14,7 @@ class PhotoController extends Controller{
             $criteria->addCondition('picopen = 1');//游客，查看公开的
         $count = Photo::model()->count($criteria);
         $pager = new CPagination($count);
-        $pager->pageSize=19;//每页显示的数量
+        $pager->pageSize=12;//每页显示的数量
         $pager->applyLimit($criteria);
         $model = Photo::model()->findAll($criteria);
         $data = array(
@@ -25,13 +25,26 @@ class PhotoController extends Controller{
         $this->render('index',$data);
     }
 
-
-
-
     public function actionUpload(){
         if(Yii::app()->user->isGuest){
             $this->redirect(Yii::app()->homeUrl);
         }
         $this->render('upload');
+    }
+
+    public function actionManage(){
+        $this->render('manage');
+    }
+
+    //一键公开所有照片
+    public function actionOpen(){
+        $criteria = new CDbCriteria();
+        $criteria->order = "createtime DESC";
+        $criteria->addCondition('picopen = 0');
+        $model = Photo::model()->findAll($criteria);
+        if(isset($model) && !empty($model)){
+
+        }
+
     }
 }

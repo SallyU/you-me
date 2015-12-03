@@ -17,10 +17,10 @@
                         <?php if(isset($model) && !empty($model)){
                         $i = 0;
                         foreach($model as $v => $_v){?>
-                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <div class="col-sm-6 col-lg-3">
                                 <div class="item">
                                     <div class="pos-rlt">
-                                        <div class="item-overlay opacity r r-2x bg-black">
+                                        <div class="item-overlay opacity r r-2x">
                                             <div class="bottom padder m-b-sm">
                                                 <a href="#" class="pull-right" title="编辑">
                                                     <i class="fa fa-pencil-square-o text-success-lter"></i>
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                         <a href="#">
-                                            <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '300', 'h' => '450')) ?>" alt="" class="r r-2x img-full"></a>
+                                            <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '450', 'h' => '300')) ?>" alt="" class="r r-2x img-full"></a>
                                     </div>
                                     <div class="padder-v">
                                         <a href="#" class="text-ellipsis"></a>
@@ -46,6 +46,7 @@
                         <span>暂时没有照片，<a href="#">留言</a>以晴让她上传吧！</span>
                         <?php } ?>
                     </div>
+                    <ul class="pagination pagination">
                     <?php
                     if($pages->pageCount >= 2){
                         $this->widget('CLinkPager',array(
@@ -58,6 +59,7 @@
                             'maxButtonCount'=>7,
                         ));
                     }?>
+                    </ul>
                 </section>
             </section>
         </section>

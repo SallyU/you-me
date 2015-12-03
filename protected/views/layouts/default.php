@@ -56,7 +56,7 @@
 <!--删除提示框结束-->
 <section class="vbox">
     <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
-        <div class="navbar-header aside bg-primary nav-xs">
+        <div class="navbar-header aside bg-info nav-xs">
             <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
                 <i class="icon-list"></i>
             </a>
@@ -181,6 +181,13 @@
                                     <li>
                                         <a href="<?php echo $this->createUrl('photo/index'); ?>">
                                             <i class="fa fa-picture-o icon text-warning-dker"></i>
+                                            <b class="badge bg-primary pull-right" style="background-color: #F4CA06;color: slategrey">
+                                                <?php if(Yii::app()->user->isGuest){
+                                                    echo count(Photo::model()->findAll("picopen = :picopen",array(':picopen'=>1)));
+                                                }else{
+                                                    echo count(Photo::model()->findAll());
+                                                } ?>
+                                            </b>
                                             <span class="font-bold">照 片</span>
                                         </a>
                                     </li>
@@ -243,7 +250,14 @@
                                                 <a href="<?php echo $this->createUrl('album/index'); ?>">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>相册管理</span>
+                                                    <span>相册</span>
+                                                </a>
+                                            </li>
+                                            <li >
+                                                <a href="<?php echo $this->createUrl('photo/manage'); ?>">
+                                                    <i class="fa fa-angle-right text-xs"></i>
+
+                                                    <span>照片</span>
                                                 </a>
                                             </li>
                                             <li >

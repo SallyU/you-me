@@ -62,5 +62,15 @@ class AjaxController extends Controller
             ->save('./showpictemp/' . $file_name . '.jpg')
             ->show();
     }
+    //ajax单独设置公开
+    public function actionOpen($picid){
+        /*if(Yii::app()->request->isAjaxRequest){//如果是ajax请求
+
+        }*/
+        $model = Photo::model()->findByPk($picid);
+        $model->picopen = 1;
+        $model->save();
+        $this->redirect($this->createUrl('photo/manage'));
+    }
 
 }

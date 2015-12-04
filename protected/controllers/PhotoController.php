@@ -32,19 +32,56 @@ class PhotoController extends Controller{
         $this->render('upload');
     }
 
+    //照片管理
     public function actionManage(){
-        $this->render('manage');
+        $count = count(Photo::model()->findAll());//统计数量
+        $pageSize = 8;//每页显示条数
+        $pager = new Pagination($count, $pageSize);//分页
+        $sql = "select * from {{photo}} order by createtime desc $pager->limit";
+        $model = Photo::model()->findAllBySql($sql);
+        $pageList = $pager->fpage(array(1,2,3,4,6,7,8));
+        $data =array(
+            'model' => $model,
+            'pageList' => $pageList,
+        );
+
+        $this->render('manage',$data);
     }
 
     //一键公开所有照片
     public function actionOpen(){
         $criteria = new CDbCriteria();
-        $criteria->order = "createtime DESC";
         $criteria->addCondition('picopen = 0');
         $model = Photo::model()->findAll($criteria);
         if(isset($model) && !empty($model)){
-
+            foreach($model as $m => $_m){
+                $newModel = Photo::model()->findByPk($_m->picid);
+                $newModel->picopen = 1;
+                $newModel->save();
+            }
+            Yii::app()->user->setFlash('open','<span style="color:limegreen">成功公开所有照片</span>');
+            $this->redirect($this->createUrl('manage'));
+        } else {
+            Yii::app()->user->setFlash('open','<span style="color:limegreen">没有找到未公开的照片！</span>');
+            $this->redirect($this->createUrl('manage'));
         }
-
+    }
+    //一键私有所有照片
+    public function actionLock(){
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('picopen = 1');
+        $model = Photo::model()->findAll($criteria);
+        if(isset($model) && !empty($model)){
+            foreach($model as $m => $_m){
+                $newModel = Photo::model()->findByPk($_m->picid);
+                $newModel->picopen = 0;
+                $newModel->save();
+            }
+            Yii::app()->user->setFlash('lock','<span style="color: #ff0000">成功保密所有照片</span>');
+            $this->redirect($this->createUrl('manage'));
+        } else {
+            Yii::app()->user->setFlash('lock','<span style="color: limegreen">所有照片均保密，不需要操作！</span>');
+            $this->redirect($this->createUrl('manage'));
+        }
     }
 }

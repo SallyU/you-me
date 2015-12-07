@@ -73,4 +73,71 @@ class AjaxController extends Controller
         $this->redirect($this->createUrl('photo/manage'));
     }
 
+    //图片管理页面点击保存
+    public function actionPhotoTitle(){
+        $field=$_POST['id'];
+        $val=trim($_POST['value']);
+        if(strlen($val)>20){
+            echo "您输入的字符大于20字了";
+            exit;
+        }
+        if(empty($val)){
+            echo "不能为空";
+        }else{
+            $model = Photo::model()->findByPk($field);
+            $model->pictitle = trim($val);
+            if($model->save()){
+                echo $val;
+            } else {
+                echo "数据出错";
+            }
+        }
+    }
+    public function actionPhotoDesc(){
+        $field=$_POST['id'];
+        $val=trim($_POST['value']);
+        if(strlen($val)>140){
+            echo "您输入的字符大于140字了";
+            exit;
+        }
+        if(empty($val)){
+            echo "不能为空";
+        }else{
+            $model = Photo::model()->findByPk($field);
+            $model->picdesc = trim($val);
+            if($model->save()){
+                echo $val;
+            } else {
+                echo "数据出错";
+            }
+        }
+    }
+
+    //相册列表json编码
+    public function actionAlbumList(){
+        $model = Album::model()->findAll(array('order' => 'createtime DESC'));
+        $arr=array();
+        foreach($model as $row){
+            $arr[$row['albumid']] = $row['albumname'];
+        }
+        print json_encode($arr);
+    }
+
+    //照片管理页面照片添加到相册
+    public function actionToAlbum(){
+        $field=$_POST['id'];
+        $val=trim($_POST['value']);
+
+        if(!empty($val)){
+            $model = Photo::model()->findByPk($field);
+            $model->albumid = trim($val);
+            if($model->save()){
+                $data = Album::model()->findByPk($val);
+                echo $data->albumname;
+            } else {
+                echo "数据出错";
+            }
+        }
+    }
+
 }

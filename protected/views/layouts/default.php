@@ -27,6 +27,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/select2.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/masonry.pkgd.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/imagesloaded.pkgd.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/js/jquery.jeditable.min.js"></script>
 
 </head>
 <body class="">

@@ -69,6 +69,7 @@ class Album extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'albumcate' => array(self::BELONGS_TO, 'Albumcate', 'cateid'),
+            'photos' => array(self::HAS_MANY, 'Photo', 'albumid'),
 		);
 	}
 

@@ -21,6 +21,9 @@
                                 <div class="item">
                                     <div class="pos-rlt">
                                         <div class="item-overlay opacity r r-2x">
+                                            <div class="text-info padder m-t-sm text-sm">
+                                                <i class="fa fa-heart text-danger"></i>
+                                            </div>
                                             <div class="bottom padder m-b-sm">
                                                 <a href="#" class="pull-right" title="编辑">
                                                     <i class="fa fa-pencil-square-o text-success-lter"></i>

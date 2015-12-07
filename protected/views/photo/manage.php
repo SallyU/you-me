@@ -1,4 +1,6 @@
-<?php $this->pageTitle = Yii::app()->name . ' - 照片管理'; ?>
+<?php
+$this->pageTitle = Yii::app()->name . ' - 照片管理';
+?>
 <section id="content">
     <section class="vbox">
         <section class="scrollable padder">
@@ -58,6 +60,7 @@
                             <th class="th-sortable" style=" text-align:center;vertical-align: inherit;">
                                 照片描述
                             </th>
+                            <th style=" text-align:center;vertical-align: inherit;">添加到相册</th>
                             <th style=" text-align:center;vertical-align: inherit;">上传时间</th>
                             <th style=" text-align:center;vertical-align: inherit;">操作</th>
                         </tr>
@@ -73,10 +76,10 @@
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;">
                                 <?php if($_v->picopen ==1){ ?>
-                                <a title="改为保密" href="#"><i class="icon-lock-open text-success"></i></a>
+                                <a title="改为保密" href="#" class="baomi"><i class="icon-lock-open text-success"></i></a>
                                 <?php } else if($_v->picopen ==0){?>
-                                <a title="改为公开" href="<?php echo $this->createUrl('ajax/open',array('picid' => $_v->picid)); ?>"><i class="icon-lock text-danger"></i></a>
-                                <?php } else{
+                                <a class="gongkai" title="改为公开" href="<?php echo $this->createUrl('ajax/open',array('picid' => $_v->picid)); ?>"><i class="icon-lock text-danger"></i></a>
+                                <?php } else {
                                     echo '你大爷的';
                                 } ?>
                             </td>
@@ -85,11 +88,18 @@
                                     <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '100', 'h' => '100')) ?>"">
                                 </a>
                             </td>
-                            <td style=" text-align:center;vertical-align: inherit;">
+                            <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="edit-title" >
                                 <?php echo (!empty($_v->pictitle) ? $_v->pictitle : ('暂无标题')) ;?>
                             </td>
-                            <td style=" text-align:center;vertical-align: inherit;">
+                            <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="picdesc">
                                 <?php echo (!empty($_v->picdesc) ? $_v->picdesc : ('暂无描述')) ;?>
+                            </td>
+                            <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="select-album">
+                                <?php if(!empty($_v->albumid) && isset($_v->albumid)){
+                                    echo $_v->album->albumname;
+                                } else {
+                                    echo '未添加到任何相册';
+                                }?>
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;">
                                 <?php echo Common::tranTime($_v->createtime); ?>
@@ -131,10 +141,40 @@
             </section>
         </section>
     </section>
-    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
 </section>
 <script>
+    //美化select
     $(".multi-select-2").select2({
         minimumResultsForSearch: Infinity
     });
+    //表格单击编辑
+    $('.edit-title').editable('<?php echo $this->createUrl('ajax/photoTitle'); ?>', {
+        width     :120,
+        height    :18,
+        //onblur    : "ignore",//忽略则是自动消失
+        cancel    : '取消',
+        submit    : '确定',
+        indicator : '<img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/loader.gif">',
+        tooltip   : '单击可以编辑...'
+    });
+    $(".picdesc").editable('<?php echo $this->createUrl('ajax/photoDesc'); ?>', {
+        type      : 'textarea',
+        rows      : 6,
+        cols      : 50,
+        onblur    : "ignore",
+        cancel    : '取消',
+        submit    : '确定',
+        indicator : '<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/loader.gif">'
+    });
+    $('.select-album').editable('<?php echo $this->createUrl('ajax/toAlbum'); ?>', {
+        loadurl   : '<?php echo $this->createUrl('ajax/albumList'); ?>',
+        type      : "select",
+        cancel    : '取消',
+        submit    : '确定',
+        indicator : '<img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/loader.gif">',
+        tooltip   : '单击可以编辑...',
+        style     : 'display: inline'
+    });
+    //保密及公开ajax
+
 </script>

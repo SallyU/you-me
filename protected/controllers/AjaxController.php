@@ -140,4 +140,55 @@ class AjaxController extends Controller
         }
     }
 
+    //下载图片
+    public function actionDownloadPic(){
+        $id = (int)$_GET['picid'];
+        if(!isset($id) || $id==0) die('参数错误!');
+        $model = Photo::model() -> findByPk($id);
+        $filename = $model->picUrl;
+        $myfile = './uploads/photos/' . $filename;
+
+        if(file_exists($myfile)){
+            $file = @ fopen($myfile, "r");
+            header("Content-type: application/octet-stream");
+            header("Content-Disposition: attachment; filename=" .$filename );
+            while (!feof($file)) {
+                echo fread($file, 50000);
+            }
+            fclose($file);
+            exit;
+        }else{
+            echo '文件不存在！';
+        }
+    }
+
+    //love功能
+    public function actionLove(){
+        $ip = Common::get_client_ip(); //获取用户IP
+        $id = $_POST['id'];
+        if(!isset($id) || empty($id)) exit;
+        $count = count(Likeip::model()->findAll("picid = :picid and ip = :ip",array( ':picid' => $id,':ip' => $ip)));
+        if($count==0){ //如果没有记录
+            //更新数量
+            $model = Photo::model()->findByPk($id);
+            $model -> like+=1;
+            $model -> save();
+            //独立ip只能一次赞，写入数据库
+            $newip = new Likeip();
+            $newip -> picid = $id;
+            $newip -> ip = $ip;
+            $newip -> save();
+
+            //重新获取喜欢的数量
+            $like = Photo::model()->findByPk($id);
+            echo '<a href="#" title="赞" rel="'.$id.'" class="lovePic">
+            <span class="badge bg-white">
+            <i class="fa fa-heart text-danger"></i>&nbsp;' .$like -> like. '</span></a>';
+        } else {
+            echo '<a href="#" title="赞" rel="'.$id.'" class="lovePic">
+            <span class="badge bg-white">
+            <i class="fa fa-heart text-danger"></i>&nbsp;喜欢不可以泛滥哦...</span></a>';
+        }
+    }
+
 }

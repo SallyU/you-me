@@ -39,39 +39,6 @@ $this->pageTitle=Yii::app()->name . ' - 设置 ';
                         </div>
                     <?php $this->endWidget(); ?>
                 </div>
-                <div class="col-sm-6">
-                    <form id="guessform">
-                        <section class="panel panel-default">
-                            <header class="panel-heading">
-                                <ul class="nav nav-tabs pull-right">
-                                    <li class="active"><a href="#tab1" data-toggle="tab">guess</a></li>
-                                    <li><a href="#tab2" data-toggle="tab">result</a></li>
-                                </ul>
-                                <span class="font-bold">guess game</span>
-                            </header>
-                            <div class="panel-body">
-                                <div class="tab-content">
-                                    <div class="tab-pane text-center active" id="tab1">
-                                        <p class="text-center h4 m-t m-b">guess a number between 1 and 50!</p>
-                                        <input class="no-border b-b input-s-sm h1 inline text-center text-success wrapper-lg" id="gn" type="text">
-                                        <p class="text-center h4 m-t m-b text-danger" id="gi">.</p>
-                                    </div>
-                                    <div class="tab-pane text-center wrapper-xl" id="tab2">
-                                        <h1 class="text-danger m-b-xl" id="answer"></h1>
-                                        <h2 class="text-success m-b-xl">correct!!</h2>
-                                        <p class="h4">you guess <span id="count"></span> time(s), [<span id="num"></span> ]</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <footer class="panel-footer text-right bg-light lter">
-                                <ul class="pager wizard m-n">
-                                    <li class="previous disabled"><a href="#">try again</a></li>
-                                    <li class="next"><a href="#">guess</a></li>
-                                </ul>
-                            </footer>
-                        </section>
-                    </form>
-                </div>
             </div>
         </section>
     </section>

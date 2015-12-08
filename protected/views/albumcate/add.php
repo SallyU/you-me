@@ -37,7 +37,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
             </div>
         </section>
         <div class="row">
-            <div class="col-sm-6">
+            <!--<div class="col-sm-6">
                 <section class="panel panel-default pos-rlt clearfix">
                     <header class="panel-heading">
                         <ul class="nav nav-pills pull-right">
@@ -48,19 +48,19 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                         已有相册类别
                     </header>
                     <div class="panel-body clearfix">
-                        <?php if(isset($albumcate) && !empty($albumcate) && $count >0 ){?>
+                        <?php /*if(isset($albumcate) && !empty($albumcate) && $count >0 ){*/?>
                             <div class="doc-buttons">
-                            <?php foreach($albumcate as $_a => $a){?>
+                            <?php /*foreach($albumcate as $_a => $a){*/?>
                                     <a href="#" class="btn btn-s-md btn-default btn-rounded">
-                                        <?php echo $a->catename;    ?>
-                                        <button title="删除该类别" type="button" class="close" data-href="<?php echo $this->createUrl('albumcate/delalbumcate',array('cateid'=>$a->cateid));?>" data-toggle="modal" data-target="#confirm-delete" style="float: none;font-size: 16px;">&times;</button>
+                                        <?php /*echo $a->catename;    */?>
+                                        <button title="删除该类别" type="button" class="close" data-href="<?php /*echo $this->createUrl('albumcate/delalbumcate',array('cateid'=>$a->cateid));*/?>" data-toggle="modal" data-target="#confirm-delete" style="float: none;font-size: 16px;">&times;</button>
                                     </a>
-                            <?php }} else{
+                            <?php /*}} else{
                                 echo "咦，一个相册类别都没有，赶紧添加一个吧！";
-                            } ?>
+                            } */?>
                             </div>
                             <?php
-                            if($pages->pageCount >= 2){
+/*                            if($pages->pageCount >= 2){
                                 echo '<div class="text-center">';
                                 $this->widget('CLinkPager',array(
                                     'header' => '',
@@ -72,11 +72,11 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                                     'maxButtonCount'=>7,
                                 ));
                                 echo ' </div>';
-                            }?>
+                            }*/?>
                     </div>
                 </section>
-            </div>
-            <!--<div class="col-sm-6">
+            </div>-->
+            <div class="col-sm-6">
                 <section class="panel panel-default pos-rlt clearfix">
                     <header class="panel-heading">
                         <ul class="nav nav-pills pull-right">
@@ -101,7 +101,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                     function getData(page) { //获取当前页数据
                         $.ajax({
                             type: 'POST',
-                            url: '<?php /*echo $this->createUrl('ajax/page'); */?>',
+                            url: '<?php echo $this->createUrl('ajax/page'); ?>',
                             data: {'page': page - 1},
                             dataType: 'json',
                             success: function(json) {
@@ -132,29 +132,29 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                             page_cur = page_total_num;//当前页大于最大页数
                         if (page_cur < 1)
                             page_cur = 1;//当前页小于1
-                        page_str = "<span>共" + total_num + "条</span><span>" + page_cur + "/" + page_total_num + "</span>";
+                        page_str = "<span>共" + total_num + "条</span>&nbsp;&nbsp;<span>" + page_cur + "/" + page_total_num + "</span>&nbsp;&nbsp;";
                         if (page_cur == 1) {//若是第一页
-                            page_str += "<span>首页</span><span>上一页</span>";
+                            page_str += "<span>首页</span>&nbsp;&nbsp;<span>上一页</span>&nbsp;&nbsp;";
                         } else {
-                            page_str += "<span><a href='javascript:void(0)' data-page='1'>首页</a></span><span><a href='javascript:void(0)' data-page='" + (page_cur - 1) + "'>上一页</a></span>";
+                            page_str += "<span><a href='javascript:void(0)' data-page='1'>首页</a></span>&nbsp;&nbsp;<span><a href='javascript:void(0)' data-page='" + (page_cur - 1) + "'>上一页</a></span>&nbsp;&nbsp;";
                         }
                         if (page_cur >= page_total_num) {//若是最后页
-                            page_str += "<span>下一页</span><span>尾页</span>";
+                            page_str += "<span>下一页</span>&nbsp;&nbsp;<span>尾页</span>";
                         } else {
-                            page_str += "<span><a href='javascript:void(0)' data-page='" + (parseInt(page_cur) + 1) + "'>下一页</a></span><span><a href='javascript:void(0)' data-page='" + page_total_num + "'>尾页</a></span>";
+                            page_str += "<span><a href='javascript:void(0)' data-page='" + (parseInt(page_cur) + 1) + "'>下一页</a></span>&nbsp;&nbsp;<span><a href='javascript:void(0)' data-page='" + page_total_num + "'>尾页</a></span>&nbsp;&nbsp;";
                         }
                         $("#page").html(page_str);
                     }
 
                     $(function() {
                         getData(1);//默认第一页
-                        $("#page a").live('click', function() { //live 向未来的元素添加事件处理器,不可用bind
+                        $(document).on('click','#page a',function() { //live 向未来的元素添加事件处理器,不可用bind
                             var page = $(this).attr("data-page");//获取当前页
                             getData(page)
                         });
                     });
                 </script>
-            </div>-->
+            </div>
         </div>
     </section>
 </section>

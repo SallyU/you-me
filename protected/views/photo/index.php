@@ -43,13 +43,26 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                                                 </a>
                                             </div>
                                         </div>-->
+                                        <div class="bottom padder m-b-sm">
+                                            <?php if(!Yii::app()->user->isGuest){?>
+                                            <a href="#" class="pull-right" title="删除">
+                                                <i class="fa fa-trash-o text-danger"></i>
+                                            </a>
+                                            <a href="#" class="pull-right" title="编辑">
+                                                <i class="fa fa-pencil-square-o text-success-lter"></i>
+                                            </a>
+                                            <?php } ?>
+                                            <a href="#" title="赞" rel="<?php echo $_v->picid; ?>" class="lovePic"><span class="badge bg-white"><i class="fa fa-heart text-danger"></i>&nbsp;<?php echo $_v->like; ?></span></a>
+                                        </div>
                                         <a href="<?php echo 'uploads/photos/'.$_v->picUrl;?>" data-lightbox="roadtrip">
                                             <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '450', 'h' => '300')) ?>" alt="" class="r r-2x img-full">
                                         </a>
                                     </div>
-                                    <div class="padder-v">
-                                        <a href="#" class="text-ellipsis"></a>
-                                        <a href="#" class="text-ellipsis text-xs text-muted"></a>
+                                    <div style="padding-top: 4px;padding-bottom: 4px;">
+                                        <a class="btn btn-default" href="<?php echo $this->createUrl('ajax/downloadPic',array('picid' => $_v -> picid));?>" style="padding: 2px;font-size: 12px">
+                                            <i class="icon-cloud-download text-success"></i>
+                                            <span class="text">下载原图</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -79,3 +92,23 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
         </section>
     </section>
 </section>
+<script>
+    $(function(){
+        $(".lovePic").click(function(){
+            var love = $(this);
+            var id = love.attr("rel"); //对应id
+            love.fadeOut(300); //渐隐效果
+            $.ajax({
+                type:"POST",
+                url:"<?php echo $this->createUrl('ajax/love'); ?>",
+                data:"id="+id,
+                cache:false, //不缓存此页面
+                success:function(data){
+                    love.html(data);
+                    love.fadeIn(300); //渐显效果
+                }
+            });
+            return false;
+        });
+    });
+</script>

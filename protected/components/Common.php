@@ -133,4 +133,149 @@ class Common {
         return $slice;
     }
 
+    //加密解密
+    public static function encryptDecrypt($key, $string, $decrypt){
+        if($decrypt){
+            $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($string), MCRYPT_MODE_CBC, md5(md5($key))), "12");
+            return $decrypted;
+        }else{
+            $encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $string, MCRYPT_MODE_CBC, md5(md5($key))));
+            return $encrypted;
+        }
+    }
+
+    //生成随机字符串
+    public static function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randomString;
+    }
+    //获取文件扩展名
+    public static function getExtension($filename){
+        $myext = substr($filename, strrpos($filename, '.'));
+        return str_replace('.','',$myext);
+    }
+
+    //获取文件大小并格式化
+    public static function formatSize($size) {
+        $sizes = array(" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");
+        if ($size == 0) {
+            return('n/a');
+        } else {
+            return (round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . $sizes[$i]);
+        }
+    }
+
+    //PHP替换标签字符
+    public static function stringParser($string,$replacer){
+        $result = str_replace(array_keys($replacer), array_values($replacer),$string);
+        return $result;
+    }
+
+    //列出目录下的文件
+    public static function listDirFiles($DirPath){
+        if($dir = opendir($DirPath)){
+            while(($file = readdir($dir))!== false){
+                if(!is_dir($DirPath.$file))
+                {
+                    echo "filename: $file<br />";
+                }
+            }
+        }
+    }
+
+    //获取当前页面的url
+    public static function curPageURL() {
+        $pageURL = 'http';
+        if (!empty($_SERVER['HTTPS'])) {$pageURL .= "s";}
+        $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+        } else {
+            $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        }
+        return $pageURL;
+    }
+
+    //强制下载
+    public static function download($filename){
+        if ((isset($filename))&&(file_exists($filename))){
+            header("Content-length: ".filesize($filename));
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+            readfile("$filename");
+        } else {
+            echo "Looks like file does not exist!";
+        }
+    }
+    //防止注入
+    public static function injCheck($sql_str) {
+        $check = preg_match('/select|insert|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile/', $sql_str);
+        if ($check) {
+            echo '非法字符！！'.$sql_str;
+            exit;
+        } else {
+            return $sql_str;
+        }
+    }
+
+    //页面提示跳转
+    public static function message($msgTitle,$message,$jumpUrl){
+        $str = '<!DOCTYPE HTML>';
+        $str .= '<html>';
+        $str .= '<head>';
+        $str .= '<meta charset="utf-8">';
+        $str .= '<title>页面提示</title>';
+        $str .= '<style type="text/css">';
+        $str .= '*{margin:0; padding:0}a{color:#369; text-decoration:none;}a:hover{text-decoration:underline}body{height:100%; font:12px/18px Tahoma, Arial,  sans-serif; color:#424242; background:#fff}.message{width:450px; height:120px; margin:16% auto; border:1px solid #99b1c4; background:#ecf7fb}.message h3{height:28px; line-height:28px; background:#2c91c6; text-align:center; color:#fff; font-size:14px}.msg_txt{padding:10px; margin-top:8px}.msg_txt h4{line-height:26px; font-size:14px}.msg_txt h4.red{color:#f30}.msg_txt p{line-height:22px}';
+        $str .= '</style>';
+        $str .= '</head>';
+        $str .= '<body>';
+        $str .= '<div class="message">';
+        $str .= '<h3>'.$msgTitle.'</h3>';
+        $str .= '<div class="msg_txt">';
+        $str .= '<h4 class="red">'.$message.'</h4>';
+        $str .= '<p>系统将在 <span style="color:blue;font-weight:bold">3</span> 秒后自动跳转,如果不想等待,直接点击 <a href="{$jumpUrl}">这里</a> 跳转</p>';
+        $str .= "<script>setTimeout('location.replace(\'".$jumpUrl."\')',2000)</script>";
+        $str .= '</div>';
+        $str .= '</div>';
+        $str .= '</body>';
+        $str .= '</html>';
+        echo $str;
+    }
+
+
+    //时间长度转换
+    public static function changeTimeType($seconds) {
+        if ($seconds > 3600) {
+            $hours = intval($seconds / 3600);
+            $minutes = $seconds % 3600;
+            $time = $hours . ":" . gmstrftime('%M:%S', $minutes);
+        } else {
+            $time = gmstrftime('%H:%M:%S', $seconds);
+        }
+        return $time;
+    }
+
+    //获取用户真实IP
+    public static function get_client_ip() {
+        if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
+            $ip = getenv("HTTP_CLIENT_IP");
+        else
+            if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
+                $ip = getenv("HTTP_X_FORWARDED_FOR");
+            else
+                if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
+                    $ip = getenv("REMOTE_ADDR");
+                else
+                    if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                    else
+                        $ip = "unknown";
+        return ($ip);
+    }
+
 }

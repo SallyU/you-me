@@ -1,4 +1,14 @@
-<?php $this->pageTitle = Yii::app()->name . ' - 照片廊'; ?>
+<?php
+$this->pageTitle = Yii::app()->name . ' - 照片廊';
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/css/lightbox.css');
+?>
+<script src="<?php echo Yii::app()->baseUrl . '/src/default/js/lightbox-plus-jquery.min.js';?>"></script>
+<style>
+    .pos-rlt a:hover, a:focus {
+        text-decoration: none;
+        color: transparent;
+    }
+</style>
 <section id="content">
     <section class="hbox stretch">
         <section>
@@ -20,7 +30,7 @@
                             <div class="col-sm-6 col-lg-3">
                                 <div class="item">
                                     <div class="pos-rlt">
-                                        <div class="item-overlay opacity r r-2x">
+                                        <!--<div class="item-overlay opacity r r-2x">
                                             <div class="text-info padder m-t-sm text-sm">
                                                 <i class="fa fa-heart text-danger"></i>
                                             </div>
@@ -32,9 +42,10 @@
                                                     <i class="fa fa-trash-o text-danger"></i>
                                                 </a>
                                             </div>
-                                        </div>
-                                        <a href="#">
-                                            <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '450', 'h' => '300')) ?>" alt="" class="r r-2x img-full"></a>
+                                        </div>-->
+                                        <a href="<?php echo 'uploads/photos/'.$_v->picUrl;?>" data-lightbox="roadtrip">
+                                            <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '450', 'h' => '300')) ?>" alt="" class="r r-2x img-full">
+                                        </a>
                                     </div>
                                     <div class="padder-v">
                                         <a href="#" class="text-ellipsis"></a>

@@ -20,6 +20,7 @@
                                     <div class="item">
                                         <div class="pos-rlt">
                                             <div class="item-overlay opacity r r-2x bg-black">
+                                                <?php if(!Yii::app()->user->isGuest){?>
                                                 <div class="bottom padder m-b-sm">
                                                     <a href="#" class="pull-right" title="编辑">
                                                         <i class="fa fa-pencil-square-o text-success-lter"></i>
@@ -28,6 +29,7 @@
                                                         <i class="fa fa-trash-o text-danger"></i>
                                                     </a>
                                                 </div>
+                                                <?php } ?>
                                                 <div class="center text-center m-t-n">
                                                     <a href="#"></a>
                                                 </div>

@@ -57,7 +57,7 @@
 <!--删除提示框结束-->
 <section class="vbox">
     <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
-        <div class="navbar-header aside bg-info nav-xs">
+        <div class="navbar-header aside bg-success nav-xs">
             <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
                 <i class="icon-list"></i>
             </a>
@@ -125,7 +125,10 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-                        <i class="icon-user"></i> : <?php echo Yii::app()->user->name; ?> <b class="caret"></b>
+                        <i class="icon-user"></i> :
+                        <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="<?php echo Yii::app()->baseUrl.'/src/default/img/' ?>a0.png" alt="">
+              </span><?php echo Yii::app()->user->name; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight">
                         <li>
@@ -167,16 +170,12 @@
                 <section class="vbox">
                     <section class="w-f-md scrollable">
                         <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
-
-
-
-
                             <nav class="nav-primary hidden-xs">
-                                <ul class="nav bg clearfix">
+                                <ul class="nav clearfix">
                                     <li>
                                         <a href="<?php echo Yii::app()->homeUrl; ?>">
                                             <i class="icon-home icon text-success"></i>
-                                            <span class="font-bold">首 页</span>
+                                            <span>首 页</span>
                                         </a>
                                     </li>
                                     <li>
@@ -189,12 +188,12 @@
                                                     echo count(Photo::model()->findAll());
                                                 } ?>
                                             </b>
-                                            <span class="font-bold">照 片</span>
+                                            <span>照 片</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?php echo $this->createUrl('album/index'); ?>">
-                                            <i class="icon-notebook icon text-primary-lter"></i>
+                                            <i class="icon-folder-alt  text-primary-lter"></i>
                                             <b class="badge bg-primary pull-right">
                                                 <?php if(Yii::app()->user->isGuest){
                                                     echo count(Album::model()->findAll("albumopen = :albumopen",array(':albumopen'=>1)));
@@ -202,25 +201,39 @@
                                                     echo count(Album::model()->findAll());
                                                 } ?>
                                             </b>
-                                            <span class="font-bold">相 册</span>
+                                            <span>相 册</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
-                                            <i class="icon-note icon text-info-dker"></i>
-                                            <span class="font-bold">日 志</span>
+                                        <a href="<?php echo $this->createUrl('blog/index'); ?>">
+                                            <i class="icon-notebook icon  text-info-dker"></i>
+                                            <b class="badge bg-info pull-right">3</b>
+                                            <span>日 志</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="">
                                             <i class="icon-heart icon  text-danger-dk"></i>
-                                            <span class="font-bold">心 情</span>
+                                            <span>心 情</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="" data-target="#content" data-el="#bjax-el" data-replace="true">
-                                            <i class="fa fa-smile-o icon  text-info-lt"></i>
-                                            <span class="font-bold">时光轴</span>
+                                            <i class="icon-clock icon  text-info-lt"></i>
+                                            <span>时光轴</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-music-tone icon text-success-lter"></i>
+                                            <b class="badge bg-success dker pull-right">9</b>
+                                            <span>找自己</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" data-target="#content" data-el="#bjax-el" data-replace="true">
+                                            <i class="icon-note icon text-danger-lter"></i>
+                                            <span >留 言</span>
                                         </a>
                                     </li>
                                     <li class="m-b hidden-nav-xs"></li>
@@ -228,15 +241,16 @@
                                 <?php if(!(Yii::app()->user->getIsGuest())){ ?>
                                 <ul class="nav" data-ride="collapse">
                                     <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                        <span class="pull-right"><i class="icon-settings i-lg"></i></span>
                                         后台功能
                                     </li>
                                     <li >
                                         <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="fa fa-angle-left text"></i>
-                          <i class="fa fa-angle-down text-active"></i>
-                        </span>
-                                            <i class="icon-globe icon"></i>
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-angle-left text"></i>
+                                                <i class="fa fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-grid icon"></i>
                                             <span>管 理</span>
                                         </a>
                                         <ul class="nav dk text-sm">
@@ -272,13 +286,6 @@
                                                 <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>游记</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
                                                     <span>日志</span>
                                                 </a>
                                             </li>
@@ -302,215 +309,27 @@
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="icons.html" class="auto">
-                                                    <b class="badge bg-info pull-right">369</b>
+                                                <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Icons</span>
-                                                </a>
-                                            </li><li >
-                                                <a href="http://www.cssmoban.com/" class="auto">
-                                                    <b class="badge bg-info pull-right">369</b>
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>More</span>
+                                                    <span>2</span>
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="grid.html" class="auto">
+                                                <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Grid</span>
+                                                    <span>3</span>
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="widgets.html" class="auto">
-                                                    <b class="badge bg-dark pull-right">8</b>
+                                                <a href="" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>Widgets</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="components.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Components</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="list.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>List group</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="#table" class="auto">
-                            <span class="pull-right text-muted">
-                              <i class="fa fa-angle-left text"></i>
-                              <i class="fa fa-angle-down text-active"></i>
-                            </span>
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Table</span>
-                                                </a>
-                                                <ul class="nav dker">
-                                                    <li >
-                                                        <a href="table-static.html">
-                                                            <i class="fa fa-angle-right"></i>
-                                                            <span>Table static</span>
-                                                        </a>
-                                                    </li>
-                                                    <li >
-                                                        <a href="table-datatable.html">
-                                                            <i class="fa fa-angle-right"></i>
-                                                            <span>Datatable</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li >
-                                                <a href="#form" class="auto">
-                            <span class="pull-right text-muted">
-                              <i class="fa fa-angle-left text"></i>
-                              <i class="fa fa-angle-down text-active"></i>
-                            </span>
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Form</span>
-                                                </a>
-                                                <ul class="nav dker">
-                                                    <li >
-                                                        <a href="form-elements.html">
-                                                            <i class="fa fa-angle-right"></i>
-                                                            <span>Form elements</span>
-                                                        </a>
-                                                    </li>
-                                                    <li >
-                                                        <a href="form-validation.html">
-                                                            <i class="fa fa-angle-right"></i>
-                                                            <span>Form validation</span>
-                                                        </a>
-                                                    </li>
-                                                    <li >
-                                                        <a href="form-wizard.html">
-                                                            <i class="fa fa-angle-right"></i>
-                                                            <span>Form wizard</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li >
-                                                <a href="chart.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Chart</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="portlet.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Portlet</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="timeline.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Timeline</span>
+                                                    <span>4</span>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li >
-                                        <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="fa fa-angle-left text"></i>
-                          <i class="fa fa-angle-down text-active"></i>
-                        </span>
-                                            <i class="icon-grid icon">
-                                            </i>
-                                            <span>Pages</span>
-                                        </a>
-                                        <ul class="nav dk text-sm">
-                                            <li >
-                                                <a href="profile.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Profile</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="blog.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Blog</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="invoice.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Invoice</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="gmap.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Google Map</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="jvectormap.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Vector Map</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="signin.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Signin</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="signup.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>Signup</span>
-                                                </a>
-                                            </li>
-                                            <li >
-                                                <a href="404.html" class="auto">
-                                                    <i class="fa fa-angle-right text-xs"></i>
-
-                                                    <span>404</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="nav text-sm">
-                                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                                        <span class="pull-right"><a href="#"><i class="icon-plus i-lg"></i></a></span>
-                                        Playlist
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-music-tone icon"></i>
-                                            <span>Hip-Pop</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-playlist icon text-success-lter"></i>
-                                            <b class="badge bg-success dker pull-right">9</b>
-                                            <span>Jazz</span>
-                                        </a>
                                     </li>
                                 </ul>
                                 <?php } ?>
@@ -518,6 +337,45 @@
 
                         </div>
                     </section>
+                    <footer class="footer hidden-xs no-padder text-center-nav-xs">
+                        <div class="bg hidden-xs ">
+                            <div class="dropdown dropup wrapper-sm clearfix">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="thumb-sm avatar pull-left m-l-xs">
+                        <img src="<?php echo Yii::app()->baseUrl.'/src/default/img/' ?>a3.png" class="dker" alt="">
+                      </span>
+                      <span class="hidden-nav-xs clear">
+                        <span class="block m-l">
+                          <strong class="font-bold text-lt">John.Smith</strong>
+                          <b class="caret"></b>
+                        </span>
+                        <span class="text-muted text-xs block m-l">Art Director</span>
+                      </span>
+                                </a>
+                                <ul class="dropdown-menu animated fadeInRight aside text-left">
+                                    <li>
+                                        <span class="arrow bottom hidden-nav-xs"></span>
+                                        <a href="#">Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="profile.html">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="badge bg-danger pull-right">3</span>
+                                            Notifications
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="docs.html">Help</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="modal.lockme.html" data-toggle="ajaxModal">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>            </footer>
 
                 </section>
             </aside>

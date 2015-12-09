@@ -25,9 +25,11 @@
                                                     <a href="#" class="pull-right" title="编辑">
                                                         <i class="fa fa-pencil-square-o text-success-lter"></i>
                                                     </a>
+                                                    <?php if($_v->albumid !=1){//禁止删除默认相册 ?>
                                                     <a href="#" title="删除">
                                                         <i class="fa fa-trash-o text-danger"></i>
                                                     </a>
+                                                    <?php } ?>
                                                 </div>
                                                 <?php } ?>
                                                 <div class="center text-center m-t-n">
@@ -36,7 +38,11 @@
                                             </div>
                                             <div class="top">
                                                 <span class="pull-right m-t-sm m-r-sm badge bg-white">
-                                                    <?php echo count(Photo::model()->findAll("albumid=:albumid",array(":albumid"=>$_v->albumid))); ?>
+                                                    <?php if(!Yii::app()->user->isGuest){
+                                                        echo count(Photo::model()->findAll("albumid=:albumid",array(":albumid"=>$_v->albumid)));
+                                                    } else {
+                                                        echo count(Photo::model()->findAll("albumid= :albumid and picopen = :picopen",array(":albumid"=>$_v->albumid,':picopen' => 1)));
+                                                    } ?>
                                                 </span>
                                             </div>
                                             <a href="#">

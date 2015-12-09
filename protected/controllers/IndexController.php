@@ -20,7 +20,26 @@ class IndexController extends Controller{
     }
     //首页
     public  function actionIndex(){
-        $this->render('index');
+        //首页轮播第一张active图
+        $cdbSet = new CDbCriteria;
+        $cdbSet -> condition = 'picopen = 1';
+        $cdbSet -> order = 'createtime DESC';
+        $bannerFirst = Photo::model()->find($cdbSet);
+        //判断first是否有数据，如果无，下面则为空，这样首页判断不会报错
+        if(isset($bannerFirst) && !empty($bannerFirst)){
+            $criteria=new CDbCriteria;
+            $criteria->condition= "picid != ".$bannerFirst->picid." and picopen = 1 ";
+            $criteria->limit = 4;
+            $criteria->order = 'createtime DESC';
+            $bannerMore = Photo::model()->findAll($criteria);
+        } else{
+            $bannerMore = '';
+        }
+        $data = array(
+            'first' => $bannerFirst,
+            'more' => $bannerMore,
+        );
+        $this->render('index',$data);
     }
 
     //登录

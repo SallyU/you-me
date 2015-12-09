@@ -170,6 +170,7 @@ class UploadController extends Controller{
         $model = new Photo();
         $model->picUrl = $fileName;
         $model->picopen = 0;//上传的照片默认不公开
+        $model->albumid = 1;//上传的照片默认为未分类的默认相册
         $model->createtime = time();
         $model->save(false);
 

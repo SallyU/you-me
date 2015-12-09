@@ -8,6 +8,7 @@ $this->pageTitle=Yii::app()->name . ' - 首页 ';
                             <div class="item">
                                 <div class="carousel slide auto" data-interval="3000">
                                     <div class="carousel-inner">
+                                        <?php if (isset($first) && !empty($first)){?>
                                         <div class="item active">
                                             <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
                                                 <div class="center text-center m-t-n">
@@ -15,11 +16,54 @@ $this->pageTitle=Yii::app()->name . ' - 首页 ';
                                                 </div>
                                             </div>
                                             <div class="bottom wrapper bg-info gd">
-                                                <div class="m-t m-b"><a href="#" class="b-b b-danger h2 text-u-c text-lt font-bold">Teideal</a></div>
-                                                <p class="hidden-xs">Morbi nec nunc condimentum, egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula</p>
+                                                <div class="m-t m-b"><a href="#" class="b-b b-danger h2 text-u-c text-lt font-bold"><?php echo (!empty($first->pictitle) ? $first->pictitle : "高冷无题"); ?></a></div>
+                                                <p class="hidden-xs"><?php echo (!empty($first->picdesc) ? $first->picdesc : "人生旅途，美好风景均在路上...") ?></p>
                                             </div>
-                                            <a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m20.jpg" alt="" class="img-full"></a>
+                                            <a href="#">
+                                                <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$first->picUrl, 'w' => '400', 'h' => '400')) ?>" alt="" class="img-full">
+                                            </a>
                                         </div>
+                                        <?php } else{ ?>
+                                        <div class="item active">
+                                            <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
+                                                <div class="center text-center m-t-n">
+                                                    <a href="#"></a>
+                                                </div>
+                                            </div>
+                                            <div class="bottom wrapper bg-info gd">
+                                                <div class="m-t m-b"><a href="#" class="b-b b-danger h2 text-u-c text-lt font-bold">Hola</a></div>
+                                                <p class="hidden-xs">暂时无公开的照片</p>
+                                            </div>
+                                            <a href="#">
+                                                <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/photos/m21.jpg" alt="" class="img-full">
+                                            </a>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if(isset($more) && !empty($more)) {
+                                            foreach ($more as $m => $_m) {
+                                                ?>
+                                                <div class="item">
+                                                    <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
+                                                        <div class="center text-center m-t-n">
+                                                            <a href="#"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottom wrapper bg-info gd">
+                                                        <div class="m-t m-b">
+                                                            <a href="#" class="b-b b-warning h2 text-u-c text-lt font-bold">
+                                                                <?php echo (!empty($_m->pictitle) ? $_m->pictitle : "高冷无题"); ?>
+                                                            </a>
+                                                        </div>
+                                                        <p class="hidden-xs">
+                                                            <?php echo (!empty($_m->picdesc) ? $_m->picdesc : "趁年轻，多翻山越岭，多沐浴阳光...") ?>
+                                                        </p>
+                                                    </div>
+                                                    <a href="#">
+                                                        <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_m->picUrl, 'w' => '400', 'h' => '400')) ?>" alt="" class="img-full">
+                                                    </a>
+                                                </div>
+                                            <?php }
+                                        } else{ ?>
                                         <div class="item">
                                             <div class="item-overlay opacity animated fadeInDown wrapper bg-info">
                                                 <div class="center text-center m-t-n">
@@ -27,11 +71,14 @@ $this->pageTitle=Yii::app()->name . ' - 首页 ';
                                                 </div>
                                             </div>
                                             <div class="bottom wrapper bg-info gd">
-                                                <div class="m-t m-b"><a href="#" class="b-b b-warning h2 text-u-c text-lt font-bold">Tincidunt</a></div>
-                                                <p class="hidden-xs">Gestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae ligula elementum</p>
+                                                <div class="m-t m-b"><a href="#" class="b-b b-danger h2 text-u-c text-lt font-bold">Hello</a></div>
+                                                <p class="hidden-xs">欢迎您的到来</p>
                                             </div>
-                                            <a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/testImg/m22.jpg" alt="" class="img-full"></a>
+                                            <a href="#">
+                                                <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/photos/m22.jpg" alt="" class="img-full">
+                                            </a>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

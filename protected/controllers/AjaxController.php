@@ -12,7 +12,7 @@ class AjaxController extends Controller
     {
         if (Yii::app()->request->isAjaxRequest) {
             $page = (int)Yii::app()->request->getParam('page');//当前页
-            $total_num = count(Albumcate::model()->findAll()); //总记录数
+            $total_num = count(Albumcate::model()->findAll('cateid != 1')); //总记录数,防止默认id为1的未分类被删除，此处隐藏
             $page_size = 16; //每页数量
             $page_total = ceil($total_num / $page_size); //总页数
             $page_start = $page * $page_size;
@@ -22,10 +22,11 @@ class AjaxController extends Controller
                 "page_total_num" => $page_total,
             );
             $criteria = new CDbCriteria();//$criteria->addCondition('status=1');//根据条件查询
-            $criteria->select = "cateid,catename";
-            $criteria->order = "cateid DESC";
-            $criteria->limit = $page_size;
-            $criteria->offset = $page_start;//偏移量，和limit组在一起就是limit start到size
+            $criteria -> select = "cateid,catename";
+            $criteria -> condition = 'cateid != 1';//防止默认id为1的【未分类】被删除，此处隐藏
+            $criteria -> order = "cateid DESC";
+            $criteria -> limit = $page_size;
+            $criteria -> offset = $page_start;//偏移量，和limit组在一起就是limit start到size
             $query = Albumcate::model()->findAll($criteria);
 
             foreach ($query as $row) {

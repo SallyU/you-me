@@ -114,7 +114,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                                 var list = json.list;
                                 $.each(list, function(index, array) { //遍历返回json
                                     var aa = array['id'];
-                                    a_list += "<a href='#' class='btn btn-s-md btn-default btn-rounded'>"+ array['title'] + "<button title='删除该类别' type='button' class='close' data-href='/index.php?r=albumcate/delalbumcate&cateid="+array['id']+"' data-toggle='modal' data-target='#confirm-delete' style='float: none;font-size: 16px;'>×</button>" + "</a>";
+                                    a_list += "<a href='#' class='btn btn-s-md btn-default btn-rounded'>"+ array['title'] + "<button title='删除该类别' type='button' class='close' data-href='<?php echo $this->createUrl('albumcate/delAlbumcate'); ?>&cateid="+array['id']+"' data-toggle='modal' data-target='#confirm-delete' style='float: none;font-size: 16px;'>×</button>" + "</a>";
                                 });
                                 $("#a_lists").append(a_list);
                             },

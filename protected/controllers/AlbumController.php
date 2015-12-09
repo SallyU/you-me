@@ -10,7 +10,7 @@ class AlbumController extends Controller{
         //如果未登录则查询公开的，如果登录，则全部查询
         if(Yii::app()->user->isGuest){
             $criteria = new CDbCriteria();
-            $criteria->order = "createtime DESC";
+            $criteria->order = "albumid ASC";
             $criteria->addCondition('albumopen = 1');//根据条件查询
             $count = Album::model()->count($criteria);
             $pager = new CPagination($count);
@@ -20,7 +20,7 @@ class AlbumController extends Controller{
             $model = Album::model()->findAll($criteria);
         } else {
             $criteria = new CDbCriteria();
-            $criteria->order = "createtime DESC";
+            $criteria->order = "albumid ASC";
             $count = Album::model()->count($criteria);
             $pager = new CPagination($count);
             $pager->pageSize=18;//每页显示的数量
@@ -28,13 +28,11 @@ class AlbumController extends Controller{
 
             $model = Album::model()->findAll($criteria);
         }
-        $albumcate = Albumcate::model()->findAll(array('order'=>'cateid ASC'));
 
         $data = array(
             'model' => $model,
             'pages' => $pager,
             'count' => $count,
-            'albumcate' => $albumcate,
         );
 
         $this->render('index',$data);

@@ -10,10 +10,6 @@ class SettingController extends Controller{
         if(Yii::app()->user->isGuest){
             $this->redirect(Yii::app()->homeUrl);
         }
-
-        if(Yii::app()->user->isGuest) {
-            $this->redirect(Yii::app()->homeUrl);
-        }
         $id = Yii::app()->user->id;
         if(empty($id)){
             throw new CHttpException(404,'非法操作！');

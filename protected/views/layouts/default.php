@@ -102,7 +102,7 @@
                             <div class="list-group list-group-alt">
                                 <a href="#" class="media list-group-item">
                     <span class="pull-left thumb-sm">
-                      <img src="<?php echo Yii::app()->request->baseUrl; ?>/src/default/img/a0.png" alt="..." class="img-circle">
+                      <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/avatars/noAvatar.png" alt="..." class="img-circle">
                     </span>
                     <span class="media-body block m-b-none">
                       Use awesome animate.css<br>
@@ -125,9 +125,8 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-                        <i class="icon-user"></i> :
                         <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="<?php echo Yii::app()->baseUrl.'/src/default/img/' ?>a0.png" alt="">
+                <img src="<?php echo Yii::app()->baseUrl.'/uploads/avatars/' ?>noAvatar.png" alt="">
               </span><?php echo Yii::app()->user->name; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight">
@@ -142,7 +141,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="docs.html">其他</a>
+                            <a href="">其他</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -211,14 +210,14 @@
                                             <span>日 志</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <!--<li>
                                         <a href="">
                                             <i class="icon-heart icon  text-danger-dk"></i>
                                             <span>心 情</span>
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <a href="" data-target="#content" data-el="#bjax-el" data-replace="true">
+                                        <a href="<?php echo $this->createUrl('timeline/index'); ?>">
                                             <i class="icon-clock icon  text-info-lt"></i>
                                             <span>时光轴</span>
                                         </a>
@@ -231,7 +230,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="" data-target="#content" data-el="#bjax-el" data-replace="true">
+                                        <a href="">
                                             <i class="icon-note icon text-danger-lter"></i>
                                             <span >留 言</span>
                                         </a>
@@ -342,7 +341,7 @@
                             <div class="dropdown dropup wrapper-sm clearfix">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="thumb-sm avatar pull-left m-l-xs">
-                        <img src="<?php echo Yii::app()->baseUrl.'/src/default/img/' ?>a3.png" class="dker" alt="">
+                        <img src="<?php echo Yii::app()->baseUrl.'/uploads/avatars/' ?>noAvatar.png" class="dker" alt="">
                       </span>
                       <span class="hidden-nav-xs clear">
                         <span class="block m-l">

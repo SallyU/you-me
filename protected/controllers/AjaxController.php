@@ -64,14 +64,31 @@ class AjaxController extends Controller
             ->show();
     }
     //ajax单独设置公开
-    public function actionOpen($picid){
-        /*if(Yii::app()->request->isAjaxRequest){//如果是ajax请求
-
-        }*/
+    public function actionOpen(){
+        $picid = $_POST['id'];
+        if(!isset($picid) || empty($picid)) exit;
         $model = Photo::model()->findByPk($picid);
         $model->picopen = 1;
-        $model->save();
-        $this->redirect($this->createUrl('photo/manage'));
+        if($model->save()){
+            echo '<a title="改为保密" href="#" class="baomi" rel="' .$picid. '"><i class="icon-lock-open text-success"></i></a>';
+        } else{
+            echo '<a title="" href="#" class="baomi"><i class="icon-lock-open text-success"></i></a>';
+        }
+
+    }
+
+    //保密图片
+    public function actionLock(){
+        $picid = $_POST['id'];
+        if(!isset($picid) || empty($picid)) exit;
+        $model = Photo::model()->findByPk($picid);
+        $model->picopen = 0;
+        if($model->save()){
+            echo '<a class="gongkai" title="改为公开" href="#" rel="' .$picid. '"><i class="icon-lock text-danger"></i></a>';
+        } else{
+            echo '<a title="" href="#" class="baomi"><i class="icon-lock text-danger"></i></a>';
+        }
+
     }
 
     //图片管理页面点击保存

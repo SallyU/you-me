@@ -37,7 +37,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
             </div>
         </section>
         <div class="row">
-            <!--<div class="col-sm-6">
+            <div class="col-sm-6">
                 <section class="panel panel-default pos-rlt clearfix">
                     <header class="panel-heading">
                         <ul class="nav nav-pills pull-right">
@@ -48,19 +48,19 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                         已有相册类别
                     </header>
                     <div class="panel-body clearfix">
-                        <?php /*if(isset($albumcate) && !empty($albumcate) && $count >0 ){*/?>
+                        <?php if(isset($albumcate) && !empty($albumcate) && $count >0 ){?>
                             <div class="doc-buttons">
-                            <?php /*foreach($albumcate as $_a => $a){*/?>
+                            <?php foreach($albumcate as $_a => $a){?>
                                     <a href="#" class="btn btn-s-md btn-default btn-rounded">
-                                        <?php /*echo $a->catename;    */?>
-                                        <button title="删除该类别" type="button" class="close" data-href="<?php /*echo $this->createUrl('albumcate/delalbumcate',array('cateid'=>$a->cateid));*/?>" data-toggle="modal" data-target="#confirm-delete" style="float: none;font-size: 16px;">&times;</button>
+                                        <?php echo $a->catename;    ?>
+                                        <button title="删除该类别" type="button" class="close" data-href="<?php echo $this->createUrl('albumcate/delalbumcate',array('cateid'=>$a->cateid));?>" data-toggle="modal" data-target="#confirm-delete" style="float: none;font-size: 16px;">&times;</button>
                                     </a>
-                            <?php /*}} else{
+                            <?php }} else{
                                 echo "咦，一个相册类别都没有，赶紧添加一个吧！";
-                            } */?>
+                            } ?>
                             </div>
                             <?php
-/*                            if($pages->pageCount >= 2){
+                            if($pages->pageCount >= 2){
                                 echo '<div class="text-center">';
                                 $this->widget('CLinkPager',array(
                                     'header' => '',
@@ -72,11 +72,11 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                                     'maxButtonCount'=>7,
                                 ));
                                 echo ' </div>';
-                            }*/?>
+                            }?>
                     </div>
                 </section>
-            </div>-->
-            <div class="col-sm-6">
+            </div>
+            <!--<div class="col-sm-6">
                 <section class="panel panel-default pos-rlt clearfix">
                     <header class="panel-heading">
                         <ul class="nav nav-pills pull-right">
@@ -101,7 +101,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                     function getData(page) { //获取当前页数据
                         $.ajax({
                             type: 'POST',
-                            url: '<?php echo $this->createUrl('ajax/page'); ?>',
+                            url: '<?php /*echo $this->createUrl('ajax/page'); */?>',
                             data: {'page': page - 1},
                             dataType: 'json',
                             success: function(json) {
@@ -114,7 +114,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                                 var list = json.list;
                                 $.each(list, function(index, array) { //遍历返回json
                                     var aa = array['id'];
-                                    a_list += "<a href='#' class='btn btn-s-md btn-default btn-rounded'>"+ array['title'] + "<button title='删除该类别' type='button' class='close' data-href='<?php echo $this->createUrl('albumcate/delAlbumcate'); ?>&cateid="+array['id']+"' data-toggle='modal' data-target='#confirm-delete' style='float: none;font-size: 16px;'>×</button>" + "</a>";
+                                    a_list += "<a href='#' class='btn btn-s-md btn-default btn-rounded'>"+ array['title'] + "<button title='删除该类别' type='button' class='close' data-href='<?php /*echo $this->createUrl('albumcate/delAlbumcate'); */?>&cateid="+array['id']+"' data-toggle='modal' data-target='#confirm-delete' style='float: none;font-size: 16px;'>×</button>" + "</a>";
                                 });
                                 $("#a_lists").append(a_list);
                             },
@@ -154,7 +154,7 @@ $this->pageTitle=Yii::app()->name . ' - 添加相册类别 ';
                         });
                     });
                 </script>
-            </div>
+            </div>-->
         </div>
     </section>
 </section>

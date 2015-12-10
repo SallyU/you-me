@@ -76,9 +76,9 @@ $this->pageTitle = Yii::app()->name . ' - 照片管理';
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;">
                                 <?php if($_v->picopen ==1){ ?>
-                                <a title="改为保密" href="#" class="baomi"><i class="icon-lock-open text-success"></i></a>
+                                <a title="改为保密" href="#" class="baomi" rel="<?php echo $_v->picid;?>"><i class="icon-lock-open text-success"></i></a>
                                 <?php } else if($_v->picopen ==0){?>
-                                <a class="gongkai" title="改为公开" href="<?php echo $this->createUrl('ajax/open',array('picid' => $_v->picid)); ?>"><i class="icon-lock text-danger"></i></a>
+                                <a class="gongkai" title="改为公开" href="#" rel="<?php echo $_v->picid;?>"><i class="icon-lock text-danger"></i></a>
                                 <?php } else {
                                     echo '你大爷的';
                                 } ?>
@@ -175,6 +175,43 @@ $this->pageTitle = Yii::app()->name . ' - 照片管理';
         tooltip   : '单击可以编辑...',
         style     : 'display: inline'
     });
-    //保密及公开ajax
+    //公开
+    $(function(){
+        $(".gongkai").click(function(){
+            var open = $(this);
+            var id = open.attr("rel"); //对应id
+            open.fadeOut(300); //渐隐效果
+            $.ajax({
+                type:"POST",
+                url:"<?php echo $this->createUrl('ajax/open');?>",
+                data:"id="+id,
+                cache:false, //不缓存此页面
+                success:function(data){
+                    open.html(data);
+                    open.fadeIn(300); //渐显效果
+                }
+            });
+            return false;
+        });
+    });
+    //保密
+    $(function(){
+        $(".baomi").click(function(){
+            var open = $(this);
+            var id = open.attr("rel"); //对应id
+            open.fadeOut(300); //渐隐效果
+            $.ajax({
+                type:"POST",
+                url:"<?php echo $this->createUrl('ajax/lock');?>",
+                data:"id="+id,
+                cache:false, //不缓存此页面
+                success:function(data){
+                    open.html(data);
+                    open.fadeIn(300); //渐显效果
+                }
+            });
+            return false;
+        });
+    });
 
 </script>

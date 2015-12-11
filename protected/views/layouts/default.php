@@ -336,6 +336,7 @@
 
                         </div>
                     </section>
+                    <?php if(!Yii::app() -> user -> isGuest){?>
                     <footer class="footer hidden-xs no-padder text-center-nav-xs">
                         <div class="bg hidden-xs ">
                             <div class="dropdown dropup wrapper-sm clearfix">
@@ -374,7 +375,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>            </footer>
+                        </div>
+                    </footer>
+                    <?php } ?>
 
                 </section>
             </aside>

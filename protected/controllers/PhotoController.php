@@ -84,4 +84,20 @@ class PhotoController extends Controller{
             $this->redirect($this->createUrl('manage'));
         }
     }
+
+    //查看照片
+    public function actionView(){
+        $id = $_GET['id'];
+        //判断是否存在id,是否是数字
+        if(isset($id) && !empty($id) && intval($id) && is_numeric($id)){
+            $model = Photo::model()->findByPk($id);
+            if(!isset($model) || empty($model))
+                throw new CHttpException(404,'非法操作！');
+            echo "test";
+        } else {
+            throw new CHttpException(404,'非法操作！');
+        }
+
+    }
+
 }

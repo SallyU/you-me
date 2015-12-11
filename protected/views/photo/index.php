@@ -38,7 +38,7 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                                                 <i class="fa fa-trash-o text-danger"></i>
                                             </a>
                                             <?php } ?>
-                                            <a href="#" class="pull-right" title="<?php echo ((!Yii::app() -> user -> isGuest ) ? '编辑' : '评论');?>">
+                                            <a href="<?php echo $this->createUrl('photo/view',array('id' => $_v -> picid)); ?>" class="pull-right" title="<?php echo ((!Yii::app() -> user -> isGuest ) ? '编辑' : '评论');?>">
                                                 <i class="icon-info text-success-lter"></i>
                                             </a>
                                             <a href="#" title="赞" rel="<?php echo $_v->picid; ?>" class="lovePic"><span class="badge bg-white"><i class="fa fa-heart text-danger"></i>&nbsp;<?php echo $_v->like; ?></span></a>

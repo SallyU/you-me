@@ -63,30 +63,21 @@ class AjaxController extends Controller
             ->save('./showpictemp/' . $file_name . '.jpg')
             ->show();
     }
-    //ajax单独设置公开
-    public function actionOpen(){
+    /*
+     * 更改图片公开状态
+     */
+    public  function actionChangeStatus(){
         $picid = $_POST['id'];
         if(!isset($picid) || empty($picid)) exit;
         $model = Photo::model()->findByPk($picid);
-        $model->picopen = 1;
-        if($model->save()){
-            echo '<a title="改为保密" href="#" class="baomi" rel="' .$picid. '"><i class="icon-lock-open text-success"></i></a>';
-        } else{
-            echo '<a title="" href="#" class="baomi"><i class="icon-lock-open text-success"></i></a>';
-        }
-
-    }
-
-    //保密图片
-    public function actionLock(){
-        $picid = $_POST['id'];
-        if(!isset($picid) || empty($picid)) exit;
-        $model = Photo::model()->findByPk($picid);
-        $model->picopen = 0;
-        if($model->save()){
-            echo '<a class="gongkai" title="改为公开" href="#" rel="' .$picid. '"><i class="icon-lock text-danger"></i></a>';
-        } else{
-            echo '<a title="" href="#" class="baomi"><i class="icon-lock text-danger"></i></a>';
+        if($model -> picopen == 1){
+            $model -> picopen = 0;
+            if($model -> save())
+                echo '<i class="icon-lock text-danger"></i>';
+        } else if($model -> picopen == 0){
+            $model -> picopen =1;
+            if($model -> save())
+                echo '<i class="icon-lock-open text-success"></i>';
         }
 
     }

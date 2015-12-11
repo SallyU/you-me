@@ -8,6 +8,8 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
         text-decoration: none;
         color: transparent;
     }
+    .lovePic{filter:alpha(opacity=60); opacity: 0.60;}
+    .lovePic:hover{filter:alpha(opacity=95); opacity: 0.95;}
 </style>
 <section id="content">
     <section class="hbox stretch">
@@ -30,28 +32,15 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                             <div class="col-sm-6 col-lg-3">
                                 <div class="item">
                                     <div class="pos-rlt">
-                                        <!--<div class="item-overlay opacity r r-2x">
-                                            <div class="text-info padder m-t-sm text-sm">
-                                                <i class="fa fa-heart text-danger"></i>
-                                            </div>
-                                            <div class="bottom padder m-b-sm">
-                                                <a href="#" class="pull-right" title="编辑">
-                                                    <i class="fa fa-pencil-square-o text-success-lter"></i>
-                                                </a>
-                                                <a href="#" title="删除">
-                                                    <i class="fa fa-trash-o text-danger"></i>
-                                                </a>
-                                            </div>
-                                        </div>-->
                                         <div class="bottom padder m-b-sm">
                                             <?php if(!Yii::app()->user->isGuest){?>
-                                            <a href="#" class="pull-right" title="删除">
+                                            <a href="#" class="pull-right" title="删除" data-href="####1212" data-toggle="modal" data-target="#confirm-delete">
                                                 <i class="fa fa-trash-o text-danger"></i>
                                             </a>
-                                            <a href="#" class="pull-right" title="编辑">
-                                                <i class="fa fa-pencil-square-o text-success-lter"></i>
-                                            </a>
                                             <?php } ?>
+                                            <a href="#" class="pull-right" title="<?php echo ((!Yii::app() -> user -> isGuest ) ? '编辑' : '评论');?>">
+                                                <i class="icon-info text-success-lter"></i>
+                                            </a>
                                             <a href="#" title="赞" rel="<?php echo $_v->picid; ?>" class="lovePic"><span class="badge bg-white"><i class="fa fa-heart text-danger"></i>&nbsp;<?php echo $_v->like; ?></span></a>
                                         </div>
                                         <a href="<?php echo 'uploads/photos/'.$_v->picUrl;?>" data-lightbox="roadtrip">

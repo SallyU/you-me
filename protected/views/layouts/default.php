@@ -192,7 +192,7 @@
                                     </li>
                                     <li>
                                         <a href="<?php echo $this->createUrl('album/index'); ?>">
-                                            <i class="icon-folder-alt  text-primary-lter"></i>
+                                            <i class="icon-film  text-primary-lter"></i>
                                             <b class="badge bg-primary pull-right">
                                                 <?php if(Yii::app()->user->isGuest){
                                                     echo count(Album::model()->findAll("albumopen = :albumopen",array(':albumopen'=>1)));

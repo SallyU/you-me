@@ -5,7 +5,7 @@
  * Date: 15-11-25
  * Time: 上午8:49
  */
-$this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
+$this->pageTitle = Yii::app()->name . ' - '.$actionName ;
 ?>
 <section class="vbox">
     <section class="scrollable padder">
@@ -19,7 +19,7 @@ $this->pageTitle = Yii::app()->name . ' - 添加相册 ' ;
                         <a href="#" class="panel-toggle text-muted"><i class="fa fa-caret-down text-active"></i><i class="fa fa-caret-up text"></i></a>
                     </li>
                 </ul>
-                新建相册
+                <?php echo $actionName; ?>
             </header>
             <div class="panel-body">
                 <?php $form=$this->beginWidget('CActiveForm', array(

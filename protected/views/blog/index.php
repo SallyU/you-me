@@ -1,7 +1,19 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: QKY
+ * Date: 15-11-25
+ * Time: 上午8:49
+ */
+$this->pageTitle = Yii::app()->name . ' - '.$actionName;
+?>
 <section id="content">
     <section class="vbox">
         <section class="scrollable wrapper-lg">
             <div class="row">
+                <!-- 导航面包屑开始 -->
+                <?php $this->renderPartial('/layouts/breadcrumb',array('breadcrumb'=> $breadcrumb));?>
+                <!-- 导航面包屑结束 -->
                 <div class="col-sm-9">
                     <div class="blog-post">
                         <div class="post-item">

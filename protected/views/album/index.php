@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . ' - 相册列表'; ?>
+<?php $this->pageTitle = Yii::app()->name . ' - '.$actionName; ?>
 <section id="content">
     <section class="vbox">
         <section>

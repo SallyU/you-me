@@ -29,10 +29,13 @@ class AlbumController extends Controller{
             $model = Album::model()->findAll($criteria);
         }
 
+        $actionName = '相册';//$this->getAction()->getId()获取控制器名称
+
         $data = array(
             'model' => $model,
             'pages' => $pager,
             'count' => $count,
+            'actionName' => $actionName,
         );
 
         $this->render('index',$data);
@@ -73,10 +76,12 @@ class AlbumController extends Controller{
             }
 
         }
+        $actionName = '添加相册';//$this->getAction()->getId()获取控制器名称
         $data = array(
             'model' => $model,
             'open' => $open,
             'albumcate' => $albumcate,
+            'actionName' => $actionName,
             );
         $this->render('add',$data);
     }

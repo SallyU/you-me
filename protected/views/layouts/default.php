@@ -308,10 +308,10 @@
                                                 </a>
                                             </li>
                                             <li >
-                                                <a href="" class="auto">
+                                                <a href="<?php echo $this->createUrl('blog/create'); ?>" class="auto">
                                                     <i class="fa fa-angle-right text-xs"></i>
 
-                                                    <span>2</span>
+                                                    <span>日 志</span>
                                                 </a>
                                             </li>
                                             <li >

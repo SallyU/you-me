@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-12-09 16:55:40
+-- Generation Time: 2015-12-14 09:19:47
 -- 服务器版本： 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `mw_album` (
   `albumid` int(11) NOT NULL COMMENT '相册自增id',
   `albumname` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '相册名称',
-  `albumopen` int(11) NOT NULL DEFAULT '0' COMMENT '相册公开,1公开，2自己可见',
+  `albumopen` tinyint(3) NOT NULL DEFAULT '0' COMMENT '相册公开,1公开，2自己可见',
   `albumcover` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '相册封面',
   `albumdesc` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相册说明',
   `userid` int(11) unsigned DEFAULT NULL COMMENT '外键创建人ID',
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `mw_albumcate` (
   `cateid` int(11) unsigned NOT NULL COMMENT '相册类型自增ID',
   `catename` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相册类型名称',
   `createtime` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相册类型创建时间'
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='相册类型表';
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='相册类型表';
 
 --
 -- 转存表中的数据 `mw_albumcate`
@@ -113,6 +113,55 @@ CREATE TABLE IF NOT EXISTS `mw_blog` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `mw_config`
+--
+
+CREATE TABLE IF NOT EXISTS `mw_config` (
+  `id` varchar(64) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `mw_config`
+--
+
+INSERT INTO `mw_config` (`id`, `value`) VALUES
+('page_takonomy', 'page'),
+('page_taxonomy', 'page'),
+('post_takonomy', 'post'),
+('post_taxonomy', 'post'),
+('sys_allow_register', '0'),
+('sys_datetime_date_format', 'Y-m-d'),
+('sys_datetime_pretty_format', '1'),
+('sys_datetime_timezone', 'Etc/GMT-8'),
+('sys_datetime_time_format', '24'),
+('sys_date_format', ''),
+('sys_date_format_custom', ''),
+('sys_default_role', 'member_1'),
+('sys_icp', 'aa'),
+('sys_lang', 'zh-CN'),
+('sys_seo_description', 'web description'),
+('sys_seo_keywords', 'you-me,yii'),
+('sys_seo_title', 'you-me'),
+('sys_site_about', '网站说明'),
+('sys_site_description', 'one private website'),
+('sys_site_email', 'aw133e@163.com'),
+('sys_site_name', 'YM'),
+('sys_site_theme', 'blank'),
+('sys_site_url', ''),
+('sys_stat', 'bb'),
+('sys_status', '1'),
+('sys_theme_admin', ''),
+('sys_theme_home', ''),
+('sys_timezone', ''),
+('sys_time_format', ''),
+('sys_time_format_custom', ''),
+('sys_utc', ''),
+('test_data_theme', '');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mw_likeip`
 --
 
@@ -120,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `mw_likeip` (
   `id` int(11) NOT NULL,
   `picid` int(11) NOT NULL,
   `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `mw_likeip`
@@ -149,7 +198,13 @@ INSERT INTO `mw_likeip` (`id`, `picid`, `ip`) VALUES
 (20, 68, '192.168.0.88'),
 (21, 62, '192.168.0.88'),
 (22, 67, '192.168.0.7'),
-(23, 58, '127.0.0.1');
+(23, 58, '127.0.0.1'),
+(24, 65, '192.168.10.44'),
+(25, 70, '192.168.10.44'),
+(26, 72, '127.0.0.1'),
+(27, 65, '192.168.0.7'),
+(28, 73, '127.0.0.1'),
+(29, 28, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -168,50 +223,52 @@ CREATE TABLE IF NOT EXISTS `mw_photo` (
   `albumid` int(11) unsigned DEFAULT NULL COMMENT '外键相册ID',
   `createtime` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相册创建时间',
   `like` int(11) NOT NULL DEFAULT '0' COMMENT '赞数'
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='照片表';
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='照片表';
 
 --
 -- 转存表中的数据 `mw_photo`
 --
 
 INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`, `picdesc`, `userid`, `albumid`, `createtime`, `like`) VALUES
-(26, '', 0, '4860-20151202160841.jpeg', '', NULL, NULL, 1, '1449043721', 1),
-(27, '', 0, '9253-20151202160843.jpeg', '', NULL, NULL, 1, '1449043723', 1),
-(28, '', 0, '1002-20151202160843.jpeg', '', NULL, NULL, 32, '1449043723', 0),
-(29, '', 0, '3304-20151202164405.jpg', '', NULL, NULL, 32, '1449045845', 0),
-(30, '', 0, '7966-20151202171321.jpeg', '', NULL, NULL, 32, '1449047601', 0),
-(31, '', 0, '5663-20151203092916.jpg', '', NULL, NULL, 1, '1449106156', 0),
-(33, '', 0, '2307-20151203092916.jpg', '', NULL, NULL, 32, '1449106156', 0),
-(36, '', 0, '7387-20151203093148.jpg', '', NULL, NULL, 1, '1449106308', 0),
-(39, '', 0, '2789-20151203093423.jpg', '', NULL, NULL, 1, '1449106463', 0),
-(43, '', 0, '4572-20151203145435.jpeg', '', NULL, NULL, 1, '1449125675', 0),
-(44, '', 0, '6883-20151203145436.jpeg', '', NULL, NULL, 1, '1449125676', 0),
-(45, '', 0, '8987-20151203145438.jpeg', '', NULL, NULL, 1, '1449125678', 0),
-(46, '', 0, '6018-20151203145439.jpeg', '', NULL, NULL, 1, '1449125679', 1),
-(47, '', 0, '6362-20151203145442.jpeg', '', NULL, NULL, 1, '1449125682', 0),
-(48, '', 0, '2061-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
-(49, '', 0, '4505-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
-(50, '', 0, '3818-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
-(51, '', 0, '8504-20151203145444.jpeg', '', NULL, NULL, 1, '1449125684', 0),
-(52, '', 0, '8400-20151203145445.jpeg', '', NULL, NULL, 1, '1449125685', 0),
-(53, '', 0, '8518-20151203145446.jpeg', '', NULL, NULL, 1, '1449125686', 0),
-(55, '', 0, '643-20151204154546.jpg', '', NULL, NULL, 1, '1449215147', 0),
-(56, 'cds', 0, '3891-20151204160844.jpg', '', NULL, NULL, 1, '1449216524', 0),
-(57, '天空', 0, '3149-20151204160844.jpg', '', NULL, NULL, 1, '1449216524', 1),
-(58, '夜景', 0, '5480-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 1),
-(59, '猫咪', 0, '4265-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 2),
-(60, '壁纸', 0, '355-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 0),
+(26, '', 1, '4860-20151202160841.jpeg', '', NULL, NULL, 1, '1449043721', 1),
+(27, '', 1, '9253-20151202160843.jpeg', '', NULL, NULL, 1, '1449043723', 1),
+(28, '', 1, '1002-20151202160843.jpeg', '', NULL, NULL, 32, '1449043723', 1),
+(29, '', 1, '3304-20151202164405.jpg', '', NULL, NULL, 32, '1449045845', 0),
+(30, '', 1, '7966-20151202171321.jpeg', '', NULL, NULL, 32, '1449047601', 0),
+(31, '', 1, '5663-20151203092916.jpg', '', NULL, NULL, 1, '1449106156', 0),
+(33, '', 1, '2307-20151203092916.jpg', '', NULL, NULL, 32, '1449106156', 0),
+(36, '', 1, '7387-20151203093148.jpg', '', NULL, NULL, 1, '1449106308', 0),
+(39, '', 1, '2789-20151203093423.jpg', '', NULL, NULL, 1, '1449106463', 0),
+(43, '', 1, '4572-20151203145435.jpeg', '', NULL, NULL, 1, '1449125675', 0),
+(44, '', 1, '6883-20151203145436.jpeg', '', NULL, NULL, 1, '1449125676', 0),
+(45, '', 1, '8987-20151203145438.jpeg', '', NULL, NULL, 1, '1449125678', 0),
+(46, '', 1, '6018-20151203145439.jpeg', '', NULL, NULL, 1, '1449125679', 1),
+(47, '', 1, '6362-20151203145442.jpeg', '', NULL, NULL, 1, '1449125682', 0),
+(48, '', 1, '2061-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
+(49, '', 1, '4505-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
+(50, '', 1, '3818-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
+(51, '', 1, '8504-20151203145444.jpeg', '', NULL, NULL, 1, '1449125684', 0),
+(52, '', 1, '8400-20151203145445.jpeg', '', NULL, NULL, 1, '1449125685', 0),
+(53, '', 1, '8518-20151203145446.jpeg', '', NULL, NULL, 1, '1449125686', 0),
+(55, '', 1, '643-20151204154546.jpg', '', NULL, NULL, 1, '1449215147', 0),
+(56, 'cds', 1, '3891-20151204160844.jpg', '', NULL, NULL, 1, '1449216524', 0),
+(57, '天空', 1, '3149-20151204160844.jpg', '', NULL, NULL, 1, '1449216524', 1),
+(58, '夜景', 1, '5480-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 1),
+(59, '猫咪', 1, '4265-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 2),
+(60, '壁纸', 1, '355-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 0),
 (61, '蓝天白云', 1, '6070-20151204160845.jpg', '', 'why sky', NULL, 1, '1449216526', 1),
 (62, '奇地貌', 1, '870-20151204160846.jpg', '', '测试2', NULL, 1, '1449216526', 1),
-(63, 'Apples', 0, '2508-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
-(64, '静美', 0, '698-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
-(65, '淡定', 1, '6025-20151204160847.jpg', '', '这是我的第一张摄影照片！', NULL, 1, '1449216527', 1),
-(66, '海阔天空', 0, '3277-20151204160847.jpg', '', '蓝蓝的海洋～', NULL, 1, '1449216527', 1),
+(63, 'Apples', 1, '2508-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
+(64, '静美', 1, '698-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
+(65, '淡定', 1, '6025-20151204160847.jpg', '', '这是我的第一张摄影照片！', NULL, 1, '1449216527', 3),
+(66, '海阔天空', 1, '3277-20151204160847.jpg', '', '蓝蓝的海洋～', NULL, 1, '1449216527', 1),
 (67, '', 1, '3577-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
-(68, '', 1, '7623-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
-(69, '', 0, '5076-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 2),
-(70, '', 0, '832-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 1),
-(71, '', 0, '3493-20151209104307.jpg', '', NULL, NULL, 1, '1449628987', 1);
+(68, '', 0, '7623-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
+(69, '', 1, '5076-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 2),
+(70, '', 1, '832-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 2),
+(71, '', 1, '3493-20151209104307.jpg', '', NULL, NULL, 1, '1449628987', 1),
+(72, '', 1, '8184-20151210155947.jpg', '', NULL, NULL, 1, '1449734387', 1),
+(73, '', 1, '5753-20151211114447.jpg', '', '大峡谷', NULL, 1, '1449805487', 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +332,13 @@ ALTER TABLE `mw_blog`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mw_config`
+--
+ALTER TABLE `mw_config`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `mw_likeip`
 --
 ALTER TABLE `mw_likeip`
@@ -311,7 +375,7 @@ ALTER TABLE `mw_album`
 -- AUTO_INCREMENT for table `mw_albumcate`
 --
 ALTER TABLE `mw_albumcate`
-  MODIFY `cateid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '相册类型自增ID',AUTO_INCREMENT=89;
+  MODIFY `cateid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '相册类型自增ID',AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `mw_blog`
 --
@@ -321,12 +385,12 @@ ALTER TABLE `mw_blog`
 -- AUTO_INCREMENT for table `mw_likeip`
 --
 ALTER TABLE `mw_likeip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `mw_photo`
 --
 ALTER TABLE `mw_photo`
-  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT COMMENT '照片自增id',AUTO_INCREMENT=72;
+  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT COMMENT '照片自增id',AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `mw_photocomment`
 --

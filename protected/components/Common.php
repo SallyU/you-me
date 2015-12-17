@@ -561,5 +561,11 @@ class Common {
         return $buffer;
     }
 
+    // 计算中文字符串长度,例如：我爱你，strlen是9个字符，这个函数返回3个字符
+    public static function utf8_strlen($string = null) {
+        preg_match_all("/./us", $string, $match);
+        return count($match[0]);
+    }
+
 
 }

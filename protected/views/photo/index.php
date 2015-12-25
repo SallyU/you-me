@@ -38,10 +38,10 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                                                 <i class="fa fa-trash-o text-danger"></i>
                                             </a>
                                             <?php } ?>
-                                            <a href="<?php echo $this->createUrl('photo/view',array('id' => $_v -> picid)); ?>" class="pull-right" title="<?php echo ((!Yii::app() -> user -> isGuest ) ? '编辑' : '评论');?>">
+                                            <a href="<?php echo $this->createUrl('photo/view',array('id' => $_v -> picid)); ?>" class="pull-right" title="详细信息">
                                                 <i class="icon-info text-success-lter"></i>
                                             </a>
-                                            <a href="#" title="赞" rel="<?php echo $_v->picid; ?>" class="lovePic"><span class="badge bg-white"><i class="fa fa-heart text-danger"></i>&nbsp;<?php echo $_v->like; ?></span></a>
+                                            <a href="#" title="喜欢" rel="<?php echo $_v->picid; ?>" class="lovePic"><span class="badge bg-white"><i class="fa fa-heart text-danger"></i>&nbsp;<?php echo $_v->love; ?></span></a>
                                         </div>
                                         <a href="<?php echo 'uploads/photos/'.$_v->picUrl;?>" data-lightbox="roadtrip">
                                             <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/photos/'.$_v->picUrl, 'w' => '450', 'h' => '300')) ?>" alt="" class="r r-2x img-full">
@@ -49,7 +49,7 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                                     </div>
                                     <div style="padding-top: 4px;padding-bottom: 4px;">
                                         <a class="btn btn-default" href="<?php echo $this->createUrl('ajax/downloadPic',array('picid' => $_v -> picid));?>" style="padding: 2px;font-size: 12px">
-                                            <i class="icon-cloud-download text-success"></i>
+                                            <i class="fa fa-cloud-download text-success"></i>
                                             <span class="text">下载原图</span>
                                         </a>
                                     </div>

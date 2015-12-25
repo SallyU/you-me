@@ -93,7 +93,23 @@ class PhotoController extends Controller{
             $model = Photo::model()->findByPk($id);
             if(!isset($model) || empty($model))
                 throw new CHttpException(404,'非法操作！');
-            echo "test";
+            $right = Yii::app()->user->isGuest ? 'and picopen = 1 ' : '';//是否是游客查看
+            //前一张照片
+            $prev=Photo::model()->findAll(array("condition" => "picid<".$model->picid." " .$right. " ","limit"=>1,'order'=>'picid desc'));
+            $prev= isset($prev) && !empty($prev) ? $prev[0] : '';
+            //下一张照片
+            $next=Photo::model()->findAll(array("condition" => "picid>".$model->picid." " .$right. " ","limit"=>1,'order'=>'picid asc'));
+            $next= isset($next) && !empty($next) ? $next[0] : '';
+
+            //侧边栏显示喜欢最多图片
+            $sideImg = Photo::model()->findAll(array('condition' => Yii::app()->user->isGuest ? 'picopen = 1 ' : '','limit' => 4,'order'=> 'love desc'));
+            $data = array(
+                'model' => $model,
+                'prev' => $prev,
+                'next' => $next,
+                'sideImg' => $sideImg,
+            );
+            $this->render('view',$data);
         } else {
             throw new CHttpException(404,'非法操作！');
         }

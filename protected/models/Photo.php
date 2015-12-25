@@ -13,7 +13,7 @@
  * @property string $userid
  * @property string $albumid
  * @property string $createtime
- * @property integer $like
+ * @property integer $love
  */
 class Photo extends CActiveRecord
 {
@@ -43,14 +43,14 @@ class Photo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('picopen, like', 'numerical', 'integerOnly'=>true),
+			array('picopen, love', 'numerical', 'integerOnly'=>true),
 			array('pictitle, picUrl, smallPicUrl', 'length', 'max'=>128),
 			array('picdesc', 'length', 'max'=>1000),
 			array('userid, albumid', 'length', 'max'=>11),
 			array('createtime', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('picid, pictitle, picopen, picUrl, smallPicUrl, picdesc, userid, albumid, createtime, like', 'safe', 'on'=>'search'),
+			array('picid, pictitle, picopen, picUrl, smallPicUrl, picdesc, userid, albumid, createtime, love', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,7 +81,7 @@ class Photo extends CActiveRecord
 	        'userid' => Yii::t('photo','Userid'),
 	        'albumid' => Yii::t('photo','Albumid'),
 	        'createtime' => Yii::t('photo','Createtime'),
-	        'like' => Yii::t('photo','Like'),
+	        'love' => Yii::t('photo','Love'),
 		);
 	}
 
@@ -105,7 +105,7 @@ class Photo extends CActiveRecord
 		$criteria->compare('userid',$this->userid);
 		$criteria->compare('albumid',$this->albumid);
 		$criteria->compare('createtime',$this->createtime);
-		$criteria->compare('like',$this->like);
+		$criteria->compare('love',$this->love);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

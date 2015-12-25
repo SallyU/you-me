@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-12-14 09:19:47
+-- Generation Time: 2015-12-25 16:51:39
 -- 服务器版本： 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `mw_likeip` (
   `id` int(11) NOT NULL,
   `picid` int(11) NOT NULL,
   `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `mw_likeip`
@@ -204,7 +204,19 @@ INSERT INTO `mw_likeip` (`id`, `picid`, `ip`) VALUES
 (26, 72, '127.0.0.1'),
 (27, 65, '192.168.0.7'),
 (28, 73, '127.0.0.1'),
-(29, 28, '127.0.0.1');
+(29, 28, '127.0.0.1'),
+(30, 72, '::1'),
+(31, 73, '::1'),
+(32, 47, '127.0.0.1'),
+(33, 50, '127.0.0.1'),
+(34, 50, '192.168.0.7'),
+(35, 51, '192.168.0.7'),
+(36, 51, '127.0.0.1'),
+(37, 43, '127.0.0.1'),
+(38, 39, '127.0.0.1'),
+(39, 69, '192.168.0.7'),
+(40, 66, '192.168.0.7'),
+(41, 61, '192.168.0.7');
 
 -- --------------------------------------------------------
 
@@ -222,14 +234,14 @@ CREATE TABLE IF NOT EXISTS `mw_photo` (
   `userid` int(11) unsigned DEFAULT NULL COMMENT '外键上传人ID',
   `albumid` int(11) unsigned DEFAULT NULL COMMENT '外键相册ID',
   `createtime` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相册创建时间',
-  `like` int(11) NOT NULL DEFAULT '0' COMMENT '赞数'
+  `love` int(11) NOT NULL DEFAULT '0' COMMENT '赞数'
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='照片表';
 
 --
 -- 转存表中的数据 `mw_photo`
 --
 
-INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`, `picdesc`, `userid`, `albumid`, `createtime`, `like`) VALUES
+INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`, `picdesc`, `userid`, `albumid`, `createtime`, `love`) VALUES
 (26, '', 1, '4860-20151202160841.jpeg', '', NULL, NULL, 1, '1449043721', 1),
 (27, '', 1, '9253-20151202160843.jpeg', '', NULL, NULL, 1, '1449043723', 1),
 (28, '', 1, '1002-20151202160843.jpeg', '', NULL, NULL, 32, '1449043723', 1),
@@ -238,16 +250,16 @@ INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`,
 (31, '', 1, '5663-20151203092916.jpg', '', NULL, NULL, 1, '1449106156', 0),
 (33, '', 1, '2307-20151203092916.jpg', '', NULL, NULL, 32, '1449106156', 0),
 (36, '', 1, '7387-20151203093148.jpg', '', NULL, NULL, 1, '1449106308', 0),
-(39, '', 1, '2789-20151203093423.jpg', '', NULL, NULL, 1, '1449106463', 0),
-(43, '', 1, '4572-20151203145435.jpeg', '', NULL, NULL, 1, '1449125675', 0),
+(39, '', 1, '2789-20151203093423.jpg', '', NULL, NULL, 1, '1449106463', 1),
+(43, '', 1, '4572-20151203145435.jpeg', '', NULL, NULL, 1, '1449125675', 1),
 (44, '', 1, '6883-20151203145436.jpeg', '', NULL, NULL, 1, '1449125676', 0),
 (45, '', 1, '8987-20151203145438.jpeg', '', NULL, NULL, 1, '1449125678', 0),
 (46, '', 1, '6018-20151203145439.jpeg', '', NULL, NULL, 1, '1449125679', 1),
-(47, '', 1, '6362-20151203145442.jpeg', '', NULL, NULL, 1, '1449125682', 0),
+(47, '', 1, '6362-20151203145442.jpeg', '', NULL, NULL, 1, '1449125682', 1),
 (48, '', 1, '2061-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
 (49, '', 1, '4505-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
-(50, '', 1, '3818-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 0),
-(51, '', 1, '8504-20151203145444.jpeg', '', NULL, NULL, 1, '1449125684', 0),
+(50, '', 1, '3818-20151203145443.jpeg', '', NULL, NULL, 1, '1449125683', 2),
+(51, '', 1, '8504-20151203145444.jpeg', '', NULL, NULL, 1, '1449125684', 2),
 (52, '', 1, '8400-20151203145445.jpeg', '', NULL, NULL, 1, '1449125685', 0),
 (53, '', 1, '8518-20151203145446.jpeg', '', NULL, NULL, 1, '1449125686', 0),
 (55, '', 1, '643-20151204154546.jpg', '', NULL, NULL, 1, '1449215147', 0),
@@ -256,19 +268,19 @@ INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`,
 (58, '夜景', 1, '5480-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 1),
 (59, '猫咪', 1, '4265-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 2),
 (60, '壁纸', 1, '355-20151204160845.jpg', '', NULL, NULL, 1, '1449216525', 0),
-(61, '蓝天白云', 1, '6070-20151204160845.jpg', '', 'why sky', NULL, 1, '1449216526', 1),
+(61, '蓝天白云', 1, '6070-20151204160845.jpg', '', 'why sky', NULL, 1, '1449216526', 2),
 (62, '奇地貌', 1, '870-20151204160846.jpg', '', '测试2', NULL, 1, '1449216526', 1),
 (63, 'Apples', 1, '2508-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
 (64, '静美', 1, '698-20151204160846.jpg', '', NULL, NULL, 1, '1449216526', 1),
 (65, '淡定', 1, '6025-20151204160847.jpg', '', '这是我的第一张摄影照片！', NULL, 1, '1449216527', 3),
-(66, '海阔天空', 1, '3277-20151204160847.jpg', '', '蓝蓝的海洋～', NULL, 1, '1449216527', 1),
+(66, '海阔天空', 1, '3277-20151204160847.jpg', '', '蓝蓝的海洋～', NULL, 1, '1449216527', 2),
 (67, '', 1, '3577-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
 (68, '', 0, '7623-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
-(69, '', 1, '5076-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 2),
+(69, '', 1, '5076-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 3),
 (70, '', 1, '832-20151208114652.jpg', '', NULL, NULL, 1, '1449546412', 2),
 (71, '', 1, '3493-20151209104307.jpg', '', NULL, NULL, 1, '1449628987', 1),
-(72, '', 1, '8184-20151210155947.jpg', '', NULL, NULL, 1, '1449734387', 1),
-(73, '', 1, '5753-20151211114447.jpg', '', '大峡谷', NULL, 1, '1449805487', 1);
+(72, '', 1, '8184-20151210155947.jpg', '', NULL, NULL, 1, '1449734387', 2),
+(73, '', 1, '5753-20151211114447.jpg', '', '大峡谷', NULL, 1, '1449805487', 2);
 
 -- --------------------------------------------------------
 
@@ -278,9 +290,12 @@ INSERT INTO `mw_photo` (`picid`, `pictitle`, `picopen`, `picUrl`, `smallPicUrl`,
 
 CREATE TABLE IF NOT EXISTS `mw_photocomment` (
   `id` int(11) NOT NULL COMMENT '照片评论自增id',
+  `email` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '评论用户邮箱',
   `content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '评论内容',
   `userid` int(11) unsigned DEFAULT NULL COMMENT '评论ID',
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '评论用户名称',
   `picid` int(11) unsigned DEFAULT NULL COMMENT '照片ID',
+  `status` tinyint(1) NOT NULL COMMENT '审核状态',
   `createtime` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '评论时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='照片评论表';
 
@@ -385,7 +400,7 @@ ALTER TABLE `mw_blog`
 -- AUTO_INCREMENT for table `mw_likeip`
 --
 ALTER TABLE `mw_likeip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `mw_photo`
 --

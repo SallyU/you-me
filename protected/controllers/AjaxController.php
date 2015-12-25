@@ -180,7 +180,7 @@ class AjaxController extends Controller
         if($count==0){ //如果没有记录
             //更新数量
             $model = Photo::model()->findByPk($id);
-            $model -> like+=1;
+            $model -> love+=1;
             $model -> save();
             //独立ip只能一次赞，写入数据库
             $newip = new Likeip();
@@ -189,10 +189,10 @@ class AjaxController extends Controller
             $newip -> save();
 
             //重新获取喜欢的数量
-            $like = Photo::model()->findByPk($id);
+            $love = Photo::model()->findByPk($id);
             echo '<a href="#" title="赞" rel="'.$id.'" class="lovePic">
             <span class="badge bg-white">
-            <i class="fa fa-heart text-danger"></i>&nbsp;' .$like -> like. '</span></a>';
+            <i class="fa fa-heart text-danger"></i>&nbsp;' .$love -> love. '</span></a>';
         } else {
             echo '<a href="#" title="赞" rel="'.$id.'" class="lovePic">
             <span class="badge bg-white">

@@ -19,8 +19,8 @@
                                 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                                     <div class="item">
                                         <div class="pos-rlt">
+                                            <?php if(!Yii::app()->user->isGuest){?>
                                             <div class="item-overlay opacity r r-2x bg-black">
-                                                <?php if(!Yii::app()->user->isGuest){?>
                                                 <div class="bottom padder m-b-sm">
                                                     <a href="#" class="pull-right" title="编辑">
                                                         <i class="fa fa-pencil-square-o text-success-lter"></i>
@@ -31,11 +31,8 @@
                                                     </a>
                                                     <?php } ?>
                                                 </div>
-                                                <?php } ?>
-                                                <div class="center text-center m-t-n">
-                                                    <a href="#"></a>
-                                                </div>
                                             </div>
+                                            <?php } ?>
                                             <div class="top">
                                                 <span class="pull-right m-t-sm m-r-sm badge bg-white">
                                                     <?php if(!Yii::app()->user->isGuest){
@@ -45,12 +42,12 @@
                                                     } ?>
                                                 </span>
                                             </div>
-                                            <a href="#">
+                                            <a href="<?php echo $this->createUrl('album/show',array('albumid' => $_v -> albumid)); ?>">
                                                 <img src="<?php echo Yii::app()->createUrl('ajax/getThumb', array('path' => ROOT_PATH.'uploads/albumcovers/'.$_v->albumcover, 'w' => '256', 'h' => '256')) ?>" alt="" class="r r-2x img-full">
                                             </a>
                                         </div>
                                         <div class="padder-v">
-                                            <a href="" class="text-ellipsis"><?php echo '《'.$_v->albumname.'》'; ?></a>
+                                            <a href="<?php echo $this->createUrl('album/show',array('albumid' => $_v -> albumid)); ?>" class="text-ellipsis"><?php echo '《'.$_v->albumname.'》'; ?></a>
                                             <a href="" class="text-ellipsis text-xs text-muted"><?php echo $_v->albumcate->catename; ?></a>
                                         </div>
                                     </div>

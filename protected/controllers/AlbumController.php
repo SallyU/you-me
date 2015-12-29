@@ -86,4 +86,32 @@ class AlbumController extends Controller{
         $this->render('add',$data);
     }
 
+    //显示相册内的照片
+    public function actionShow(){
+        $albumid = $_GET['albumid'];
+        $album = Album::model()->findByPk($albumid);
+        if(!isset($album) || empty($album))
+            throw new CHttpException(404,'非法操作！');
+        if(Yii::app()->user->isGuest && $album -> albumopen == 2)
+            throw new CHttpException(404,'非法操作！');
+        $criteria = new CDbCriteria();
+        $criteria->order = "createtime DESC";
+        $criteria->addCondition('albumid = '.$albumid.' ');
+        if(Yii::app()->user->isGuest)
+            $criteria->addCondition('picopen = 1');//游客，查看公开的
+        $count = Photo::model()->count($criteria);
+        $pager = new CPagination($count);
+        $pager->pageSize=12;//每页显示的数量
+        $pager->applyLimit($criteria);
+        $model = Photo::model()->findAll($criteria);
+
+        $data = array(
+            'album' => $album,
+            'model' => $model,
+            'pages' => $pager,
+            'count' => $count,
+        );
+        $this->render('show',$data);
+    }
+
 }

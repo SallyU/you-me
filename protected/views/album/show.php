@@ -1,5 +1,13 @@
 <?php
-$this->pageTitle = Yii::app()->name . ' - 照片廊';
+/**
+ * Created by PhpStorm.
+ * User: QKY
+ * Date: 15-12-29
+ * Time: 下午2:17
+ */
+?>
+<?php
+$this->pageTitle = Yii::app()->name .' - '.$album -> albumname;
 Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/css/lightbox.css');
 ?>
 <script src="<?php echo Yii::app()->baseUrl . '/src/default/js/lightbox-plus-jquery.min.js';?>"></script>
@@ -23,12 +31,12 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/src/default/cs
                         </a>
                     <?php } ?>
                     <h2 class="font-thin m-b">
-                        照片廊
+                        <?php echo $album -> albumname; ?>
                     </h2>
                     <?php $this->renderPartial('/photo/_list',array(
                         'model' => $model,
                         'pages' => $pages,
-                        )) ?>
+                    )) ?>
                 </section>
             </section>
         </section>

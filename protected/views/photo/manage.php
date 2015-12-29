@@ -85,10 +85,10 @@ $this->pageTitle = Yii::app()->name . ' - 照片管理';
                                 </a>
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="edit-title" >
-                                <?php echo (!empty($_v->pictitle) ? $_v->pictitle : ('暂无标题')) ;?>
+                                <?php echo (!empty($_v->pictitle) ? $_v->pictitle : ('')) ;?>
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="picdesc">
-                                <?php echo (!empty($_v->picdesc) ? $_v->picdesc : ('暂无描述')) ;?>
+                                <?php echo (!empty($_v->picdesc) ? $_v->picdesc : ('')) ;?>
                             </td>
                             <td style=" text-align:center;vertical-align: inherit;" id="<?php echo $_v->picid; ?>" class="select-album">
                                 <?php if(!empty($_v->albumid) && isset($_v->albumid)){

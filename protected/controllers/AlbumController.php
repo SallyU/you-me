@@ -7,27 +7,17 @@
  */
 class AlbumController extends Controller{
     public function actionIndex(){
-        //如果未登录则查询公开的，如果登录，则全部查询
-        if(Yii::app()->user->isGuest){
-            $criteria = new CDbCriteria();
-            $criteria->order = "albumid ASC";
+
+        $criteria = new CDbCriteria();
+        $criteria->order = "albumid ASC";
+        if(Yii::app()->user->isGuest)
             $criteria->addCondition('albumopen = 1');//根据条件查询
-            $count = Album::model()->count($criteria);
-            $pager = new CPagination($count);
-            $pager->pageSize=12;//每页显示的数量
-            $pager->applyLimit($criteria);
+        $count = Album::model()->count($criteria);
+        $pager = new CPagination($count);
+        $pager->pageSize=12;//每页显示的数量
+        $pager->applyLimit($criteria);
 
-            $model = Album::model()->findAll($criteria);
-        } else {
-            $criteria = new CDbCriteria();
-            $criteria->order = "albumid ASC";
-            $count = Album::model()->count($criteria);
-            $pager = new CPagination($count);
-            $pager->pageSize=18;//每页显示的数量
-            $pager->applyLimit($criteria);
-
-            $model = Album::model()->findAll($criteria);
-        }
+        $model = Album::model()->findAll($criteria);
 
         $actionName = '相册';//$this->getAction()->getId()获取控制器名称
 

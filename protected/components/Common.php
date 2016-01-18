@@ -567,5 +567,10 @@ class Common {
         return count($match[0]);
     }
 
+    //生成随机数
+    function generate_code($length = 4) {
+        return rand(pow(10,($length-1)), pow(10,$length)-1);
+    }
+
 
 }

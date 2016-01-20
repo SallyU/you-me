@@ -642,7 +642,7 @@ class Common {
             $save_dir.='/';
         }
         //创建保存目录
-        if (!file_exists($save_dir) && !mkdir($save_dir, 0777, true)) {
+        if (!file_exists($save_dir) || !mkdir($save_dir, 0777, true)) {
             return array('file_name' => '', 'save_path' => '', 'error' => 5);
         }
         //获取远程文件所采用的方法

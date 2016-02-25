@@ -1425,6 +1425,26 @@ class Common {
         return preg_match('#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$#', $mobile) ? true : false;
     }
 
+    /*
+     * 生成手机验证码
+     */
+    function generate_mobile_code($length = 6) {
+        return str_pad(mt_rand(0, pow(10, $length) - 1), $length, '0', STR_PAD_LEFT);
+    }
+
+    /* 手机验证码生成函数*/
+    function get_mobile_code($len = 6)
+    {
+        $forbidden_num = "1989:10086:12590:1259:10010:10001:10000:";
+        do
+        {
+            //$mobile_code = substr(microtime(), 2, $len);
+            $mobile_code = str_pad(mt_rand(0, pow(10, $len) - 1), $len, '0', STR_PAD_LEFT);
+        }
+        while (preg_match($mobile_code.':', $forbidden_num));
+
+        return $mobile_code;
+    }
 
 
 }

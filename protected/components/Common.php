@@ -1487,5 +1487,69 @@ class Common {
         return base64_decode(join('', $strArr));
     }
 
+    /*
+     * 邮箱服务地址获得
+     */
+    public static function gotoMail($mail){
+        $mail_domain = explode('@',$mail);
+        $mail_domain = strtolower($mail_domain[1]);
+        switch($mail_domain){
+            case 'vip.163.com':
+                return 'http://vip.163.com';
+                break;
+            case 'qq.com':
+            case 'vip.qq.com':
+            case 'foxmail.com':
+                return 'http://mail.qq.com';
+                break;
+            case 'gmail.com':
+                return 'mail.google.com';
+                break;
+            case '163.com':
+            case '126.com':
+            case 'sohu.com':
+            case 'tom.com':
+            case '21cn.com':
+            case 'sogou.com':
+                return 'http://mail.'.$mail_domain;
+                break;
+            case 'vip.sina.com':
+                return 'http://vip.sina.com';
+                break;
+            case 'sina.com.cn':
+            case 'sina.com':
+                return 'http://mail.sina.com.cn';
+                break;
+            case 'yahoo.com.cn':
+            case 'yahoo.cn':
+                return 'http://mail.cn.yahoo.com';
+                break;
+            case 'yeah.net':
+                return 'http://www.yeah.net';
+                break;
+            case 'hotmail.com':
+                return 'http://www.hotmail.com';
+                break;
+            case '188.com':
+                return 'http://www.188.com';
+                break;
+            case '139.com':
+                return 'http://mail.10086.cn';
+                break;
+            case '189.cn':
+                return 'http://webmail15.189.cn/webmail';
+                break;
+            case 'wo.com.cn':
+                return 'http://mail.wo.com.cn/smsmail';
+                break;
+            case 'mail.com':
+                return 'http://mail.com';
+                break;
+            default:
+                return 'http://mail.'.$mail_domain;
+        }
+
+    }
+
 
 }

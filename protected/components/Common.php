@@ -1490,10 +1490,11 @@ class Common {
     /*
      * 邮箱服务地址获得
      */
-    public static function gotoMail($mail){
-        $mail_domain = explode('@',$mail);
+
+    public static function gotoMail($mail) {
+        $mail_domain = explode('@', $mail);
         $mail_domain = strtolower($mail_domain[1]);
-        switch($mail_domain){
+        switch ($mail_domain) {
             case 'vip.163.com':
                 return 'http://vip.163.com';
                 break;
@@ -1503,7 +1504,7 @@ class Common {
                 return 'http://mail.qq.com';
                 break;
             case 'gmail.com':
-                return 'mail.google.com';
+                return 'http://mail.google.com';
                 break;
             case '163.com':
             case '126.com':
@@ -1511,7 +1512,7 @@ class Common {
             case 'tom.com':
             case '21cn.com':
             case 'sogou.com':
-                return 'http://mail.'.$mail_domain;
+                return 'http://mail.' . $mail_domain;
                 break;
             case 'vip.sina.com':
                 return 'http://vip.sina.com';
@@ -1545,10 +1546,12 @@ class Common {
             case 'mail.com':
                 return 'http://mail.com';
                 break;
+            case 'outlook.com':
+                return 'http://outlook.com';
+                break;
             default:
-                return 'http://mail.'.$mail_domain;
+                return 'http://mail.' . $mail_domain;
         }
-
     }
 
     public static function hideStar($str) {

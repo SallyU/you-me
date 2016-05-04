@@ -1355,51 +1355,6 @@ class Common {
     }
 
     /**
-     * 过滤 xss 脚本
-     * @param $val 字符串
-     * @return $val 字符串
-     */
-    static function removeXSS($val) {
-        $val = preg_replace('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/', '', $val);
-        $search = 'abcdefghijklmnopqrstuvwxyz';
-        $search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $search .= '1234567890!@#$%^&*()';
-        $search .= '~`";:?+/={}[]-_|\'\\';
-        for ($i = 0; $i < strlen($search); $i++) {
-            $val = preg_replace('/(&#[xX]0{0,8}' . dechex(ord($search[$i])) . ';?)/i', $search[$i], $val);
-            $val = preg_replace('/(&#0{0,8}' . ord($search[$i]) . ';?)/', $search[$i], $val);
-        }
-        $ra1 = Array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 'title', 'base');
-        $ra2 = Array('onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onpaste', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onsubmit', 'onunload');
-        $ra = array_merge($ra1, $ra2);
-        $found = true;
-        while ($found == true) {
-            $val_before = $val;
-            for ($i = 0; $i < sizeof($ra); $i++) {
-                $pattern = '/';
-                for ($j = 0; $j < strlen($ra[$i]); $j++) {
-                    if ($j > 0) {
-                        $pattern .= '(';
-                        $pattern .= '(&#[xX]0{0,8}([9ab]);)';
-                        $pattern .= '|';
-                        $pattern .= '|(&#0{0,8}([9|10|13]);)';
-                        $pattern .= ')*';
-                    }
-                    $pattern .= $ra[$i][$j];
-                }
-                $pattern .= '/i';
-                //$replacement = substr($ra[$i], 0, 2).'<x>'.substr($ra[$i], 2);
-                $replacement = 'XSSremoved';
-                $val = preg_replace($pattern, $replacement, $val);
-                if ($val_before == $val) {
-                    $found = false;
-                }
-            }
-        }
-        return $val;
-    }
-
-    /**
      * 过滤 <a> 标签
      */
     static function removeTagA($str) {
@@ -1590,6 +1545,169 @@ class Common {
         }
         return $is_mobile;
     }
+
+    /**
+     * 检测来源 ip 是来源国家，依赖 php-geoip 扩展。
+     * 如果没有装这个扩展就直接调用淘宝的api。
+     * @return boolean
+     */
+    public static function IPCountry() {
+        $ip = Yii::app()->request->userHostAddress;
+        if ($ip == '127.0.0.1')
+            return 'cn';
+        if (function_exists('geoip_country_code_by_name')) {
+            $country = strtolower(@geoip_country_code_by_name($ip));
+        } else {
+            $country = self::remoteGetCountry($ip);
+        }
+        return $country;
+    }
+
+    // check if wap
+    public static function check_wap(){
+        // 先检查是否为wap代理，准确度高
+        if(stristr($_SERVER['HTTP_VIA'],"wap")){
+            return true;
+        }
+        // 检查浏览器是否接受 WML.
+        elseif(strpos(strtoupper($_SERVER['HTTP_ACCEPT']),"VND.WAP.WML") > 0){
+            return true;
+        }
+        //检查USER_AGENT
+        elseif(preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $_SERVER['HTTP_USER_AGENT'])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static function is_mobile_request()
+    {
+        $_SERVER['ALL_HTTP'] = isset($_SERVER['ALL_HTTP']) ? $_SERVER['ALL_HTTP'] : '';
+        $mobile_browser = '0';
+        if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|iphone|ipad|ipod|android|xoom)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
+            $mobile_browser++;
+        if((isset($_SERVER['HTTP_ACCEPT'])) and (strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') !== false))
+            $mobile_browser++;
+        if(isset($_SERVER['HTTP_X_WAP_PROFILE']))
+            $mobile_browser++;
+        if(isset($_SERVER['HTTP_PROFILE']))
+            $mobile_browser++;
+        $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'],0,4));
+        $mobile_agents = array(
+            'w3c ','acs-','alav','alca','amoi','audi','avan','benq','bird','blac',
+            'blaz','brew','cell','cldc','cmd-','dang','doco','eric','hipt','inno',
+            'ipaq','java','jigs','kddi','keji','leno','lg-c','lg-d','lg-g','lge-',
+            'maui','maxo','midp','mits','mmef','mobi','mot-','moto','mwbp','nec-',
+            'newt','noki','oper','palm','pana','pant','phil','play','port','prox',
+            'qwap','sage','sams','sany','sch-','sec-','send','seri','sgh-','shar',
+            'sie-','siem','smal','smar','sony','sph-','symb','t-mo','teli','tim-',
+            'tosh','tsm-','upg1','upsi','vk-v','voda','wap-','wapa','wapi','wapp',
+            'wapr','webc','winw','winw','xda','xda-'
+        );
+        if(in_array($mobile_ua, $mobile_agents))
+            $mobile_browser++;
+        if(strpos(strtolower($_SERVER['ALL_HTTP']), 'operamini') !== false)
+            $mobile_browser++;
+        // Pre-final check to reset everything if the user is on Windows
+        if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') !== false)
+            $mobile_browser=0;
+        // But WP7 is also Windows, with a slightly different characteristic
+        if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows phone') !== false)
+            $mobile_browser++;
+        if($mobile_browser>0)
+            return true;
+        else
+            return false;
+    }
+
+    public static function RemoveXSS($val) {
+        // remove all non-printable characters. CR(0a) and LF(0b) and TAB(9) are allowed
+        // this prevents some character re-spacing such as <java\0script>
+        // note that you have to handle splits with \n, \r, and \t later since they *are* allowed in some inputs
+        $val = preg_replace('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/', '', $val);
+
+        // straight replacements, the user should never need these since they're normal characters
+        // this prevents like <IMG SRC=@avascript:alert('XSS')>
+        $search = 'abcdefghijklmnopqrstuvwxyz';
+        $search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $search .= '1234567890!@#$%^&*()';
+        $search .= '~`";:?+/={}[]-_|\'\\';
+        for ($i = 0; $i < strlen($search); $i++) {
+            // ;? matches the ;, which is optional
+            // 0{0,7} matches any padded zeros, which are optional and go up to 8 chars
+
+            // @ @ search for the hex values
+            $val = preg_replace('/(&#[xX]0{0,8}'.dechex(ord($search[$i])).';?)/i', $search[$i], $val); // with a ;
+            // @ @ 0{0,7} matches '0' zero to seven times
+            $val = preg_replace('/(&#0{0,8}'.ord($search[$i]).';?)/', $search[$i], $val); // with a ;
+        }
+
+        // now the only remaining whitespace attacks are \t, \n, and \r
+        $ra1 = Array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 'title', 'base');
+        $ra2 = Array('onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onpaste', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onsubmit', 'onunload');
+        $ra = array_merge($ra1, $ra2);
+
+        $found = true; // keep replacing as long as the previous round replaced something
+        while ($found == true) {
+            $val_before = $val;
+            for ($i = 0; $i < sizeof($ra); $i++) {
+                $pattern = '/';
+                for ($j = 0; $j < strlen($ra[$i]); $j++) {
+                    if ($j > 0) {
+                        $pattern .= '(';
+                        $pattern .= '(&#[xX]0{0,8}([9ab]);)';
+                        $pattern .= '|';
+                        $pattern .= '|(&#0{0,8}([9|10|13]);)';
+                        $pattern .= ')*';
+                    }
+                    $pattern .= $ra[$i][$j];
+                }
+                $pattern .= '/i';
+                $replacement = substr($ra[$i], 0, 2).'<x>'.substr($ra[$i], 2); // add in <> to nerf the tag
+                $val = preg_replace($pattern, $replacement, $val); // filter out the hex tags
+                if ($val_before == $val) {
+                    // no replacements were made, so exit the loop
+                    $found = false;
+                }
+            }
+        }
+        return $val;
+    }
+
+    /*
+    * array unique_rand( int $min, int $max, int $num )
+    * 生成一定数量的不重复随机数
+    * $min 和 $max: 指定随机数的范围
+    * $num: 指定生成数量
+     *
+     * e.g:
+     *  $arr = unique_rand(1, 25, 16);
+        sort($arr);
+
+        $result = '';
+        for($i=0; $i < count($arr);$i++)
+            {
+                $result .= $arr[$i].',';
+            }
+        $result = substr($result, 0, -1);
+        echo $result;
+    */
+    public static function unique_rand($min, $max, $num) {
+        $count = 0;
+        $return = array();
+        while ($count < $num) {
+            $return[] = mt_rand($min, $max);
+            $return = array_flip(array_flip($return));
+            $count = count($return);
+        }
+        shuffle($return);
+        return $return;
+    }
+
+
+
 
 
 }
